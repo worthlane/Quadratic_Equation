@@ -15,7 +15,6 @@ c = ___
 ## How does it work?
 Program finds the roots using a discriminant formula.
 ## Repeat:
-You can solve another equation after previous.
-It will ask, would you like to repeat. If you want to continue, you should type "1". Any other answer will be regarded as "No".
+You can solve another equation. If you want to continue, you should type "1" after the program's question. Any other answer will be regarded as "No".
 > [!NOTE]
 > You can use file input only with first run of the program. If you need to solve another equation, you should enter data using STDIN.
