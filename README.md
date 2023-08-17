@@ -1,7 +1,7 @@
 # Quadratic Equation Solver
 ## Input from:
 ### STDIN:
-Equation format: ax^2 + bx + c = 0. Program will ask you to enter each coefficient.
+Equation format: $ax^2 + bx + c = 0$. Program will ask you to enter each coefficient.
 ### FILE:
 You will need to type file directory in console like an argument.
 File input format:
