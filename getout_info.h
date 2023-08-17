@@ -8,7 +8,7 @@ void FSkipFormatText(FILE * fp);                  // skipping "coef =" part
 bool FGetCoef(FILE * fp, float * a);              // getting coefficient from file
 bool GetCoef(float * a, const char ch);           // getting coefficient from STDIN
 
-void PrintRoots(int roots, float x1, float x2);		// printing roots
+void PrintRoots(int roots, float x1, float x2);   // printing roots
 
 enum Roots
 {
