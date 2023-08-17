@@ -7,29 +7,29 @@
 /* File input format:
  * a = ___
  * b = ___
- * c = ___			*/
+ * c = ___          */
 
-int main(int argc, char *argv[])			// for input from file type direction in terminal
+int main(int argc, char *argv[])            // for input from file type direction in terminal
 {
   int times_run = 1;
   while (true) {
     float a, b, c;
-    if (argc == 1 || times_run > 1) 		// input from stdin
+    if (argc == 1 || times_run > 1)         // input from stdin
      {
       printf("Equation format: ax^2 + bx + c = 0\n");
-      if (!GetCoef(&a, 'a'))				// getting a coefficient
+      if (!GetCoef(&a, 'a'))                // getting a coefficient
       {
-        return 1;							// failed to get a coefficient
+        return 1;                           // failed to get a coefficient
       }
-      if (!GetCoef(&b, 'b'))				// getting b coefficient
+      if (!GetCoef(&b, 'b'))                // getting b coefficient
       {
-        return 1;							// failed to get b coefficient
+        return 1;                           // failed to get b coefficient
       }
-      if (!GetCoef(&c, 'c'))				// getting c coefficient
+      if (!GetCoef(&c, 'c'))                // getting c coefficient
       {
-        return 1;							// failed to get c coefficient
+        return 1;                           // failed to get c coefficient
       }
-    } else {	 							// file input case
+    } else {                                // file input case
       FILE *fp = fopen(argv[1], "r");
       if (!fp)
       {
@@ -37,16 +37,16 @@ int main(int argc, char *argv[])			// for input from file type direction in term
         return 1;
       } else
       {
-        FSkipFormatText(fp);				// skipping "a =" part
-        if (!FGetCoef(fp, &a))  			// getting a coefficient from file
+        FSkipFormatText(fp);                // skipping "a =" part
+        if (!FGetCoef(fp, &a))              // getting a coefficient from file
         {
-          return 1; 						// failed to get coefficient
+          return 1;                         // failed to get coefficient
         }
         fgetc(fp);
-        FSkipFormatText(fp);				// skipping '\n' char
-        if (!FGetCoef(fp, &b))  			// getting b coefficient from file
+        FSkipFormatText(fp);                // skipping '\n' char
+        if (!FGetCoef(fp, &b))              // getting b coefficient from file
         {
-          return 1; 						// failed to get coefficient
+          return 1;                         // failed to get coefficient
         }
         fgetc(fp);
         FSkipFormatText(fp);
