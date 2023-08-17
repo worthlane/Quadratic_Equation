@@ -7,13 +7,13 @@
 int Compare(const float a, const float b)		// comparing two float numbers with EPSILON accuracy
 {
   float diff = a - b;
-  if (abs(diff) < EPSILON)						// a = b conditions
+  if (abs(diff) < EPSILON)				// a = b conditions
   {
 	return EQUAL;
-  } else if (diff > EPSILON)					// a > b conditions
+  } else if (diff > EPSILON)				// a > b conditions
   {
 	return MORE;
-  } else if (diff < -EPSILON)					// a < b conditions
+  } else if (diff < -EPSILON)				// a < b conditions
   {
 	return LESS;
   }
@@ -30,25 +30,25 @@ struct solve * QuadSolver(const float a, const float b, const float c)
 	  if (Compare(c, 0) == EQUAL)				// 0 + 0 + 0 = 0
 	  {
 		ptr->amount = INF_ROOTS;
-	  } else {									// 0 + 0 + c = 0
+	  } else {						// 0 + 0 + c = 0
 		ptr->amount = ZERO_ROOTS;
 	  }
-	} else {									// bx + c = 0
+	} else {						// bx + c = 0
 	  ptr->amount = ONE_ROOT;
 	  ptr->first = (-c / b);
 	}
-  } else										// ax^2 + bx + c = 0
+  } else							// ax^2 + bx + c = 0
   {
-	float D; 									// discriminant
-	D = b*b - 4*a*c;							// discriminant formula
-	if (Compare(D, 0) == LESS)					// zero roots conditions
+	float D; 						// discriminant
+	D = b*b - 4*a*c;					// discriminant formula
+	if (Compare(D, 0) == LESS)				// zero roots conditions
 	{
 	  ptr->amount = ZERO_ROOTS;
 	} else if (Compare(D, 0) == EQUAL)			// one root condition
 	{
 	  ptr->amount = ONE_ROOT;
 	  ptr->first = (-b / (2 * a));
-	} else {									// two roots conditions
+	} else {						// two roots conditions
 	  float root1, root2;
 	  ptr->amount = TWO_ROOTS;
 	  float discriminant_root = sqrt(D);
