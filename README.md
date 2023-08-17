@@ -1,4 +1,4 @@
-# quadratic_equation
+# Quadratic Equation Solver
 ## Input from:
 ### STDIN:
 Equation format: ax^2 + bx + c = 0. Program will ask you to enter each coefficient.
