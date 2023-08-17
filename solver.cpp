@@ -2,48 +2,59 @@
 #include <math.h>
 #include "getout_info.h"
 
-struct solve QuadSolver(float a, float b, float c)
+#define EPSILON 1e-6
+
+int Compare(const float a, const float b)		// comparing two float numbers with EPSILON accuracy
 {
-  struct solve ans;
-  if (a == 0)
+  float diff = a - b;
+  if (abs(diff) < EPSILON)						// a = b conditions
   {
-	if (b == 0)
+	return EQUAL;
+  } else if (diff > EPSILON)					// a > b conditions
+  {
+	return MORE;
+  } else if (diff < -EPSILON)					// a < b conditions
+  {
+	return LESS;
+  }
+}
+// -----------------------------------------------------------------------------------------
+struct solve * QuadSolver(const float a, const float b, const float c)
+{
+  struct solve ans = {0, 0, 0};
+  struct solve * ptr = &ans;
+  if (Compare(a, 0) == EQUAL)
+  {
+	if (Compare(b, 0) == EQUAL)
 	{
-	  if (c == 0)				// 0 + 0 + 0 = 0
+	  if (Compare(c, 0) == EQUAL)				// 0 + 0 + 0 = 0
 	  {
-		ans.amount = INF_ROOTS;
-		ans.first = 0;
-		ans.second = 0;
-	  } else {					// 0 + 0 + c = 0
-		ans.amount = ZERO_ROOTS;
-		ans.first = 0;
-		ans.second = 0;
+		ptr->amount = INF_ROOTS;
+	  } else {									// 0 + 0 + c = 0
+		ptr->amount = ZERO_ROOTS;
 	  }
-	} else {					// bx + c = 0
-	  ans.amount = ONE_ROOT;
-	  ans.first = (-c / b);
-	  ans.second = 0;
+	} else {									// bx + c = 0
+	  ptr->amount = ONE_ROOT;
+	  ptr->first = (-c / b);
 	}
-  } else						// ax^2 + bx + c = 0
+  } else										// ax^2 + bx + c = 0
   {
-	float D; 					// Discriminant
-	D = b * b - 4 * a * c;		// Discriminant formula
-	if (D < 0)					// zero roots conditions
+	float D; 									// discriminant
+	D = b*b - 4*a*c;							// discriminant formula
+	if (Compare(D, 0) == LESS)					// zero roots conditions
 	{
-	  ans.amount = ZERO_ROOTS;
-	  ans.first = 0;
-	  ans.second = 0;
-	} else if (D == 0)			// one root condition
+	  ptr->amount = ZERO_ROOTS;
+	} else if (Compare(D, 0) == EQUAL)			// one root condition
 	{
-	  ans.amount = ONE_ROOT;
-	  ans.first = (-b / (2 * a));
-	  ans.second = 0;
-	} else {					// two roots conditions
+	  ptr->amount = ONE_ROOT;
+	  ptr->first = (-b / (2 * a));
+	} else {									// two roots conditions
 	  float root1, root2;
-	  ans.amount = TWO_ROOTS;
-	  ans.first = ((-b - sqrt(D)) / (2 * a));
-	  ans.second = ((-b + sqrt(D)) / (2 * a));
+	  ptr->amount = TWO_ROOTS;
+	  float discriminant_root = sqrt(D);
+	  ptr->first = ((-b - discriminant_root) / (2 * a));
+	  ptr->second = ((-b + discriminant_root) / (2 * a));
 	}
   }
-  return ans;
+  return ptr;
 }

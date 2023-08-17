@@ -3,41 +3,38 @@
 #include <stdlib.h>
 
 //------------------------------------------------------------------------------------------------------------------
-void Fget(FILE * fp, float * a)				// getting coefficient from file
+bool FGetCoef(FILE * fp, float * a)  					// getting coefficient from file
 {
   if (fscanf(fp, "%f", a) == 0)
   {
-	printf("ERROR: INCORRECT FILE INPUT");	// (not "coef =" format)
+	printf("ERROR: INCORRECT FILE INPUT");  			// (not "coef =" format)
 	fclose(fp);
-	exit(EXIT_FAILURE);
+	return false;
   }
+  return true;
 }
 //------------------------------------------------------------------------------------------------------------------
-void Fskip(FILE * fp)						// skipping "coef =" part
+void FSkipFormatText(FILE * fp) 						// skipping "coef =" part
 {
-  fgetc(fp);								// skipping "coef"
-  fgetc(fp);								// skipping " "
-  fgetc(fp);								// skipping "="
+  fgetc(fp);											// skipping "coef"
+  fgetc(fp);											// skipping " "
+  fgetc(fp);											// skipping "="
 }
 //------------------------------------------------------------------------------------------------------------------
-void Clear_Input(void)		// clearing input from '\n' char and else trash
+void ClearInput(void)									// clearing input from '\n' char and else trash
 {
-  int ch;
-  while ((ch = getchar()) != '\n')
-  {
-	;
-  }
+  while (getchar() != '\n') {}
 }
 //------------------------------------------------------------------------------------------------------------------
-bool Get(float * a, char ch)							// getting coefficient from STDIN
+bool GetCoef(float * a, const char ch)					// getting coefficient from STDIN
 {
   printf("Input coefficient %c: ", ch);
   while (scanf("%f", a) == 0)
   {
 	printf("ERROR: INVALID COEFFICIENT\n");				// not a coefficient conditions
 	printf("Do you want to continue? (1 - Yes): ");
-	Clear_Input();
-	int flag;
+	ClearInput();
+	int flag = 0;
 	scanf("%d", &flag);
 	if (flag == 1)										// user wants to try again
 	{
@@ -46,7 +43,7 @@ bool Get(float * a, char ch)							// getting coefficient from STDIN
 	} else												// user doesn't want to continue
 	{
 	  printf("PROGRAM SHUT DOWN");
-	  exit(EXIT_FAILURE);
+	  return false;
 	}
   }
   return true;
@@ -67,6 +64,9 @@ void PrintRoots(int roots, float x1, float x2)
 	  break;
 	case INF_ROOTS:
 	  printf("Your equation has infinite amount of roots.\n");
+	  break;
+	default:
+	  printf("ERROR: UNEXPECTED AMOUNT OF ROOTS.\n");
 	  break;
   }
 }
