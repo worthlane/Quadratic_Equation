@@ -14,14 +14,14 @@ bool FGetCoef(FILE * fp, float * a)  					// getting coefficient from file
   return true;
 }
 //------------------------------------------------------------------------------------------------------------------
-void FSkipFormatText(FILE * fp) 						// skipping "coef =" part
+void FSkipFormatText(FILE * fp) 					// skipping "coef =" part
 {
-  fgetc(fp);											// skipping "coef"
-  fgetc(fp);											// skipping " "
-  fgetc(fp);											// skipping "="
+  fgetc(fp);								// skipping "coef"
+  fgetc(fp);								// skipping " "
+  fgetc(fp);								// skipping "="
 }
 //------------------------------------------------------------------------------------------------------------------
-void ClearInput(void)									// clearing input from '\n' char and else trash
+void ClearInput(void)							// clearing input from '\n' char and else trash
 {
   while (getchar() != '\n') {}
 }
@@ -36,11 +36,11 @@ bool GetCoef(float * a, const char ch)					// getting coefficient from STDIN
 	ClearInput();
 	int flag = 0;
 	scanf("%d", &flag);
-	if (flag == 1)										// user wants to try again
+	if (flag == 1)							// user wants to try again
 	{
 	  printf("Input coefficient %c: ", ch);
 	  continue;
-	} else												// user doesn't want to continue
+	} else								// user doesn't want to continue
 	{
 	  printf("PROGRAM SHUT DOWN");
 	  return false;
