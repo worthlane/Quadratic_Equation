@@ -60,17 +60,17 @@ int main(int argc, char *argv[]) 						// for input from file type direction in 
 	  }
 	}
 	struct solve * ans;
-	ans = QuadSolver(a, b, c);										// solving part
+	ans = QuadSolver(a, b, c);							// solving part
 	PrintRoots(ans->amount, ans->first, ans->second);				// printing roots
 	printf("Do you want to solve another equation? (1 - Yes): ");
 	int repeat_flag = 0;
-	scanf("%d", &repeat_flag);										// repeat conditions
+	scanf("%d", &repeat_flag);							// repeat conditions
 	ClearInput();
 	if (!repeat_flag)
 	{
 	  break;
 	}
-	times_run++;													// solved equations counter
+	times_run++;									// solved equations counter
   }
   printf("Bye Bye\n");
 }
