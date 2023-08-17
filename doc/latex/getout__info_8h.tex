@@ -1,0 +1,153 @@
+\doxysection{getout\+\_\+info.\+h File Reference}
+\hypertarget{getout__info_8h}{}\label{getout__info_8h}\index{getout\_info.h@{getout\_info.h}}
+
+
+Contains functions, that can input and output data. Supports FILE input and STDIN inut. Output stream always is STDOUT.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}} \{ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715}{ZERO\+\_\+\+ROOTS}} = 0
+, \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}{ONE\+\_\+\+ROOT}} = 1
+, \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}{TWO\+\_\+\+ROOTS}} = 2
+, \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}{INF\+\_\+\+ROOTS}} = 99
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{getout__info_8h_adede7308358146826712b3d7c12ff017}{Clear\+Input}} (void)
+\begin{DoxyCompactList}\small\item\em Function clears buffer from useless symbols, until it meets \textquotesingle{}\textbackslash{}n\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}{FSkip\+Format\+Text}} (FILE \texorpdfstring{$\ast$}{*}fp)
+\begin{DoxyCompactList}\small\item\em Function skips useless for program text\+: \"{}coef =\"{}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8h_ac3f33cd8324c173e874acbd074444ced}{FGet\+Coef}} (FILE \texorpdfstring{$\ast$}{*}fp, float \texorpdfstring{$\ast$}{*}a)
+\begin{DoxyCompactList}\small\item\em Function gets coefficient from a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8h_a76570f7104f56adb070c8fd30a54b969}{Get\+Coef}} (float \texorpdfstring{$\ast$}{*}a, const char ch)
+\begin{DoxyCompactList}\small\item\em Function gets coefficient from STDIN. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{getout__info_8h_a516d26e3d86f826fbe828c167470f595}{Print\+Roots}} (int roots, float x1, float x2)
+\begin{DoxyCompactList}\small\item\em Function prints roots in STDOUT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains functions, that can input and output data. Supports FILE input and STDIN inut. Output stream always is STDOUT. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692a}\label{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692a} 
+\index{getout\_info.h@{getout\_info.h}!Roots@{Roots}}
+\index{Roots@{Roots}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{Roots}{Roots}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ZERO\_ROOTS@{ZERO\_ROOTS}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!ZERO\_ROOTS@{ZERO\_ROOTS}}}\Hypertarget{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715}\label{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715} 
+ZERO\+\_\+\+ROOTS&equation has no roots \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONE\_ROOT@{ONE\_ROOT}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!ONE\_ROOT@{ONE\_ROOT}}}\Hypertarget{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}\label{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf} 
+ONE\+\_\+\+ROOT&equation has one root \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TWO\_ROOTS@{TWO\_ROOTS}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!TWO\_ROOTS@{TWO\_ROOTS}}}\Hypertarget{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}\label{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81} 
+TWO\+\_\+\+ROOTS&equation has two different roots \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INF\_ROOTS@{INF\_ROOTS}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!INF\_ROOTS@{INF\_ROOTS}}}\Hypertarget{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}\label{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36} 
+INF\+\_\+\+ROOTS&equation has infinite amount of roots \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{getout__info_8h_adede7308358146826712b3d7c12ff017}\label{getout__info_8h_adede7308358146826712b3d7c12ff017} 
+\index{getout\_info.h@{getout\_info.h}!ClearInput@{ClearInput}}
+\index{ClearInput@{ClearInput}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{ClearInput()}{ClearInput()}}
+{\footnotesize\ttfamily void Clear\+Input (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function clears buffer from useless symbols, until it meets \textquotesingle{}\textbackslash{}n\textquotesingle{}. 
+
+\Hypertarget{getout__info_8h_ac3f33cd8324c173e874acbd074444ced}\label{getout__info_8h_ac3f33cd8324c173e874acbd074444ced} 
+\index{getout\_info.h@{getout\_info.h}!FGetCoef@{FGetCoef}}
+\index{FGetCoef@{FGetCoef}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{FGetCoef()}{FGetCoef()}}
+{\footnotesize\ttfamily bool FGet\+Coef (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp,  }\item[{float \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+
+
+
+Function gets coefficient from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & file pointer \\
+\hline
+{\em a} & pointer to a float number. That number will contain coefficient value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if function succesfully got the coefficient 
+
+false if file had incorrect coefficient input (program stops) 
+\end{DoxyReturn}
+\Hypertarget{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}\label{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c} 
+\index{getout\_info.h@{getout\_info.h}!FSkipFormatText@{FSkipFormatText}}
+\index{FSkipFormatText@{FSkipFormatText}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{FSkipFormatText()}{FSkipFormatText()}}
+{\footnotesize\ttfamily void FSkip\+Format\+Text (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
+
+
+
+Function skips useless for program text\+: \"{}coef =\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & file pointer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{getout__info_8h_a76570f7104f56adb070c8fd30a54b969}\label{getout__info_8h_a76570f7104f56adb070c8fd30a54b969} 
+\index{getout\_info.h@{getout\_info.h}!GetCoef@{GetCoef}}
+\index{GetCoef@{GetCoef}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{GetCoef()}{GetCoef()}}
+{\footnotesize\ttfamily bool Get\+Coef (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{a,  }\item[{const char}]{ch }\end{DoxyParamCaption})}
+
+
+
+Function gets coefficient from STDIN. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & pointer to a float number. That number will contain coefficient value \\
+\hline
+{\em ch} & const parameter, that shows which coefficient function is getting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if function succesfully got the coefficient 
+
+false if user inputed invalid data, and chose to shut down the program 
+\end{DoxyReturn}
+\Hypertarget{getout__info_8h_a516d26e3d86f826fbe828c167470f595}\label{getout__info_8h_a516d26e3d86f826fbe828c167470f595} 
+\index{getout\_info.h@{getout\_info.h}!PrintRoots@{PrintRoots}}
+\index{PrintRoots@{PrintRoots}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{PrintRoots()}{PrintRoots()}}
+{\footnotesize\ttfamily void Print\+Roots (\begin{DoxyParamCaption}\item[{int}]{roots,  }\item[{float}]{x1,  }\item[{float}]{x2 }\end{DoxyParamCaption})}
+
+
+
+Function prints roots in STDOUT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em roots} & amount of roots, that the equation has \\
+\hline
+{\em x1} & first root (it may be the only root, if \"{}roots\"{} parameter is equal to 1) \\
+\hline
+{\em x2} & second root (if it exists) \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,108 @@
+\doxysection{solver.\+h File Reference}
+\hypertarget{solver_8h}{}\label{solver_8h}\index{solver.h@{solver.h}}
+
+
+Contains functions for solving equations.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsolve}{solve}}
+\begin{DoxyCompactList}\small\item\em Struct contains parameters of answers of the solved equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{solver_8h_a50b69e8e55167990c85f65e0a656e294}{comp}} \{ \mbox{\hyperlink{solver_8h_a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f}{LESS}} = -\/1
+, \mbox{\hyperlink{solver_8h_a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029}{EQUAL}} = 0
+, \mbox{\hyperlink{solver_8h_a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02}{MORE}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em enums comparison outcomes (a \textbackslash{}/ b) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{solver_8h_a851688bae8b46fee5e55033d74f21572}{Compare}} (const float a, const float b)
+\begin{DoxyCompactList}\small\item\em Function compares two float numbers, with EPSILON (1e-\/6) accuracy. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsolve}{solve}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8h_ae35a38e95bef8d594126aafbdcc5824a}{Quad\+Solver}} (const float a, const float b, const float c)
+\begin{DoxyCompactList}\small\item\em Solves quadratic equation. Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains functions for solving equations. 
+
+supports solving quadratic and linear equations 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{solver_8h_a50b69e8e55167990c85f65e0a656e294}\label{solver_8h_a50b69e8e55167990c85f65e0a656e294} 
+\index{solver.h@{solver.h}!comp@{comp}}
+\index{comp@{comp}!solver.h@{solver.h}}
+\doxysubsubsection{\texorpdfstring{comp}{comp}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{solver_8h_a50b69e8e55167990c85f65e0a656e294}{comp}}}
+
+
+
+enums comparison outcomes (a \textbackslash{}/ b) 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LESS@{LESS}!solver.h@{solver.h}}\index{solver.h@{solver.h}!LESS@{LESS}}}\Hypertarget{solver_8h_a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f}\label{solver_8h_a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f} 
+LESS&a \texorpdfstring{$<$}{<} b \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQUAL@{EQUAL}!solver.h@{solver.h}}\index{solver.h@{solver.h}!EQUAL@{EQUAL}}}\Hypertarget{solver_8h_a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029}\label{solver_8h_a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029} 
+EQUAL&a = b \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MORE@{MORE}!solver.h@{solver.h}}\index{solver.h@{solver.h}!MORE@{MORE}}}\Hypertarget{solver_8h_a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02}\label{solver_8h_a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02} 
+MORE&a \texorpdfstring{$>$}{>} b \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{solver_8h_a851688bae8b46fee5e55033d74f21572}\label{solver_8h_a851688bae8b46fee5e55033d74f21572} 
+\index{solver.h@{solver.h}!Compare@{Compare}}
+\index{Compare@{Compare}!solver.h@{solver.h}}
+\doxysubsubsection{\texorpdfstring{Compare()}{Compare()}}
+{\footnotesize\ttfamily int Compare (\begin{DoxyParamCaption}\item[{const float}]{a,  }\item[{const float}]{b }\end{DoxyParamCaption})}
+
+
+
+Function compares two float numbers, with EPSILON (1e-\/6) accuracy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & first number \\
+\hline
+{\em b} & second number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EQUAL if a = b 
+
+MORE if a \texorpdfstring{$>$}{>} b 
+
+LESS if a \texorpdfstring{$<$}{<} b 
+\end{DoxyReturn}
+\Hypertarget{solver_8h_ae35a38e95bef8d594126aafbdcc5824a}\label{solver_8h_ae35a38e95bef8d594126aafbdcc5824a} 
+\index{solver.h@{solver.h}!QuadSolver@{QuadSolver}}
+\index{QuadSolver@{QuadSolver}!solver.h@{solver.h}}
+\doxysubsubsection{\texorpdfstring{QuadSolver()}{QuadSolver()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsolve}{solve}} \texorpdfstring{$\ast$}{*} Quad\+Solver (\begin{DoxyParamCaption}\item[{const float}]{a,  }\item[{const float}]{b,  }\item[{const float}]{c }\end{DoxyParamCaption})}
+
+
+
+Solves quadratic equation. Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & coefficient \\
+\hline
+{\em b} & coefficient \\
+\hline
+{\em c} & coefficient \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to structure, which contains\+: amount of roots, first root(if it exists), second root(if it exists) 
+\end{DoxyReturn}
