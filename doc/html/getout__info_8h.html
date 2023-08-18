@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Contains functions, that can input and output data. Supports FILE input and STDIN inut. Output stream always is STDOUT.  
+<p>Contains functions, that can input and output data. Supports FILE input/output and STDIN input.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 </div>
@@ -88,15 +88,12 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a34f6126547cfdaeca6fb82d45a97692a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692a">Roots</a> { <a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715">ZERO_ROOTS</a> = 0
 , <a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf">ONE_ROOT</a> = 1
 , <a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81">TWO_ROOTS</a> = 2
-, <a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36">INF_ROOTS</a> = 99
+, <a class="el" href="getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36">INF_ROOTS</a> = -1
  }</td></tr>
 <tr class="separator:a34f6126547cfdaeca6fb82d45a97692a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:adede7308358146826712b3d7c12ff017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#adede7308358146826712b3d7c12ff017">ClearInput</a> (void)</td></tr>
-<tr class="memdesc:adede7308358146826712b3d7c12ff017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function clears buffer from useless symbols, until it meets '\n'.  <br /></td></tr>
-<tr class="separator:adede7308358146826712b3d7c12ff017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#ab759cd19e5cf2ccbc7b2925e07de9e9c">FSkipFormatText</a> (FILE *fp)</td></tr>
 <tr class="memdesc:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function skips useless for program text: "coef =".  <br /></td></tr>
 <tr class="separator:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,12 +103,28 @@ Functions</h2></td></tr>
 <tr class="memitem:a76570f7104f56adb070c8fd30a54b969"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a76570f7104f56adb070c8fd30a54b969">GetCoef</a> (float *a, const char ch)</td></tr>
 <tr class="memdesc:a76570f7104f56adb070c8fd30a54b969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets coefficient from STDIN.  <br /></td></tr>
 <tr class="separator:a76570f7104f56adb070c8fd30a54b969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a516d26e3d86f826fbe828c167470f595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a516d26e3d86f826fbe828c167470f595">PrintRoots</a> (int roots, float x1, float x2)</td></tr>
-<tr class="memdesc:a516d26e3d86f826fbe828c167470f595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prints roots in STDOUT.  <br /></td></tr>
-<tr class="separator:a516d26e3d86f826fbe828c167470f595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd08a05be719f0183057dbf6ef9da9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a4cd08a05be719f0183057dbf6ef9da9f">FPrintRoots</a> (int roots, float x1, float x2, FILE *fp)</td></tr>
+<tr class="memdesc:a4cd08a05be719f0183057dbf6ef9da9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prints roots in STDOUT.  <br /></td></tr>
+<tr class="separator:a4cd08a05be719f0183057dbf6ef9da9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c90de54f2fd2e688279d22cf842b8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a51c90de54f2fd2e688279d22cf842b8b">GetFileName</a> (char *file_name, char *mode)</td></tr>
+<tr class="memdesc:a51c90de54f2fd2e688279d22cf842b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets the file name from STDIN stream.  <br /></td></tr>
+<tr class="separator:a51c90de54f2fd2e688279d22cf842b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73bbafe4840f2165e4e216d340cdebb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a73bbafe4840f2165e4e216d340cdebb0">ReadConsoleCoef</a> (char argv[], float *a)</td></tr>
+<tr class="memdesc:a73bbafe4840f2165e4e216d340cdebb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function read coefficient from the console (console input)  <br /></td></tr>
+<tr class="separator:a73bbafe4840f2165e4e216d340cdebb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21377f0653d476392ed1160cd6b61665"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a21377f0653d476392ed1160cd6b61665">PrintHelp</a> (void)</td></tr>
+<tr class="memdesc:a21377f0653d476392ed1160cd6b61665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints help information (if -help flag called)  <br /></td></tr>
+<tr class="separator:a21377f0653d476392ed1160cd6b61665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ca5319cb53e15e834eed9f530fedb29"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a0ca5319cb53e15e834eed9f530fedb29">RepeatQuestion</a> (void)</td></tr>
+<tr class="memdesc:a0ca5319cb53e15e834eed9f530fedb29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function asks user, does he want to repeat program running.  <br /></td></tr>
+<tr class="separator:a0ca5319cb53e15e834eed9f530fedb29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ebe9dcccd93f73a0369a2f98ba784f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a2ebe9dcccd93f73a0369a2f98ba784f4">FileRun</a> (FILE *fpin, FILE *fpout)</td></tr>
+<tr class="memdesc:a2ebe9dcccd93f73a0369a2f98ba784f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads equation coefficients from input file<br  />
+ Prints answers to output file.  <br /></td></tr>
+<tr class="separator:a2ebe9dcccd93f73a0369a2f98ba784f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains functions, that can input and output data. Supports FILE input and STDIN inut. Output stream always is STDOUT. </p>
+<div class="textblock"><p>Contains functions, that can input and output data. Supports FILE input/output and STDIN input. </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a34f6126547cfdaeca6fb82d45a97692a" name="a34f6126547cfdaeca6fb82d45a97692a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34f6126547cfdaeca6fb82d45a97692a">&#9670;&#160;</a></span>Roots</h2>
@@ -138,26 +151,6 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="adede7308358146826712b3d7c12ff017" name="adede7308358146826712b3d7c12ff017"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adede7308358146826712b3d7c12ff017">&#9670;&#160;</a></span>ClearInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ClearInput </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function clears buffer from useless symbols, until it meets '\n'. </p>
-
-</div>
-</div>
 <a id="ac3f33cd8324c173e874acbd074444ced" name="ac3f33cd8324c173e874acbd074444ced"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac3f33cd8324c173e874acbd074444ced">&#9670;&#160;</a></span>FGetCoef()</h2>
 
@@ -195,6 +188,95 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if function succesfully got the coefficient </dd>
 <dd>
 false if file had incorrect coefficient input (program stops) </dd></dl>
+
+</div>
+</div>
+<a id="a2ebe9dcccd93f73a0369a2f98ba784f4" name="a2ebe9dcccd93f73a0369a2f98ba784f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ebe9dcccd93f73a0369a2f98ba784f4">&#9670;&#160;</a></span>FileRun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileRun </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fpin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fpout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads equation coefficients from input file<br  />
+ Prints answers to output file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fpin</td><td>pointer to input file </td></tr>
+    <tr><td class="paramname">fpout</td><td>pointer to output file (may be STDOUT) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4cd08a05be719f0183057dbf6ef9da9f" name="a4cd08a05be719f0183057dbf6ef9da9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd08a05be719f0183057dbf6ef9da9f">&#9670;&#160;</a></span>FPrintRoots()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FPrintRoots </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>roots</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function prints roots in STDOUT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roots</td><td>amount of roots, that the equation has </td></tr>
+    <tr><td class="paramname">x1</td><td>first root (it may be the only root, if "roots" parameter is equal to 1) </td></tr>
+    <tr><td class="paramname">x2</td><td>second root (if it exists) </td></tr>
+    <tr><td class="paramname">fp</td><td>output stream </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -264,29 +346,23 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
 
 </div>
 </div>
-<a id="a516d26e3d86f826fbe828c167470f595" name="a516d26e3d86f826fbe828c167470f595"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a516d26e3d86f826fbe828c167470f595">&#9670;&#160;</a></span>PrintRoots()</h2>
+<a id="a51c90de54f2fd2e688279d22cf842b8b" name="a51c90de54f2fd2e688279d22cf842b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c90de54f2fd2e688279d22cf842b8b">&#9670;&#160;</a></span>GetFileName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PrintRoots </td>
+          <td class="memname">bool GetFileName </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>roots</em>, </td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x2</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -296,15 +372,100 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
       </table>
 </div><div class="memdoc">
 
-<p>Function prints roots in STDOUT. </p>
+<p>Function gets the file name from STDIN stream. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">roots</td><td>amount of roots, that the equation has </td></tr>
-    <tr><td class="paramname">x1</td><td>first root (it may be the only root, if "roots" parameter is equal to 1) </td></tr>
-    <tr><td class="paramname">x2</td><td>second root (if it exists) </td></tr>
+    <tr><td class="paramname">file_name</td><td>name of the file </td></tr>
+    <tr><td class="paramname">mode</td><td>"input"/"output" file type </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if function got the name succesfully </dd>
+<dd>
+false if function did not get name or user exited program </dd></dl>
+
+</div>
+</div>
+<a id="a21377f0653d476392ed1160cd6b61665" name="a21377f0653d476392ed1160cd6b61665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21377f0653d476392ed1160cd6b61665">&#9670;&#160;</a></span>PrintHelp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrintHelp </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints help information (if -help flag called) </p>
+
+</div>
+</div>
+<a id="a73bbafe4840f2165e4e216d340cdebb0" name="a73bbafe4840f2165e4e216d340cdebb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73bbafe4840f2165e4e216d340cdebb0">&#9670;&#160;</a></span>ReadConsoleCoef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ReadConsoleCoef </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function read coefficient from the console (console input) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argv</td><td>string with coefficient data </td></tr>
+    <tr><td class="paramname">a</td><td>pointer to coefficient (float type) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if coefficient read succesfully </dd>
+<dd>
+false if function failed to get coefficient </dd></dl>
+
+</div>
+</div>
+<a id="a0ca5319cb53e15e834eed9f530fedb29" name="a0ca5319cb53e15e834eed9f530fedb29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca5319cb53e15e834eed9f530fedb29">&#9670;&#160;</a></span>RepeatQuestion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RepeatQuestion </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function asks user, does he want to repeat program running. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if user want to repeat </dd>
+<dd>
+false if user want to quit </dd></dl>
 
 </div>
 </div>
