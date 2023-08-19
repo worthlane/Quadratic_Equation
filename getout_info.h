@@ -9,7 +9,7 @@
  * @brief Function clears buffer from useless symbols, until it meets '\\n'
  * 
  ************************************************************/
-static inline void ClearInput(void);
+void ClearInput(void);
 /************************************************************//**
  * @brief Function skips useless for program text:
  *        "coef ="

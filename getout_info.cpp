@@ -60,7 +60,7 @@ void FSkipFormatText(FILE * fp)             // skipping "coef =" part
   fgetc(fp);                                // skipping "="
 }
 //------------------------------------------------------------------------------------------------------------------
-static inline void ClearInput(void)                       // clears input from '\n' char and else trash
+void ClearInput(void)                       // clears input from '\n' char and else trash
 {
   while (getchar() != '\n') {}
 }
