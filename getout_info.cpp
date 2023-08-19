@@ -113,7 +113,7 @@ void FPrintRoots(int roots, float x1, float x2, FILE * fp)    // prints roots in
 bool ReadConsoleCoef(char * argv, float * a)           // reads coefficient from console
 {
   *a = atof(argv);                                     // changes coefficient type from string to float
-  if (!a)
+  if (!*a)
   {
     printf("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
     return false;
