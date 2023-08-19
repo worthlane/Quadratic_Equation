@@ -31,7 +31,9 @@ File input format (coefficients with ' ' / '\\t' / '\\n' between):
 ```
 ./a.out 1 2 -3          // a b c
 ```
-Reads coefficients from console. If inpur is incorrect (one of coefs is not a number), program shuts down.
+Reads coefficients from console. 
+> [!WARNING]
+> If input is incorrect (one of coefs is not a number), program returns ERROR.
 ### STANDART STDIN (In development)
 Reads full equation from STDIN (5x^2 + 6x-7+3x^2 =  x - x^2 + 3)
 ## Help mode
