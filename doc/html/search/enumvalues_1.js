@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inf_5froots_0',['INF_ROOTS',['../getout__info_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36',1,'getout_info.h']]]
+  ['equal_0',['EQUAL',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029',1,'solver.h']]]
 ];

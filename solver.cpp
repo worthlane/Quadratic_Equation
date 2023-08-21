@@ -1,60 +1,65 @@
-#include "solver.h"
 #include <math.h>
-#include "getout_info.h"
 
-#define EPSILON 1e-6
+#include "solver.h"
 
-int Compare(const float a, const float b)       // comparing two float numbers with EPSILON accuracy
+int Compare(const double a, const double b)       // comparing two double numbers with EPSILON accuracy
 {
-  float diff = a - b;
+  double diff = a - b;
+  int result;
   if (abs(diff) < EPSILON)                      // a = b conditions
   {
-    return EQUAL;
-  } else if (diff > EPSILON)                    // a > b conditions
+    result = EQUAL;
+  } else                 
   {
-    return MORE;
-  } else if (diff < -EPSILON)                   // a < b conditions
-  {
-    return LESS;
+    result = (diff > EPSILON) ? MORE : LESS;
   }
+  return result;
 }
 // -----------------------------------------------------------------------------------------
-struct solve * QuadSolver(const float a, const float b, const float c)
+struct QuadSolutions* QuadSolver(const double a, const double b, const double c)
 {
-  struct solve ans = {0, 0, 0};
-  struct solve * ptr = &ans;
   if (Compare(a, 0) == EQUAL)
   {
-    if (Compare(b, 0) == EQUAL)
-    {
-      if (Compare(c, 0) == EQUAL)               // 0 + 0 + 0 = 0
-      {
-        ptr->amount = INF_ROOTS;
-      } else {                                  // 0 + 0 + c = 0
-        ptr->amount = ZERO_ROOTS;
-      }
-    } else {                                    // bx + c = 0
-      ptr->amount = ONE_ROOT;
-      ptr->first = (-c / b);
-    }
+    return (LinearSolver(b, c));
   } else                                        // ax^2 + bx + c = 0
   {
-    float D;                                    // discriminant
-    D = b*b - 4*a*c;                            // discriminant formula
-    if (Compare(D, 0) == LESS)                  // zero roots conditions
+    struct QuadSolutions ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    struct QuadSolutions* ptr = &ans;
+    double D = b*b - 4*a*c;                            // discriminant formula
+    double zero_d_compare = Compare(D, 0);
+    if (zero_d_compare == LESS)                  // zero roots conditions
     {
       ptr->amount = ZERO_ROOTS;
-    } else if (Compare(D, 0) == EQUAL)          // one root condition
+    } else if (zero_d_compare == EQUAL)          // one root condition
     {
       ptr->amount = ONE_ROOT;
       ptr->first = (-b / (2 * a));
     } else {                                    // two roots conditions
-      float root1, root2;
       ptr->amount = TWO_ROOTS;
-      float discriminant_root = sqrt(D);
-      ptr->first = ((-b - discriminant_root) / (2 * a));
-      ptr->second = ((-b + discriminant_root) / (2 * a));
+      D = sqrt(D);                              // D = sqrt(discriminant)
+      double double_a = 2 * a;
+      ptr->first = ((-b - D) / double_a);
+      ptr->second = ((-b + D) / double_a);
     }
+    return ptr;
   }
-  return ptr;
+}
+
+struct QuadSolutions* LinearSolver(const double b, const double c)
+{
+    struct QuadSolutions ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    struct QuadSolutions* ptr = &ans;
+    if (Compare(b, 0) == EQUAL)
+    {
+      if (Compare(c, 0) == EQUAL)               
+      {
+        ptr->amount = INF_ROOTS;
+      } else {                                 
+        ptr->amount = ZERO_ROOTS;
+      }
+    } else {                                    
+      ptr->amount = ONE_ROOT;
+      ptr->first = (-c / b);
+    }
+    return ptr;
 }

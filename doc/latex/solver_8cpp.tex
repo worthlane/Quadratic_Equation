@@ -1,0 +1,68 @@
+\doxysection{solver.\+cpp File Reference}
+\hypertarget{solver_8cpp}{}\label{solver_8cpp}\index{solver.cpp@{solver.cpp}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \"{}solver.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{solver_8cpp_ab0266453092266ede62ba4ee1b07f00c}{Compare}} (const double a, const double b)
+\begin{DoxyCompactList}\small\item\em Function compares two double numbers, with EPSILON (1e-\/6) accuracy. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace}{Quad\+Solver}} (const double a, const double b, const double c)
+\begin{DoxyCompactList}\small\item\em Solves quadratic equation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b}{Linear\+Solver}} (const double b, const double c)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{solver_8cpp_ab0266453092266ede62ba4ee1b07f00c}\label{solver_8cpp_ab0266453092266ede62ba4ee1b07f00c} 
+\index{solver.cpp@{solver.cpp}!Compare@{Compare}}
+\index{Compare@{Compare}!solver.cpp@{solver.cpp}}
+\doxysubsubsection{\texorpdfstring{Compare()}{Compare()}}
+{\footnotesize\ttfamily int Compare (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b }\end{DoxyParamCaption})}
+
+
+
+Function compares two double numbers, with EPSILON (1e-\/6) accuracy. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & first number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & second number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EQUAL if a = b 
+
+MORE if a \texorpdfstring{$>$}{>} b 
+
+LESS if a \texorpdfstring{$<$}{<} b 
+\end{DoxyReturn}
+\Hypertarget{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b}\label{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b} 
+\index{solver.cpp@{solver.cpp}!LinearSolver@{LinearSolver}}
+\index{LinearSolver@{LinearSolver}!solver.cpp@{solver.cpp}}
+\doxysubsubsection{\texorpdfstring{LinearSolver()}{LinearSolver()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Linear\+Solver (\begin{DoxyParamCaption}\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+
+\Hypertarget{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace}\label{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace} 
+\index{solver.cpp@{solver.cpp}!QuadSolver@{QuadSolver}}
+\index{QuadSolver@{QuadSolver}!solver.cpp@{solver.cpp}}
+\doxysubsubsection{\texorpdfstring{QuadSolver()}{QuadSolver()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Quad\+Solver (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+
+
+
+Solves quadratic equation. 
+
+Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & coefficient \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to structure, which contains\+: amount of roots, first root(if it exists), second root(if it exists) 
+\end{DoxyReturn}

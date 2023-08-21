@@ -2,27 +2,64 @@
 \hypertarget{getout__info_8h_source}{}\label{getout__info_8h_source}\mbox{\hyperlink{getout__info_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ QUADRATIC\_EQUATION\_\_GET\_INFO\_H\_}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ QUADRATIC\_EQUATION\_\_GET\_INFO\_H\_}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_adede7308358146826712b3d7c12ff017}{ClearInput}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00014\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}{FSkipFormatText}}(FILE\ *\ fp);}
-\DoxyCodeLine{00021\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00029\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_ac3f33cd8324c173e874acbd074444ced}{FGetCoef}}(FILE\ *\ fp,\ \textcolor{keywordtype}{float}\ *\ a);}
-\DoxyCodeLine{00030\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00038\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a76570f7104f56adb070c8fd30a54b969}{GetCoef}}(\textcolor{keywordtype}{float}\ *\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch);}
+\DoxyCodeLine{00006\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcb}{WorkingMode}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcba0dceec92253fea03d73c2ff68e1dfb1f}{UnknownMode}}\ =\ -\/1,}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcba4cdc57131ee9762bf7368da71581c50d}{HelpMode}}\ \ \ \ =\ \ 1,}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcbac7993236620ca70849c7c42ea790e02e}{IntMode}}\ \ \ \ \ =\ \ 2,}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcba41bc18d21cc3fd3011c9cc6eea7093f4}{TestMode}}\ \ \ \ =\ \ 3,}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcbaf27d714037db32ee7158066cd992a83b}{ConsoleMode}}\ =\ \ 4,}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcbabd273357f44e637474d4a17922cea24e}{FileMode}}\ \ \ \ =\ \ 5}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9}{FlagError}},}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf}{GetFileNameError}},}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3}{FileInputError}},}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d}{InvalidCoefError}},}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf}{RootsAmountError}},}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985}{ReadConsoleError}},}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a}{OpenTestError}},}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43}{CloseTestError}},}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e}{OpenInputError}},}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce}{CloseInputError}},}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace}{CloseOutputError}}}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
 \DoxyCodeLine{00039\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a516d26e3d86f826fbe828c167470f595}{PrintRoots}}(\textcolor{keywordtype}{int}\ roots,\ \textcolor{keywordtype}{float}\ x1,\ \textcolor{keywordtype}{float}\ x2);}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}}\ \{}
-\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715}{ZERO\_ROOTS}}\ =\ 0,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}{ONE\_ROOT}}\ \ \ =\ 1,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}{TWO\_ROOTS}}\ \ =\ 2,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{getout__info_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}{INF\_ROOTS}}\ \ =\ 99\ \ \ \ \ \ \ }
-\DoxyCodeLine{00053\ \};}
-\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a6dbc86ddc9e73f74ccd96ca3a1bbf89f}{ClearInput}}(FILE*\ fp);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}{FSkipFormatText}}(FILE*\ fp);}
 \DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_ae0d25954484de324aaadfc7ce35eb594}{FGetCoef}}(FILE*\ fp,\ \textcolor{keywordtype}{double}*\ a);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a8123382aab0235af2ba9348c35189db6}{GetCoef}}(\textcolor{keywordtype}{double}*\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a67cd3a3cb6eaf2e76847b6ee76a10161}{FPrintRoots}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roots,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x2,\ FILE*\ fp);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a46436e5aae92c60bd734b6a4f7fa885b}{GetFileName}}(\textcolor{keywordtype}{char}*\ file\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ mode[]);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a160cf8356e26999dfd5b1dbec31d322e}{ReadConsoleCoef}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ argv[],\ \textcolor{keywordtype}{double}*\ a);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a4979de8d2eadac0a7f5410f6130a5520}{RepeatQuestion}}(\textcolor{keywordtype}{char}\ mode[]);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a2ebe9dcccd93f73a0369a2f98ba784f4}{FileRun}}(FILE*\ fpin,\ FILE*\ fpout);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00139\ \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcb}{WorkingMode}}\ \mbox{\hyperlink{getout__info_8h_a7e8eac2b830d76481a05448b92134c27}{ReadFlag}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[]);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00147\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a23223325a407e86fb6710787162945d5}{PrintError}}(\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}\ error);}
 
 \end{DoxyCode}

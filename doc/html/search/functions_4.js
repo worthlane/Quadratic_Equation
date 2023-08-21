@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quadsolver_0',['QuadSolver',['../solver_8h.html#ae35a38e95bef8d594126aafbdcc5824a',1,'solver.cpp']]]
+  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printhelp_0',['PrintHelp',['../getout__info_8h.html#a21377f0653d476392ed1160cd6b61665',1,'getout_info.cpp']]]
+  ['linearsolver_0',['LinearSolver',['../solver_8cpp.html#acd32c562edaabf4eeeba462809eb6c1b',1,'LinearSolver(const double b, const double c):&#160;solver.cpp'],['../solver_8h.html#acd32c562edaabf4eeeba462809eb6c1b',1,'LinearSolver(const double b, const double c):&#160;solver.cpp']]]
 ];

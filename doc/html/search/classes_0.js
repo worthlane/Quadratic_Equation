@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['solve_0',['solve',['../structsolve.html',1,'']]]
+  ['quadsolutions_0',['QuadSolutions',['../struct_quad_solutions.html',1,'']]]
 ];

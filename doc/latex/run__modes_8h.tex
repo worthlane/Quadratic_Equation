@@ -1,0 +1,147 @@
+\doxysection{run\+\_\+modes.\+h File Reference}
+\hypertarget{run__modes_8h}{}\label{run__modes_8h}\index{run\_modes.h@{run\_modes.h}}
+
+
+contains funtions declaration, that needed for test mode  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1}{Complete}} \{ \mbox{\hyperlink{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661}{Failure}} = -\/1
+, \mbox{\hyperlink{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c}{Success}} = 0
+ \}
+\begin{DoxyCompactList}\small\item\em enums result of completed program \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{run__modes_8h_a4a2eff499a3c811ef4d814024ba98ef0}{Run\+Test}} ()
+\begin{DoxyCompactList}\small\item\em Runs tests from TEST\+\_\+\+FILE. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{run__modes_8h_ae964ff8411b4fdcaf65cb5529aea4bef}{Print\+Help}} ()
+\begin{DoxyCompactList}\small\item\em Prints help information (if -\/help flag called) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{run__modes_8h_a73521ead7c32e248c34f11f69456146a}{Run\+Int}} (double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Runs program in interactive mod. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{run__modes_8h_aa08707bcdc220967d7f596c8dfb3d88a}{Run\+Console}} (char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Runs program in console input mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{run__modes_8h_a23eb858e064032acd629f61b1d1a6483}{Run\+File}} ()
+\begin{DoxyCompactList}\small\item\em Runs program in file input mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+contains funtions declaration, that needed for test mode 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1}\label{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1} 
+\index{run\_modes.h@{run\_modes.h}!Complete@{Complete}}
+\index{Complete@{Complete}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{Complete}{Complete}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1}{Complete}}}
+
+
+
+enums result of completed program 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Failure@{Failure}!run\_modes.h@{run\_modes.h}}\index{run\_modes.h@{run\_modes.h}!Failure@{Failure}}}\Hypertarget{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661}\label{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661} 
+Failure&program failured \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Success@{Success}!run\_modes.h@{run\_modes.h}}\index{run\_modes.h@{run\_modes.h}!Success@{Success}}}\Hypertarget{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c}\label{run__modes_8h_a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c} 
+Success&program ran successfully \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{run__modes_8h_ae964ff8411b4fdcaf65cb5529aea4bef}\label{run__modes_8h_ae964ff8411b4fdcaf65cb5529aea4bef} 
+\index{run\_modes.h@{run\_modes.h}!PrintHelp@{PrintHelp}}
+\index{PrintHelp@{PrintHelp}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{PrintHelp()}{PrintHelp()}}
+{\footnotesize\ttfamily void Print\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints help information (if -\/help flag called) 
+
+\Hypertarget{run__modes_8h_aa08707bcdc220967d7f596c8dfb3d88a}\label{run__modes_8h_aa08707bcdc220967d7f596c8dfb3d88a} 
+\index{run\_modes.h@{run\_modes.h}!RunConsole@{RunConsole}}
+\index{RunConsole@{RunConsole}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{RunConsole()}{RunConsole()}}
+{\footnotesize\ttfamily int Run\+Console (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{double \texorpdfstring{$\ast$}{*}}]{a,  }\item[{double \texorpdfstring{$\ast$}{*}}]{b,  }\item[{double \texorpdfstring{$\ast$}{*}}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
+
+
+
+Runs program in console input mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em argv} & command line \\
+\hline
+\mbox{\texttt{ in}}  & {\em a} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em ans} & answer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success if program ran successfully 
+
+Failure if there was an error 
+\end{DoxyReturn}
+\Hypertarget{run__modes_8h_a23eb858e064032acd629f61b1d1a6483}\label{run__modes_8h_a23eb858e064032acd629f61b1d1a6483} 
+\index{run\_modes.h@{run\_modes.h}!RunFile@{RunFile}}
+\index{RunFile@{RunFile}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{RunFile()}{RunFile()}}
+{\footnotesize\ttfamily int Run\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs program in file input mode. 
+
+\begin{DoxyReturn}{Returns}
+Success if program ran successfully 
+
+Failure if there was an error 
+\end{DoxyReturn}
+\Hypertarget{run__modes_8h_a73521ead7c32e248c34f11f69456146a}\label{run__modes_8h_a73521ead7c32e248c34f11f69456146a} 
+\index{run\_modes.h@{run\_modes.h}!RunInt@{RunInt}}
+\index{RunInt@{RunInt}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{RunInt()}{RunInt()}}
+{\footnotesize\ttfamily int Run\+Int (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{a,  }\item[{double \texorpdfstring{$\ast$}{*}}]{b,  }\item[{double \texorpdfstring{$\ast$}{*}}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
+
+
+
+Runs program in interactive mod. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em ans} & answer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success if program ran successfully 
+
+Failure if there was an error 
+\end{DoxyReturn}
+\Hypertarget{run__modes_8h_a4a2eff499a3c811ef4d814024ba98ef0}\label{run__modes_8h_a4a2eff499a3c811ef4d814024ba98ef0} 
+\index{run\_modes.h@{run\_modes.h}!RunTest@{RunTest}}
+\index{RunTest@{RunTest}!run\_modes.h@{run\_modes.h}}
+\doxysubsubsection{\texorpdfstring{RunTest()}{RunTest()}}
+{\footnotesize\ttfamily void Run\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs tests from TEST\+\_\+\+FILE. 
+

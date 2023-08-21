@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['quadratic_20equation_20solver_0',['Quadratic Equation Solver',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['quadsolver_1',['QuadSolver',['../solver_8h.html#ae35a38e95bef8d594126aafbdcc5824a',1,'solver.cpp']]]
+  ['printerror_0',['PrintError',['../getout__info_8cpp.html#a23223325a407e86fb6710787162945d5',1,'PrintError(ErrorList error):&#160;getout_info.cpp'],['../getout__info_8h.html#a23223325a407e86fb6710787162945d5',1,'PrintError(ErrorList error):&#160;getout_info.cpp']]],
+  ['printhelp_1',['PrintHelp',['../run__modes_8cpp.html#ae964ff8411b4fdcaf65cb5529aea4bef',1,'PrintHelp():&#160;run_modes.cpp'],['../run__modes_8h.html#ae964ff8411b4fdcaf65cb5529aea4bef',1,'PrintHelp():&#160;run_modes.cpp']]]
 ];

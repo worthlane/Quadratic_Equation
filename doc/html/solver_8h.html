@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>quadratic_equation: solver.h File Reference</title>
+<title>quadratic_equations: solver.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
+   <div id="projectname">quadratic_equations<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">Program solves quadratic equations</div>
+   <div id="projectbrief">solves quadratic equations, using discriminant formula</div>
   </td>
  </tr>
  </tbody>
@@ -85,59 +85,91 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsolve.html">solve</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct contains parameters of answers of the solved equation.  <a href="structsolve.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_quad_solutions.html">QuadSolutions</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct contains parameters of answers of the solved equation.  <a href="struct_quad_solutions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a50b69e8e55167990c85f65e0a656e294"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294">comp</a> { <a class="el" href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f">LESS</a> = -1
-, <a class="el" href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029">EQUAL</a> = 0
-, <a class="el" href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02">MORE</a> = 1
+<tr class="memitem:ace67d421b0a753740a12d3aedbea57c0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0">Comparison</a> { <a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f">LESS</a> = -1
+, <a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029">EQUAL</a> = 0
+, <a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02">MORE</a> = 1
  }</td></tr>
-<tr class="memdesc:a50b69e8e55167990c85f65e0a656e294"><td class="mdescLeft">&#160;</td><td class="mdescRight">enums comparison outcomes (a \/ b)  <a href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294">More...</a><br /></td></tr>
-<tr class="separator:a50b69e8e55167990c85f65e0a656e294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ace67d421b0a753740a12d3aedbea57c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">enums comparison outcomes (a \/ b)  <a href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0">More...</a><br /></td></tr>
+<tr class="separator:ace67d421b0a753740a12d3aedbea57c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f6126547cfdaeca6fb82d45a97692a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692a">Roots</a> { <a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36">INF_ROOTS</a> = -1
+, <a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715">ZERO_ROOTS</a> = 0
+, <a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf">ONE_ROOT</a> = 1
+, <a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81">TWO_ROOTS</a> = 2
+ }</td></tr>
+<tr class="separator:a34f6126547cfdaeca6fb82d45a97692a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a851688bae8b46fee5e55033d74f21572"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#a851688bae8b46fee5e55033d74f21572">Compare</a> (const float a, const float b)</td></tr>
-<tr class="memdesc:a851688bae8b46fee5e55033d74f21572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function compares two float numbers, with EPSILON (1e-6) accuracy.  <br /></td></tr>
-<tr class="separator:a851688bae8b46fee5e55033d74f21572"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35a38e95bef8d594126aafbdcc5824a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsolve.html">solve</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#ae35a38e95bef8d594126aafbdcc5824a">QuadSolver</a> (const float a, const float b, const float c)</td></tr>
-<tr class="memdesc:ae35a38e95bef8d594126aafbdcc5824a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves quadratic equation. Format: ax^2 + bx + c = 0.  <br /></td></tr>
-<tr class="separator:ae35a38e95bef8d594126aafbdcc5824a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0266453092266ede62ba4ee1b07f00c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#ab0266453092266ede62ba4ee1b07f00c">Compare</a> (const double a, const double b)</td></tr>
+<tr class="memdesc:ab0266453092266ede62ba4ee1b07f00c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function compares two double numbers, with EPSILON (1e-6) accuracy.  <br /></td></tr>
+<tr class="separator:ab0266453092266ede62ba4ee1b07f00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dab98fdaa53dd412f8a7dca242fbace"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#a7dab98fdaa53dd412f8a7dca242fbace">QuadSolver</a> (const double a, const double b, const double c)</td></tr>
+<tr class="memdesc:a7dab98fdaa53dd412f8a7dca242fbace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves quadratic equation. Format: ax^2 + bx + c = 0.  <br /></td></tr>
+<tr class="separator:a7dab98fdaa53dd412f8a7dca242fbace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd32c562edaabf4eeeba462809eb6c1b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8h.html#acd32c562edaabf4eeeba462809eb6c1b">LinearSolver</a> (const double b, const double c)</td></tr>
+<tr class="separator:acd32c562edaabf4eeeba462809eb6c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions for solving equations. </p>
 <p>supports solving quadratic and linear equations </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a50b69e8e55167990c85f65e0a656e294" name="a50b69e8e55167990c85f65e0a656e294"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50b69e8e55167990c85f65e0a656e294">&#9670;&#160;</a></span>comp</h2>
+<a id="ace67d421b0a753740a12d3aedbea57c0" name="ace67d421b0a753740a12d3aedbea57c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace67d421b0a753740a12d3aedbea57c0">&#9670;&#160;</a></span>Comparison</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="solver_8h.html#a50b69e8e55167990c85f65e0a656e294">comp</a></td>
+          <td class="memname">enum <a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0">Comparison</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>enums comparison outcomes (a \/ b) </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f" name="a50b69e8e55167990c85f65e0a656e294a95c736070f99b99eb80d1eac1f4ca60f"></a>LESS&#160;</td><td class="fielddoc"><p>a &lt; b </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f" name="ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f"></a>LESS&#160;</td><td class="fielddoc"><p>a &lt; b </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029" name="a50b69e8e55167990c85f65e0a656e294a59a84258a4cb9025b567ee5139455029"></a>EQUAL&#160;</td><td class="fielddoc"><p>a = b </p>
+<tr><td class="fieldname"><a id="ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029" name="ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029"></a>EQUAL&#160;</td><td class="fielddoc"><p>a = b </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02" name="a50b69e8e55167990c85f65e0a656e294af165e191d0fd1c7cc04270fb883dbc02"></a>MORE&#160;</td><td class="fielddoc"><p>a &gt; b </p>
+<tr><td class="fieldname"><a id="ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02" name="ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02"></a>MORE&#160;</td><td class="fielddoc"><p>a &gt; b </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a34f6126547cfdaeca6fb82d45a97692a" name="a34f6126547cfdaeca6fb82d45a97692a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f6126547cfdaeca6fb82d45a97692a">&#9670;&#160;</a></span>Roots</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692a">Roots</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36" name="a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36"></a>INF_ROOTS&#160;</td><td class="fielddoc"><p>equation has infinite amount of roots </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715" name="a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715"></a>ZERO_ROOTS&#160;</td><td class="fielddoc"><p>equation has no roots </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf" name="a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf"></a>ONE_ROOT&#160;</td><td class="fielddoc"><p>equation has one root </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81" name="a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81"></a>TWO_ROOTS&#160;</td><td class="fielddoc"><p>equation has two different roots </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a851688bae8b46fee5e55033d74f21572" name="a851688bae8b46fee5e55033d74f21572"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a851688bae8b46fee5e55033d74f21572">&#9670;&#160;</a></span>Compare()</h2>
+<a id="ab0266453092266ede62ba4ee1b07f00c" name="ab0266453092266ede62ba4ee1b07f00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0266453092266ede62ba4ee1b07f00c">&#9670;&#160;</a></span>Compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,13 +177,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int Compare </td>
           <td>(</td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -162,11 +194,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function compares two float numbers, with EPSILON (1e-6) accuracy. </p>
+<p>Function compares two double numbers, with EPSILON (1e-6) accuracy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>first number </td></tr>
-    <tr><td class="paramname">b</td><td>second number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>first number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>second number </td></tr>
   </table>
   </dd>
 </dl>
@@ -178,28 +210,56 @@ LESS if a &lt; b </dd></dl>
 
 </div>
 </div>
-<a id="ae35a38e95bef8d594126aafbdcc5824a" name="ae35a38e95bef8d594126aafbdcc5824a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae35a38e95bef8d594126aafbdcc5824a">&#9670;&#160;</a></span>QuadSolver()</h2>
+<a id="acd32c562edaabf4eeeba462809eb6c1b" name="acd32c562edaabf4eeeba462809eb6c1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd32c562edaabf4eeeba462809eb6c1b">&#9670;&#160;</a></span>LinearSolver()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structsolve.html">solve</a> * QuadSolver </td>
+          <td class="memname">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> * LinearSolver </td>
           <td>(</td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7dab98fdaa53dd412f8a7dca242fbace" name="a7dab98fdaa53dd412f8a7dca242fbace"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dab98fdaa53dd412f8a7dca242fbace">&#9670;&#160;</a></span>QuadSolver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> * QuadSolver </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>c</em>&#160;</td>
         </tr>
         <tr>
@@ -213,9 +273,9 @@ LESS if a &lt; b </dd></dl>
 <p>Solves quadratic equation. Format: ax^2 + bx + c = 0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>coefficient </td></tr>
-    <tr><td class="paramname">b</td><td>coefficient </td></tr>
-    <tr><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>coefficient </td></tr>
   </table>
   </dd>
 </dl>

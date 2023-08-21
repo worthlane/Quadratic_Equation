@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['first_0',['first',['../structsolve.html#af431a2ed921c1f4764591c141c9ab975',1,'solve']]]
+  ['first_0',['first',['../struct_quad_solutions.html#a6f747d4e16d26acd2ce433d6f322c74b',1,'QuadSolutions']]]
 ];
