@@ -2,7 +2,7 @@
 * \brief contains funtions declaration, that needed for test mode
 */
 
-static const unsigned int LEN = 100;            ///< maximum length of file names
+static const unsigned int LEN = 100;            ///< maximum length of file names or input strings
 
 static const char TEST_FILE[] = "test.txt";     ///< contains test file name
 
@@ -24,7 +24,8 @@ void PrintHelp();
  * @param[in] a coefficient 
  * @param[in] b coefficient
  * @param[in] c coefficient
- * @param[in] ans answer 
+ * @param[out] ans answer 
+ * 
  * @return Success if program ran successfully
  * @return Failure if there was an error
  ************************************************************/
@@ -38,7 +39,8 @@ int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans);
  * @param[in] a coefficient
  * @param[in] b coefficient
  * @param[in] c coefficient
- * @param[in] ans answer 
+ * @param[out] ans answer 
+ * 
  * @return Success if program ran successfully
  * @return Failure if there was an error
  ************************************************************/

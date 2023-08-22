@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 #include "solver.h"
 #include "getout_info.h"
@@ -52,7 +53,7 @@ void RunTest()                                          // runs tests from TEST_
             } else 
             {
                 printf("TEST %d: Incorrect answer\n", test_number++);
-                printf("\tTEST: %g | PROGRAM: %g\n", test.first, ans->first);
+                printf("\tTEST: %lg | PROGRAM: %lg\n", test.first, ans->first);
                 continue;
             }
         } else if (test.amount == TWO_ROOTS)
@@ -65,7 +66,7 @@ void RunTest()                                          // runs tests from TEST_
             } else 
             {
                 printf("TEST %d: Incorrect answer\n", test_number++);
-                printf("\tTEST: %g %g | PROGRAM: %g %g\n", test.first, test.second, ans->first, ans->second);
+                printf("\tTEST: %lg %lg | PROGRAM: %lg %lg\n", test.first, test.second, ans->first, ans->second);
                 continue;
             }
         }
@@ -79,7 +80,9 @@ void RunTest()                                          // runs tests from TEST_
 
 void PrintHelp()
 {
-    printf("default mode: input coefficients in console (./a.out a b c)\n"
+    printf("Quadratic equation solver\n\n"
+           "equation format: ax^2 + bx + c = 0\n"
+           "default mode: input coefficients in console (./a.out a b c)\n"
            "-file flag for input from file\n"
            "-int  flag for interactive input from stdin\n"
            "-test flag for test mode activation (for developers)\n"
@@ -90,19 +93,14 @@ void PrintHelp()
 
 int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans)
 {
+    assert (a != NULL);
+    assert (b != NULL);
+    assert (c != NULL);
+
     printf("Equation format: ax^2 + bx + c = 0\n");
-    if (!GetCoef(a, 'a'))                                   // getting a coefficient
-    {
-        return Failure;                                     // failed to get a coefficient
-    }
-    if (!GetCoef(b, 'b'))                                   // getting b coefficient
-    {
-        return Failure;                                     // failed to get b coefficient
-    }
-    if (!GetCoef(c, 'c'))                                   // getting c coefficient
-    {
-        return Failure;                                     // failed to get c coefficient
-    }
+    if (!GetCoef(a, 'a')) return Failure;                                     // failed to get a coefficient
+    if (!GetCoef(b, 'b')) return Failure;                                     // failed to get b coefficient
+    if (!GetCoef(c, 'c')) return Failure;                                     // failed to get c coefficient
     ans = QuadSolver(*a, *b, *c);                           // solving part
     FPrintRoots(ans->amount, ans->first, ans->second, stdout);
     return Success;  
@@ -111,6 +109,10 @@ int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans)
 //------------------------------------------------------------------------------------------------------------------
 int RunConsole(char *argv[], double* a, double* b, double* c, struct QuadSolutions* ans)
 {
+    assert (a != NULL);
+    assert (b != NULL);
+    assert (c != NULL);
+
     if (!ReadConsoleCoef(argv[1], a)) return Failure;           // getting coefs from console
     if (!ReadConsoleCoef(argv[2], b)) return Failure;
     if (!ReadConsoleCoef(argv[3], c)) return Failure;
@@ -144,4 +146,5 @@ int RunFile()
         if (fpout != stdout && fclose(fpout))
             PrintError(ErrorList::CloseOutputError);
     }
+    return Success;
 }

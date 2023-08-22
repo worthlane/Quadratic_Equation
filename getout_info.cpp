@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "getout_info.h"
 #include "solver.h"
@@ -31,6 +32,8 @@ void FileRun(FILE* fpin, FILE* fpout)
 
 bool GetFileName(char* file_name, const char mode[])                       // getting file name 
 {
+    assert(file_name != NULL);
+
     printf("Please, enter the %s file directory: (q to quit) ", mode);  
     if (scanf("%s", file_name) == 0)
     {
@@ -54,6 +57,8 @@ bool GetFileName(char* file_name, const char mode[])                       // ge
 
 bool FGetCoef(FILE* fp, double* a)                          // getting coefficient from file
 {
+    assert (a != NULL);
+
     if (fscanf(fp, "%lf", a) == 0)
     {
         PrintError(ErrorList::FileInputError);              // (not "coef =" format)
@@ -84,6 +89,8 @@ void ClearInput(FILE* fp)                       // clears input from '\n' char a
 
 bool GetCoef(double* a, const char ch)                   // gets coefficient from STDIN
 {
+    assert(a != NULL);
+
     printf("Input coefficient %c: ", ch);
     while (scanf("%lf", a) == 0)
     {
@@ -111,28 +118,29 @@ void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp)   
 {
     switch (roots)
     {
-        case ZERO_ROOTS:
-            fprintf(fp, "Your equation has zero roots.\n");
-            break;
-        case ONE_ROOT:
-            fprintf(fp, "Your equation has one root: x = %g\n", x1);
-            break;
-        case TWO_ROOTS:
-            fprintf(fp, "Your equation has two roots: x1 = %g, x2 = %g\n", x1, x2);
-            break;
-        case INF_ROOTS:
-            fprintf(fp, "Your equation has infinite amount of roots.\n");
-            break;
-        default:
-            PrintError(ErrorList::RootsAmountError);
-            break;
+        case ZERO_ROOTS:    fprintf(fp, "Your equation has zero roots.\n");
+                            break;
+        
+        case ONE_ROOT:      fprintf(fp, "Your equation has one root: x = %lg\n", x1);
+                            break;
+        
+        case TWO_ROOTS:     fprintf(fp, "Your equation has two roots: x1 = %lg, x2 = %lg\n", x1, x2);
+                            break;
+        
+        case INF_ROOTS:     fprintf(fp, "Your equation has infinite amount of roots.\n");
+                            break;
+        
+        default:            PrintError(ErrorList::RootsAmountError);
+                            break;
   }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
 bool ReadConsoleCoef(const char argv[], double* a)           // reads coefficient from console
-{                                  
+{
+    assert(a != NULL);
+
     if (!sscanf(argv, "%lf", a)) 
     {
         PrintError(ErrorList::ReadConsoleError);
@@ -143,7 +151,7 @@ bool ReadConsoleCoef(const char argv[], double* a)           // reads coefficien
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool RepeatQuestion(char mode[])
+bool RepeatQuestion(const char mode[])
 {
     printf("Do you want to %s? (1 - Yes): ", mode);
     bool repeat_flag = false;
@@ -185,41 +193,40 @@ void PrintError(ErrorList error)
 {
     switch (error)
     {
-        case ErrorList::FlagError:
-            perror("ERROR: UNEXPECTED FLAGS");
-            break;
-        case ErrorList::GetFileNameError:
-            perror("ERROR: FAILED TO GET FILE NAME");
-            break;
-        case ErrorList::FileInputError:
-            perror("ERROR: INCORRECT FILE INPUT");
-            break;
-        case ErrorList::InvalidCoefError:
-            perror("ERROR: INVALID COEFFICIENT");
-            break;
-        case ErrorList::RootsAmountError:
-            perror("ERROR: UNEXPECTED AMOUNT OF ROOTS.");
-            break;
-        case ErrorList::ReadConsoleError:
-            perror("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
-            break;
-        case ErrorList::OpenTestError:
-            perror("ERROR: FAILED TO OPEN TEST FILE");
-            break;
-        case ErrorList::CloseTestError:
-            perror("WARNING: FAILED TO CLOSE TEST FILE");
-            break;
-        case ErrorList::OpenInputError:
-            perror("ERROR: FAILED TO OPEN INPUT FILE");
-            break;
-        case ErrorList::CloseInputError:
-            perror("WARNING: FAILED TO CLOSE INPUT FILE");
-            break;
-        case ErrorList::CloseOutputError:
-            perror("WARNING: FAILED TO CLOSE OUTPUT FILE");
-            break;
-        default:
-            perror("ERROR: UNDEFINED ERROR");
-            break;
+        case ErrorList::FlagError:          perror("ERROR: UNEXPECTED FLAGS");
+                                            break;
+        
+        case ErrorList::GetFileNameError:   perror("ERROR: FAILED TO GET FILE NAME");
+                                            break;
+        
+        case ErrorList::FileInputError:     perror("ERROR: INCORRECT FILE INPUT");
+                                            break;
+        
+        case ErrorList::InvalidCoefError:   perror("ERROR: INVALID COEFFICIENT");
+                                            break;
+        
+        case ErrorList::RootsAmountError:   perror("ERROR: UNEXPECTED AMOUNT OF ROOTS.");
+                                            break;
+        
+        case ErrorList::ReadConsoleError:   perror("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
+                                            break;
+        
+        case ErrorList::OpenTestError:      perror("ERROR: FAILED TO OPEN TEST FILE");
+                                            break;
+        
+        case ErrorList::CloseTestError:     perror("WARNING: FAILED TO CLOSE TEST FILE");
+                                            break;
+        
+        case ErrorList::OpenInputError:     perror("ERROR: FAILED TO OPEN INPUT FILE");
+                                            break;
+        
+        case ErrorList::CloseInputError:    perror("WARNING: FAILED TO CLOSE INPUT FILE");
+                                            break;
+        
+        case ErrorList::CloseOutputError:   perror("WARNING: FAILED TO CLOSE OUTPUT FILE");
+                                            break;
+        
+        default:                            perror("ERROR: UNDEFINED ERROR");
+                                            break;
     }
 }

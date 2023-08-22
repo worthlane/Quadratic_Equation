@@ -14,7 +14,8 @@ enum class WorkingMode
   IntMode     =  2,             ///< interactive mode
   TestMode    =  3,             ///< test mode
   ConsoleMode =  4,             ///< input from console mode
-  FileMode    =  5              ///< input from file mode
+  FileMode    =  5,             ///< input from file mode
+  StdMode     =  6              ///< standart input mode
 };
 
 /************************************************************//**
@@ -23,17 +24,17 @@ enum class WorkingMode
 
 enum class ErrorList
 {
-    FlagError,
-    GetFileNameError,
-    FileInputError,
-    InvalidCoefError,
-    RootsAmountError,
-    ReadConsoleError,
-    OpenTestError,
-    CloseTestError,
-    OpenInputError,
-    CloseInputError,
-    CloseOutputError
+    FlagError        =  1,
+    GetFileNameError =  2,
+    FileInputError   =  3,
+    InvalidCoefError =  4, 
+    RootsAmountError =  5,
+    ReadConsoleError =  6,
+    OpenTestError    =  7,
+    CloseTestError   =  8,
+    OpenInputError   =  9,
+    CloseInputError  = 10,
+    CloseOutputError = 11
 };
 
 /************************************************************//**
@@ -116,7 +117,7 @@ bool ReadConsoleCoef(const char argv[], double* a);
  * @return false if user want to quit
  ************************************************************/
 
-bool RepeatQuestion(char mode[]);
+bool RepeatQuestion(const char mode[]);
 
 /************************************************************//**
  * @brief Reads equation coefficients from input file\n 

@@ -26,8 +26,8 @@ struct QuadSolutions
 enum Comparison
 {
   LESS  = -1,         ///< a < b
-  EQUAL = 0,          ///< a = b
-  MORE  = 1,          ///< a > b
+  EQUAL =  0,          ///< a = b
+  MORE  =  1,          ///< a > b
 };
 
 /************************************************************//**

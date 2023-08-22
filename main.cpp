@@ -31,11 +31,11 @@ int main(int argc, char* argv[])
         {
             case WorkingMode::TestMode:                                             // test mode
                 RunTest();
-                return 0;
+                return Success;
             case WorkingMode::HelpMode:                                             // help mode
                 PrintHelp();
                 if (!RepeatQuestion("solve equation in interactive mode"))          // asks user for solve in interactive
-                    return 0;
+                    return Success;
                 else
                 {
                     RunMode = WorkingMode::IntMode;                                 // changes mode
