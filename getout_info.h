@@ -3,19 +3,29 @@
 * \brief Contains functions, that can input and output data. Supports FILE input/output and STDIN input.
 */
 
+static const unsigned int LEN = 100;            ///< maximum length of file names or input strings
+static const int read_amount = 3;
 /************************************************************//**
  * @brief enums working mode
  ************************************************************/
 
-enum class WorkingMode
+enum Flags
 {
-  UnknownMode = -1,             ///< unknown mode
-  HelpMode    =  1,             ///< help mode
-  IntMode     =  2,             ///< interactive mode
-  TestMode    =  3,             ///< test mode
-  ConsoleMode =  4,             ///< input from console mode
-  FileMode    =  5,             ///< input from file mode
-  StdMode     =  6              ///< standart input mode
+    UnknownFlag  = -1,            ///< UnknownFlag
+  
+    IntFlag      =  1,            ///< Type flag: interactive         
+    StdFlag      =  2,            ///< Type flag: standart
+    
+    StdinFlag    =  3,            ///< Input flag: stdin input
+    FromFileFlag =  4,            ///< Input flag: input from file
+    ConsoleFlag  =  5,            ///< Input flag: input from console           
+
+    StdoutFlag   =  6,            ///< Output flag: output in stdout
+    ToFileFlag   =  7,            ///< Output flag: output in file
+
+    SolveFlag    =  8,            ///< Mode flag: solving mode
+    HelpFlag     =  9,            ///< Mode flag: help mode                
+    TestFlag     = 10             ///< Mode flag: test mode          
 };
 
 /************************************************************//**
@@ -36,6 +46,15 @@ enum class ErrorList
     CloseInputError  = 10,
     CloseOutputError = 11
 };
+
+struct Param
+{
+    int type;
+    int input;
+    int output;
+    int mode;
+};
+
 
 /************************************************************//**
  * @brief Function clears STDIN from useless symbols, until it meets '\\n'
@@ -99,17 +118,6 @@ void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp);
 bool GetFileName(char* file_name, const char mode[]);
 
 /************************************************************//**
- * @brief Function read coefficient from the console (console input)
- * 
- * @param[in] argv command line
- * @param[in] a coefficient
- * @return true if coefficient read succesfully
- * @return false if function failed to get coefficient
- ************************************************************/
-
-bool ReadConsoleCoef(const char argv[], double* a);
-
-/************************************************************//**
  * @brief Function asks user, does he want to repeat program running
  * 
  * @param[in] mode modifies question
@@ -130,19 +138,19 @@ bool RepeatQuestion(const char mode[]);
 void FileRun(FILE* fpin, FILE* fpout);
 
 /************************************************************//**
- * @brief Returns mode, which program must work
- * 
- * @param[in] argc amount of console arguments
- * @param[in] argv console argument
- * @return WorkingMode 
- ************************************************************/
-
-WorkingMode ReadFlag(int argc, char* argv[]);
-
-/************************************************************//**
  * @brief Prints error
  * 
  * @param[in] error 
  ************************************************************/
 
+int DefineFlag(const char flag[]);
+
 void PrintError(ErrorList error);
+
+void FlagCheck(const int flag, struct Param* param);
+
+void ReadFlags(int argc, char* argv[], struct Param* mode);
+
+bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char* argv[], int argc);
+
+bool GetConsole(const char string[], double* a);

@@ -29,11 +29,12 @@ void RunTest()                                          // runs tests from TEST_
     double b = NAN_DOUBLE;          // b coef initialization
     double c = NAN_DOUBLE;          // c coef initalization
     struct QuadSolutions test = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
-    struct QuadSolutions* ans = nullptr;
+    struct QuadSolutions init = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    struct QuadSolutions* ans = &init;
 
     while ((fscanf(fp, "%lf%lf%lf%d%lf%lf", &a, &b, &c, &test.amount, &test.first, &test.second)) == param_amount)
     {
-        ans = QuadSolver(a, b, c);              // solving the equation
+        QuadSolver(a, b, c, ans);              // solving the equation
         if (ans->amount != test.amount)         // comparing the amount of roots
         {
             printf("TEST %d: Incorrect amount of roots\n", test_number++);
@@ -59,7 +60,7 @@ void RunTest()                                          // runs tests from TEST_
         } else if (test.amount == TWO_ROOTS)
         {
             if ((Compare(test.first, ans->first) == EQUAL && Compare(test.second, ans->second) == EQUAL) 
-             || (Compare(test.first, ans->second) == EQUAL && Compare(test.second, ans->first) == EQUAL))   // comparing two roots
+            || (Compare(test.first, ans->second) == EQUAL && Compare(test.second, ans->first) == EQUAL))   // comparing two roots
             {
                 printf("TEST %d: Correct\n", test_number++);
                 continue;
@@ -91,60 +92,19 @@ void PrintHelp()
 
 //------------------------------------------------------------------------------------------------------------------
 
-int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans)
+int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, char* argv[], int argc)
 {
-    assert (a != NULL);
-    assert (b != NULL);
-    assert (c != NULL);
-
-    printf("Equation format: ax^2 + bx + c = 0\n");
-    if (!GetCoef(a, 'a')) return Failure;                                     // failed to get a coefficient
-    if (!GetCoef(b, 'b')) return Failure;                                     // failed to get b coefficient
-    if (!GetCoef(c, 'c')) return Failure;                                     // failed to get c coefficient
-    ans = QuadSolver(*a, *b, *c);                           // solving part
-    FPrintRoots(ans->amount, ans->first, ans->second, stdout);
-    return Success;  
-}
-
-//------------------------------------------------------------------------------------------------------------------
-int RunConsole(char *argv[], double* a, double* b, double* c, struct QuadSolutions* ans)
-{
-    assert (a != NULL);
-    assert (b != NULL);
-    assert (c != NULL);
-
-    if (!ReadConsoleCoef(argv[1], a)) return Failure;           // getting coefs from console
-    if (!ReadConsoleCoef(argv[2], b)) return Failure;
-    if (!ReadConsoleCoef(argv[3], c)) return Failure;
-    ans = QuadSolver(*a, *b, *c);
-    FPrintRoots(ans->amount, ans->first, ans->second, stdout);  // printing roots
-    return Success;  
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
-int RunFile()
-{
-    char infile_name[LEN] = "no name";                              // file names initialization
+    if (!ReadCoefficients(param, a, b, c, argv, argc)) return Failure;
+    QuadSolver(*a, *b, *c, ans);
     char outfile_name[LEN] = "no name";
-    if (!GetFileName(infile_name, "input"))   return Failure;       // getting input file name
-    if (!GetFileName(outfile_name, "output")) return Failure;       // getting output file name
-    FILE *fpin = fopen(infile_name, "r");
     FILE *fpout = nullptr;
-    fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");      // stdout check
-    if (!fpout)
-        fpout = stdout;                                                                     // output file did not open ( O_O )
-    if (!fpin)
-    {
-        PrintError(ErrorList::OpenInputError);
-        return Failure;
-    } else
-    {
-        FileRun(fpin, fpout);
-        if (fclose(fpin))
-            PrintError(ErrorList::CloseInputError);
-        if (fpout != stdout && fclose(fpout))
-            PrintError(ErrorList::CloseOutputError);
-    }
+    if (param->output == ToFileFlag && !GetFileName(outfile_name, "output")) return Failure;       // getting output file name
+    if (param->output == ToFileFlag)
+        fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");      // stdout check
+    else
+        fpout = stdout; 
+    FPrintRoots(ans->amount, ans->first, ans->second, fpout);
+    if (fpout != stdout && fclose(fpout))
+        PrintError(ErrorList::CloseOutputError);
     return Success;
 }

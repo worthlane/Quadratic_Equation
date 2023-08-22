@@ -11,25 +11,6 @@
  * a2 b2 c2      */
 
 
-void FileRun(FILE* fpin, FILE* fpout)
-{
-    const int read_amount = 3;
-    double a = NAN_DOUBLE;                  // coef initialization
-    double b = NAN_DOUBLE;
-    double c = NAN_DOUBLE;
-    int equat_number = 1;                   // equations counter
-    struct QuadSolutions ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
-
-    while (fscanf(fpin, "%lf%lf%lf", &a, &b, &c) == read_amount)   // reading data for one equation
-    { 
-        ans = *(QuadSolver(a, b, c));                               // solving equation
-        fprintf(fpout, "%d: ", equat_number++);                     // equation number output
-        FPrintRoots(ans.amount, ans.first, ans.second, fpout);
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
 bool GetFileName(char* file_name, const char mode[])                       // getting file name 
 {
     assert(file_name != NULL);
@@ -137,15 +118,13 @@ void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp)   
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool ReadConsoleCoef(const char argv[], double* a)           // reads coefficient from console
+bool GetConsole(const char string[], double* a)
 {
-    assert(a != NULL);
-
-    if (!sscanf(argv, "%lf", a)) 
+    if (sscanf(string, "%lf", a) == 0)
     {
         PrintError(ErrorList::ReadConsoleError);
         return false;
-    } 
+    }
     return true;
 }
 
@@ -163,28 +142,95 @@ bool RepeatQuestion(const char mode[])
 
 //------------------------------------------------------------------------------------------------------------------
 
-WorkingMode ReadFlag(int argc, char* argv[])
+void ReadFlags(int argc, char* argv[], struct Param* param)
 {
-    switch (argc)
+    int flag = UnknownFlag;
+
+    for (int i = 1; i < argc; i++)
     {
-        case 1:
-            return WorkingMode::IntMode;
-        case 2:
-            if (!strcmp(argv[1], "-int"))
-                return WorkingMode::IntMode;
-            if (!strcmp(argv[1], "-file"))
-                return WorkingMode::FileMode;
-            if (!strcmp(argv[1], "-help"))
-                return WorkingMode::HelpMode;
-            if (!strcmp(argv[1], "-test"))
-                return WorkingMode::TestMode;
-            else
-                return WorkingMode::UnknownMode;
-        case 4:
-            return WorkingMode::ConsoleMode;
-        default:
-            return WorkingMode::UnknownMode;
+        if (argv[i][0] == '-')
+        {
+            flag = DefineFlag(argv[i]);
+            FlagCheck(flag, param);
+        }
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+void FlagCheck(const int flag, struct Param* param)
+{
+    switch (flag)
+    {
+        case IntFlag:           param->type = Max(param->type, IntFlag);
+                                break;
+        
+        case StdFlag:           param->type = Max(param->type, StdFlag);
+                                break;
+        
+        case StdinFlag:         param->input = Max(param->input, StdinFlag);
+                                break;
+
+        case FromFileFlag:      param->input = Max(param->input, FromFileFlag);
+                                break;
+
+        case ConsoleFlag:       param->input = Max(param->input, ConsoleFlag);
+                                break;
+
+        case StdoutFlag:        param->output = Max(param->output, StdoutFlag);
+                                break;
+
+        case ToFileFlag:        param->output = Max(param->output, ToFileFlag);
+                                break;
+
+        case SolveFlag:         param->mode = Max(param->mode, SolveFlag);
+                                break;
+
+        case HelpFlag:          param->mode = Max(param->mode, HelpFlag);
+                                break;
+
+        case TestFlag:          param->mode = Max(param->mode, TestFlag);
+                                break;
+
+        default:                break;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+int DefineFlag(const char flag[])
+{
+    if (!strcmp(flag, "-int"))
+        return IntFlag;
+
+    if (!strcmp(flag, "-fromfile"))
+        return FromFileFlag;
+
+    if (!strcmp(flag, "-tofile"))
+        return ToFileFlag;
+
+    if (!strcmp(flag, "-help"))
+        return HelpFlag;
+
+    if (!strcmp(flag, "-test"))
+        return TestFlag;
+
+    if (!strcmp(flag, "-std"))
+        return StdFlag;
+
+    if (!strcmp(flag, "-console"))
+        return ConsoleFlag;
+
+    if (!strcmp(flag, "-stdin"))
+        return StdinFlag;
+
+    if (!strcmp(flag, "-stdout"))
+        return StdoutFlag;
+
+    if (!strcmp(flag, "-solve"))
+        return SolveFlag;
+
+    return UnknownFlag;
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -214,12 +260,13 @@ void PrintError(ErrorList error)
         case ErrorList::OpenTestError:      perror("ERROR: FAILED TO OPEN TEST FILE");
                                             break;
         
-        case ErrorList::CloseTestError:     perror("WARNING: FAILED TO CLOSE TEST FILE");
-                                            break;
         
         case ErrorList::OpenInputError:     perror("ERROR: FAILED TO OPEN INPUT FILE");
                                             break;
         
+        case ErrorList::CloseTestError:     perror("WARNING: FAILED TO CLOSE TEST FILE");
+                                            break;
+
         case ErrorList::CloseInputError:    perror("WARNING: FAILED TO CLOSE INPUT FILE");
                                             break;
         
@@ -229,4 +276,55 @@ void PrintError(ErrorList error)
         default:                            perror("ERROR: UNDEFINED ERROR");
                                             break;
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char* argv[], int argc)
+{
+    switch (param->input)
+    {
+        case StdinFlag:
+            printf("Equation format: ax^2 + bx + c = 0\n");
+            if (!GetCoef(a, 'a')) return false;                                     
+            if (!GetCoef(b, 'b')) return false;                            
+            if (!GetCoef(c, 'c')) return false;   
+            return true;
+        case ConsoleFlag:
+            for (int i = 1; i < argc; i++)
+            {
+                if (DefineFlag(argv[i]) == ConsoleFlag)
+                {
+                    if ((i + 3) >= argc)
+                    {
+                        PrintError(ErrorList::ReadConsoleError);
+                        return false;
+                    }
+                    if (!GetConsole(argv[i + 1], a)) return false;
+                    if (!GetConsole(argv[i + 2], b)) return false;
+                    if (!GetConsole(argv[i + 3], c)) return false;
+                    param->input = StdinFlag;
+                    return true;
+                }
+            }
+            return false;
+        case FromFileFlag:
+            char infile_name[LEN] = "no name"; 
+            if (!GetFileName(infile_name, "input")) return false;
+            FILE* fpin = fopen(infile_name, "r");
+            if (!fpin)
+            {
+                PrintError(ErrorList::OpenInputError);
+                return false;
+            }
+            if (fscanf(fpin, "%lf%lf%lf", a, b, c) != read_amount)
+            {
+                PrintError(ErrorList::FileInputError);
+                return false;
+            }
+            if (fclose(fpin))
+                PrintError(ErrorList::CloseInputError);
+            return true;
+    }
+    return true;
 }

@@ -42,18 +42,9 @@ enum Comparison
 
 int Compare(const double a, const double b);
 
-/************************************************************//**
- * @brief  Solves quadratic equation.
- *         Format: ax^2 + bx + c = 0
- * @param[in] a coefficient
- * @param[in] b coefficient
- * @param[in] c coefficient
- * @return pointer to structure, which contains: amount of roots, first root(if it exists), second root(if it exists)
- ************************************************************/
+void QuadSolver(const double a, const double b, const double c, struct QuadSolutions* ans);   // solving equation
 
-struct QuadSolutions* QuadSolver(const double a, const double b, const double c);   // solving equation
-
-struct QuadSolutions* LinearSolver(const double b, const double c);
+void LinearSolver(const double b, const double c, struct QuadSolutions* ans);
 
 enum Roots 
 {
@@ -63,4 +54,5 @@ enum Roots
   TWO_ROOTS  =  2,      ///< equation has two different roots
 };
 
+int Max(const int a, const int b);
 

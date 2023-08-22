@@ -22,50 +22,39 @@ int main(int argc, char* argv[])
     double b = NAN_DOUBLE;
     double c = NAN_DOUBLE;
 
-    WorkingMode RunMode = ReadFlag(argc, argv);                     // flag reading
-    struct QuadSolutions ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    struct Param param = {IntFlag, StdinFlag, StdoutFlag, SolveFlag};
+
+    struct QuadSolutions  ans     = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    
+    if (argc != 1)
+        ReadFlags(argc, argv, &param);
 
     while (true) 
     {
-        switch (RunMode)
+        switch (param.mode)
         {
-            case WorkingMode::TestMode:                                             // test mode
+            case HelpFlag:
+                PrintHelp();
+                if (!RepeatQuestion("solve equation in interactive mode"))        
+                    return Success;
+                else
+                {
+                    param.mode = IntFlag;
+                    continue;
+                }
+            case TestFlag:
                 RunTest();
                 return Success;
-            case WorkingMode::HelpMode:                                             // help mode
-                PrintHelp();
-                if (!RepeatQuestion("solve equation in interactive mode"))          // asks user for solve in interactive
-                    return Success;
-                else
-                {
-                    RunMode = WorkingMode::IntMode;                                 // changes mode
-                    continue;
-                }
-            case WorkingMode::IntMode:                                              // interactive mode
-                if (RunInt(&a, &b, &c, &ans) == Failure)
-                    return Failure;
-                if (!RepeatQuestion("solve another equation"))                      // asks user to solve equation again
-                    return Success;
-                else
-                    continue;
-            case WorkingMode::ConsoleMode:                                          // console input mode
-                if (RunConsole(argv, &a, &b, &c, &ans) == Failure)
-                    return Failure;
-                if (!RepeatQuestion("solve equation in interactive mode"))          // asks user to solve equation in interactive mode
-                    return Success;
-                else
-                {
-                    RunMode = WorkingMode::IntMode;                                 // changes mode
-                    continue;
-                }
-            case WorkingMode::FileMode:                                             // file mode
-                if (RunFile() == Failure)
-                    return Failure;
-                if (!RepeatQuestion("solve equation in interactive mode"))          // asks user to solve equation in interactive mode
-                    return Success;
             default:
-                PrintError(ErrorList::FlagError);
-                return Failure;
+                break;
+        }
+        if (RunSolve(&param, &a, &b, &c, &ans, argv, argc) == Failure) return Failure;
+        if (!RepeatQuestion("solve another equation?"))        
+            return Success;
+        else
+        {
+            param.mode = IntFlag;
+            continue;
         }
     }
     times_run++;                                                    // solved equations counter

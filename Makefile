@@ -18,7 +18,7 @@ run_modes.o: run_modes.cpp
 getout_info.o: getout_info.cpp
 	$(BUILD)
 
-solver.o: solver.cpp solver.h
+solver.o: solver.cpp
 	$(BUILD)
 
 .PHONY: clean

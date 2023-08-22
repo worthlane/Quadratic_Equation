@@ -2,7 +2,6 @@
 * \brief contains funtions declaration, that needed for test mode
 */
 
-static const unsigned int LEN = 100;            ///< maximum length of file names or input strings
 
 static const char TEST_FILE[] = "test.txt";     ///< contains test file name
 
@@ -47,14 +46,7 @@ int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans);
 
 int RunConsole(char *argv[], double* a, double* b, double* c, struct QuadSolutions* ans);
 
-/************************************************************//**
- * @brief Runs program in file input mode
- * 
- * @return Success if program ran successfully
- * @return Failure if there was an error 
- ************************************************************/
-
-int RunFile();
+int RunFile(struct Param* param);
 
 /************************************************************//**
  * @brief enums result of completed program
@@ -65,4 +57,6 @@ enum Complete
     Failure  = -1,      ///< program failured
     Success  =  0       ///< program ran successfully
 };
+
+int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, char* argv[], int argc);
 
