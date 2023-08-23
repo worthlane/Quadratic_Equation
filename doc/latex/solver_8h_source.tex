@@ -18,26 +18,30 @@
 \DoxyCodeLine{00026\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0}{Comparison}}}
 \DoxyCodeLine{00027\ \{}
 \DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f}{LESS}}\ \ =\ -\/1,\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029}{EQUAL}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02}{MORE}}\ \ =\ 1,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0a59a84258a4cb9025b567ee5139455029}{EQUAL}}\ =\ \ 0,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{solver_8h_ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02}{MORE}}\ \ =\ \ 1,\ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00031\ \};}
 \DoxyCodeLine{00032\ }
 \DoxyCodeLine{00033\ \textcolor{comment}{/************************************************************/}}
 \DoxyCodeLine{00043\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{solver_8h_ab0266453092266ede62ba4ee1b07f00c}{Compare}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b);}
 \DoxyCodeLine{00044\ }
 \DoxyCodeLine{00045\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_quad_solutions}{QuadSolutions}}*\ \mbox{\hyperlink{solver_8h_a7dab98fdaa53dd412f8a7dca242fbace}{QuadSolver}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ c);\ \ \ \textcolor{comment}{//\ solving\ equation}}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{solver_8h_a552e9db5abab528b1524cbfc4006414a}{QuadSolver}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ c,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_quad_solutions}{QuadSolutions}}*\ ans);\ \ \ \textcolor{comment}{//\ solving\ equation}}
 \DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_quad_solutions}{QuadSolutions}}*\ \mbox{\hyperlink{solver_8h_acd32c562edaabf4eeeba462809eb6c1b}{LinearSolver}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ c);}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}}\ }
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}{INF\_ROOTS}}\ \ =\ -\/1,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715}{ZERO\_ROOTS}}\ =\ \ 0,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}{ONE\_ROOT}}\ \ \ =\ \ 1,\ \ \ \ \ \ \ }
-\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}{TWO\_ROOTS}}\ \ =\ \ 2,\ \ \ \ \ \ }
-\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00056\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{solver_8h_a17c1c8cba642bb665adb23e97c4b9021}{LinearSolver}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ c,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_quad_solutions}{QuadSolutions}}*\ ans);}
 \DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}}\ }
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}{INF\_ROOTS}}\ \ =\ -\/1,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715}{ZERO\_ROOTS}}\ =\ \ 0,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}{ONE\_ROOT}}\ \ \ =\ \ 1,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}{TWO\_ROOTS}}\ \ =\ \ 2,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{solver_8h_a1d66cc9de544c2e84ed4a01d475fde95}{Max}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ b);}
+\DoxyCodeLine{00088\ }
 
 \end{DoxyCode}

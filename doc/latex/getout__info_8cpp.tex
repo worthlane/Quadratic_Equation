@@ -3,15 +3,12 @@
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
 {\ttfamily \#include \"{}getout\+\_\+info.\+h\"{}}\newline
 {\ttfamily \#include \"{}solver.\+h\"{}}\newline
-{\ttfamily \#include \"{}run\+\_\+modes.\+h\"{}}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{getout__info_8cpp_a2ebe9dcccd93f73a0369a2f98ba784f4}{File\+Run}} (FILE \texorpdfstring{$\ast$}{*}fpin, FILE \texorpdfstring{$\ast$}{*}fpout)
-\begin{DoxyCompactList}\small\item\em Reads equation coefficients from input file~\newline
- Prints answers to output file. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{getout__info_8cpp_a46436e5aae92c60bd734b6a4f7fa885b}{Get\+File\+Name}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, const char mode\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Function gets the file name from STDIN stream. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{getout__info_8cpp_ae0d25954484de324aaadfc7ce35eb594}{FGet\+Coef}} (FILE \texorpdfstring{$\ast$}{*}fp, double \texorpdfstring{$\ast$}{*}a)
@@ -24,14 +21,20 @@ bool \mbox{\hyperlink{getout__info_8cpp_a8123382aab0235af2ba9348c35189db6}{Get\+
 \begin{DoxyCompactList}\small\item\em Function gets coefficient from STDIN. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{getout__info_8cpp_a67cd3a3cb6eaf2e76847b6ee76a10161}{FPrint\+Roots}} (const int roots, const double x1, const double x2, FILE \texorpdfstring{$\ast$}{*}fp)
 \begin{DoxyCompactList}\small\item\em Function prints roots in STDOUT. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8cpp_a160cf8356e26999dfd5b1dbec31d322e}{Read\+Console\+Coef}} (const char argv\mbox{[}$\,$\mbox{]}, double \texorpdfstring{$\ast$}{*}a)
-\begin{DoxyCompactList}\small\item\em Function read coefficient from the console (console input) \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8cpp_a4979de8d2eadac0a7f5410f6130a5520}{Repeat\+Question}} (char mode\mbox{[}$\,$\mbox{]})
+bool \mbox{\hyperlink{getout__info_8cpp_a587cce848273474245415f0f31cccdbf}{Get\+Console}} (const char string\mbox{[}$\,$\mbox{]}, double \texorpdfstring{$\ast$}{*}a)
+\begin{DoxyCompactList}\small\item\em Get the coefficient from console. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8cpp_a2f3d71ac338c2990785e79a3a58b04ac}{Repeat\+Question}} (const char mode\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Function asks user, does he want to repeat program running. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcb}{Working\+Mode}} \mbox{\hyperlink{getout__info_8cpp_a7e8eac2b830d76481a05448b92134c27}{Read\+Flag}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em Returns mode, which program must work. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{getout__info_8cpp_a1015da87194adb7595b4205a9d0c620e}{Read\+Flags}} (const int argc, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Reads flags from console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{getout__info_8cpp_abf26a5a0a1472bd59f3375ac2bf097c4}{Flag\+Check}} (const int flag, struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Checks flag type and applies it to program parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{getout__info_8cpp_acde0c6f2cf16f73f8c82818a947e831a}{Define\+Flag}} (const char flag\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em defines flag in flag list \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{getout__info_8cpp_a23223325a407e86fb6710787162945d5}{Print\+Error}} (\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} error)
-\begin{DoxyCompactList}\small\item\em Prints error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prints error. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8cpp_a56993b13addd2da4061311411db28066}{Read\+Coefficients}} (struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param, double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, const int argc)
+\begin{DoxyCompactList}\small\item\em Reads coefficients. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -50,6 +53,24 @@ Function clears STDIN from useless symbols, until it meets \textquotesingle{}\te
 \mbox{\texttt{ in}}  & {\em fp} & file \\
 \hline
 \end{DoxyParams}
+\Hypertarget{getout__info_8cpp_acde0c6f2cf16f73f8c82818a947e831a}\label{getout__info_8cpp_acde0c6f2cf16f73f8c82818a947e831a} 
+\index{getout\_info.cpp@{getout\_info.cpp}!DefineFlag@{DefineFlag}}
+\index{DefineFlag@{DefineFlag}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{DefineFlag()}{DefineFlag()}}
+{\footnotesize\ttfamily int Define\+Flag (\begin{DoxyParamCaption}\item[{const char}]{flag\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+defines flag in flag list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & console argument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+enum of flags 
+\end{DoxyReturn}
 \Hypertarget{getout__info_8cpp_ae0d25954484de324aaadfc7ce35eb594}\label{getout__info_8cpp_ae0d25954484de324aaadfc7ce35eb594} 
 \index{getout\_info.cpp@{getout\_info.cpp}!FGetCoef@{FGetCoef}}
 \index{FGetCoef@{FGetCoef}!getout\_info.cpp@{getout\_info.cpp}}
@@ -72,22 +93,21 @@ true if function succesfully got the coefficient
 
 false if file had incorrect coefficient input (program stops) 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8cpp_a2ebe9dcccd93f73a0369a2f98ba784f4}\label{getout__info_8cpp_a2ebe9dcccd93f73a0369a2f98ba784f4} 
-\index{getout\_info.cpp@{getout\_info.cpp}!FileRun@{FileRun}}
-\index{FileRun@{FileRun}!getout\_info.cpp@{getout\_info.cpp}}
-\doxysubsubsection{\texorpdfstring{FileRun()}{FileRun()}}
-{\footnotesize\ttfamily void File\+Run (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fpin,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{fpout }\end{DoxyParamCaption})}
+\Hypertarget{getout__info_8cpp_abf26a5a0a1472bd59f3375ac2bf097c4}\label{getout__info_8cpp_abf26a5a0a1472bd59f3375ac2bf097c4} 
+\index{getout\_info.cpp@{getout\_info.cpp}!FlagCheck@{FlagCheck}}
+\index{FlagCheck@{FlagCheck}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{FlagCheck()}{FlagCheck()}}
+{\footnotesize\ttfamily void Flag\+Check (\begin{DoxyParamCaption}\item[{const int}]{flag,  }\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
 
 
 
-Reads equation coefficients from input file~\newline
- Prints answers to output file. 
+Checks flag type and applies it to program parameters. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em fpin} & input file \\
+\mbox{\texttt{ in}}  & {\em flag} & flag \\
 \hline
-\mbox{\texttt{ in}}  & {\em fpout} & output file (may be STDOUT) \\
+\mbox{\texttt{ in}}  & {\em param} & struct of program parameters \\
 \hline
 \end{DoxyParams}
 \Hypertarget{getout__info_8cpp_a67cd3a3cb6eaf2e76847b6ee76a10161}\label{getout__info_8cpp_a67cd3a3cb6eaf2e76847b6ee76a10161} 
@@ -148,6 +168,28 @@ true if function succesfully got the coefficient
 
 false if user inputed invalid data, and chose to shut down the program 
 \end{DoxyReturn}
+\Hypertarget{getout__info_8cpp_a587cce848273474245415f0f31cccdbf}\label{getout__info_8cpp_a587cce848273474245415f0f31cccdbf} 
+\index{getout\_info.cpp@{getout\_info.cpp}!GetConsole@{GetConsole}}
+\index{GetConsole@{GetConsole}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{GetConsole()}{GetConsole()}}
+{\footnotesize\ttfamily bool Get\+Console (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]},  }\item[{double \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+
+
+
+Get the coefficient from console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & console argument \\
+\hline
+{\em a} & coefficient \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if coefficient got successfully 
+
+false if there was an error while getting coefficient 
+\end{DoxyReturn}
 \Hypertarget{getout__info_8cpp_a46436e5aae92c60bd734b6a4f7fa885b}\label{getout__info_8cpp_a46436e5aae92c60bd734b6a4f7fa885b} 
 \index{getout\_info.cpp@{getout\_info.cpp}!GetFileName@{GetFileName}}
 \index{GetFileName@{GetFileName}!getout\_info.cpp@{getout\_info.cpp}}
@@ -185,53 +227,60 @@ Prints error.
 \mbox{\texttt{ in}}  & {\em error} & \\
 \hline
 \end{DoxyParams}
-\Hypertarget{getout__info_8cpp_a160cf8356e26999dfd5b1dbec31d322e}\label{getout__info_8cpp_a160cf8356e26999dfd5b1dbec31d322e} 
-\index{getout\_info.cpp@{getout\_info.cpp}!ReadConsoleCoef@{ReadConsoleCoef}}
-\index{ReadConsoleCoef@{ReadConsoleCoef}!getout\_info.cpp@{getout\_info.cpp}}
-\doxysubsubsection{\texorpdfstring{ReadConsoleCoef()}{ReadConsoleCoef()}}
-{\footnotesize\ttfamily bool Read\+Console\+Coef (\begin{DoxyParamCaption}\item[{const char}]{argv\mbox{[}$\,$\mbox{]},  }\item[{double \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+\Hypertarget{getout__info_8cpp_a56993b13addd2da4061311411db28066}\label{getout__info_8cpp_a56993b13addd2da4061311411db28066} 
+\index{getout\_info.cpp@{getout\_info.cpp}!ReadCoefficients@{ReadCoefficients}}
+\index{ReadCoefficients@{ReadCoefficients}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{ReadCoefficients()}{ReadCoefficients()}}
+{\footnotesize\ttfamily bool Read\+Coefficients (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param,  }\item[{double \texorpdfstring{$\ast$}{*}}]{a,  }\item[{double \texorpdfstring{$\ast$}{*}}]{b,  }\item[{double \texorpdfstring{$\ast$}{*}}]{c,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{const int}]{argc }\end{DoxyParamCaption})}
 
 
 
-Function read coefficient from the console (console input) 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em argv} & command line \\
-\hline
-\mbox{\texttt{ in}}  & {\em a} & coefficient \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true if coefficient read succesfully 
-
-false if function failed to get coefficient 
-\end{DoxyReturn}
-\Hypertarget{getout__info_8cpp_a7e8eac2b830d76481a05448b92134c27}\label{getout__info_8cpp_a7e8eac2b830d76481a05448b92134c27} 
-\index{getout\_info.cpp@{getout\_info.cpp}!ReadFlag@{ReadFlag}}
-\index{ReadFlag@{ReadFlag}!getout\_info.cpp@{getout\_info.cpp}}
-\doxysubsubsection{\texorpdfstring{ReadFlag()}{ReadFlag()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{getout__info_8h_a1352c5fcb6cfad612ba26a0e91355bcb}{Working\+Mode}} Read\+Flag (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
-
-
-
-Returns mode, which program must work. 
+Reads coefficients. 
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em param} & parameters of program working process (we need input parameter) \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & console input \\
+\hline
 \mbox{\texttt{ in}}  & {\em argc} & amount of console arguments \\
 \hline
-\mbox{\texttt{ in}}  & {\em argv} & console argument \\
+\mbox{\texttt{ out}}  & {\em a} & coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em c} & coeficient \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Working\+Mode 
+true if program successfuly read coefficients 
+
+false if there was an error while reading coefficients 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8cpp_a4979de8d2eadac0a7f5410f6130a5520}\label{getout__info_8cpp_a4979de8d2eadac0a7f5410f6130a5520} 
+\Hypertarget{getout__info_8cpp_a1015da87194adb7595b4205a9d0c620e}\label{getout__info_8cpp_a1015da87194adb7595b4205a9d0c620e} 
+\index{getout\_info.cpp@{getout\_info.cpp}!ReadFlags@{ReadFlags}}
+\index{ReadFlags@{ReadFlags}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{ReadFlags()}{ReadFlags()}}
+{\footnotesize\ttfamily void Read\+Flags (\begin{DoxyParamCaption}\item[{const int}]{argc,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
+
+
+
+Reads flags from console. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em argc} & amount of console words \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & console input \\
+\hline
+\mbox{\texttt{ out}}  & {\em param} & parameters of program \\
+\hline
+\end{DoxyParams}
+\Hypertarget{getout__info_8cpp_a2f3d71ac338c2990785e79a3a58b04ac}\label{getout__info_8cpp_a2f3d71ac338c2990785e79a3a58b04ac} 
 \index{getout\_info.cpp@{getout\_info.cpp}!RepeatQuestion@{RepeatQuestion}}
 \index{RepeatQuestion@{RepeatQuestion}!getout\_info.cpp@{getout\_info.cpp}}
 \doxysubsubsection{\texorpdfstring{RepeatQuestion()}{RepeatQuestion()}}
-{\footnotesize\ttfamily bool Repeat\+Question (\begin{DoxyParamCaption}\item[{char}]{mode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Repeat\+Question (\begin{DoxyParamCaption}\item[{const char}]{mode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 
 

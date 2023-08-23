@@ -14,7 +14,7 @@ console flags:
 no flag - stdin input
 */
 
-int main(int argc, char* argv[]) 
+int main(const int argc, const char* argv[]) 
 {
     int times_run = 1;
     int console_ran = 0;

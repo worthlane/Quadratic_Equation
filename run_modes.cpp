@@ -92,15 +92,17 @@ void PrintHelp()
 
 //------------------------------------------------------------------------------------------------------------------
 
-int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, char* argv[], int argc)
+// Runs process of solving equation
+
+int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, const char* argv[], const int argc)
 {
-    if (!ReadCoefficients(param, a, b, c, argv, argc)) return Failure;
-    QuadSolver(*a, *b, *c, ans);
+    if (!ReadCoefficients(param, a, b, c, argv, argc)) return Failure;                               // reads coefficients
+    QuadSolver(*a, *b, *c, ans);                                                                     // solves quadratic equation
     char outfile_name[LEN] = "no name";
     FILE *fpout = nullptr;
-    if (param->output == ToFileFlag && !GetFileName(outfile_name, "output")) return Failure;       // getting output file name
+    if (param->output == ToFileFlag && !GetFileName(outfile_name, "output")) return Failure;         // getting output file name
     if (param->output == ToFileFlag)
-        fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");      // stdout check
+        fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");           // stdout check
     else
         fpout = stdout; 
     FPrintRoots(ans->amount, ans->first, ans->second, fpout);

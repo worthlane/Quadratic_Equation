@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workingmode_0',['WorkingMode',['../getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcb',1,'getout_info.h']]]
+  ['roots_0',['Roots',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692a',1,'solver.h']]]
 ];

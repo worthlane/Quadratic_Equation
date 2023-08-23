@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quadsolutions_0',['QuadSolutions',['../struct_quad_solutions.html',1,'']]]
+  ['param_0',['Param',['../struct_param.html',1,'']]]
 ];

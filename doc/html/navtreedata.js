@@ -25,6 +25,17 @@
 var NAVTREE =
 [
   [ "quadratic_equation", "index.html", [
+    [ "Quadratic Equation Solver", "md__r_e_a_d_m_e.html", [
+      [ "Compilation:", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "Input from:", "md__r_e_a_d_m_e.html#autotoc_md2", [
+        [ "INTERACTIVE STDIN:", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
+        [ "FILE:", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
+        [ "STANDART STDIN (In development)", "md__r_e_a_d_m_e.html#autotoc_md5", null ]
+      ] ],
+      [ "Help mode", "md__r_e_a_d_m_e.html#autotoc_md6", null ],
+      [ "How does it work?", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
+      [ "Repeat:", "md__r_e_a_d_m_e.html#autotoc_md8", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

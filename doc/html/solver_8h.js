@@ -13,6 +13,7 @@ var solver_8h =
       [ "TWO_ROOTS", "solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81", null ]
     ] ],
     [ "Compare", "solver_8h.html#ab0266453092266ede62ba4ee1b07f00c", null ],
-    [ "LinearSolver", "solver_8h.html#acd32c562edaabf4eeeba462809eb6c1b", null ],
-    [ "QuadSolver", "solver_8h.html#a7dab98fdaa53dd412f8a7dca242fbace", null ]
+    [ "LinearSolver", "solver_8h.html#a17c1c8cba642bb665adb23e97c4b9021", null ],
+    [ "Max", "solver_8h.html#a1d66cc9de544c2e84ed4a01d475fde95", null ],
+    [ "QuadSolver", "solver_8h.html#a552e9db5abab528b1524cbfc4006414a", null ]
 ];

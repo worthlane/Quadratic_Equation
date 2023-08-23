@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]]
+  ['linearsolver_0',['LinearSolver',['../solver_8cpp.html#a17c1c8cba642bb665adb23e97c4b9021',1,'LinearSolver(const double b, const double c, struct QuadSolutions *ans):&#160;solver.cpp'],['../solver_8h.html#a17c1c8cba642bb665adb23e97c4b9021',1,'LinearSolver(const double b, const double c, struct QuadSolutions *ans):&#160;solver.cpp']]]
 ];

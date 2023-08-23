@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['second_0',['second',['../struct_quad_solutions.html#ac142510ee0ad59df5dd346605055bd45',1,'QuadSolutions']]]
+  ['input_0',['input',['../struct_param.html#ae189c52bbb0ef1adc1c041f17f223208',1,'Param']]]
 ];

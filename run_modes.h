@@ -18,37 +18,6 @@ void RunTest();
 void PrintHelp();
 
 /************************************************************//**
- * @brief Runs program in interactive mod
- * 
- * @param[in] a coefficient 
- * @param[in] b coefficient
- * @param[in] c coefficient
- * @param[out] ans answer 
- * 
- * @return Success if program ran successfully
- * @return Failure if there was an error
- ************************************************************/
-
-int RunInt(double* a, double* b, double* c, struct QuadSolutions* ans);
-
-/************************************************************//**
- * @brief Runs program in console input mode
- * 
- * @param[in] argv command line
- * @param[in] a coefficient
- * @param[in] b coefficient
- * @param[in] c coefficient
- * @param[out] ans answer 
- * 
- * @return Success if program ran successfully
- * @return Failure if there was an error
- ************************************************************/
-
-int RunConsole(char *argv[], double* a, double* b, double* c, struct QuadSolutions* ans);
-
-int RunFile(struct Param* param);
-
-/************************************************************//**
  * @brief enums result of completed program
  ************************************************************/
 
@@ -58,5 +27,19 @@ enum Complete
     Success  =  0       ///< program ran successfully
 };
 
-int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, char* argv[], int argc);
+/************************************************************//**
+ * @brief Runs solving process
+ * 
+ * @param[in] param params of working equation
+ * @param[in] argv console input
+ * @param[in] argc amount of console arguments
+ * @param[out] a coefficient
+ * @param[out] b coefficient
+ * @param[out] c coefficient
+ * @param[out] ans equation answer
+ * @return enum Success if program successfully worked
+ * @return enum Failure if there was an error while solving program
+ ************************************************************/
+
+int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, const char* argv[], const int argc);
 

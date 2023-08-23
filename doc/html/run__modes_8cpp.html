@@ -5,13 +5,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>quadratic_equations: run_modes.cpp File Reference</title>
+<title>quadratic_equation: run_modes.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,10 +30,22 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">quadratic_equations<span id="projectnumber">&#160;alpha</span>
+   <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">solves quadratic equations, using discriminant formula</div>
+   <div id="projectbrief">Program solves quadratic equations</div>
   </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,17 +57,23 @@
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
+$(document).ready(function(){initNavTree('run__modes_8cpp.html',''); initResizable(); });
 /* @license-end */
 </script>
-<div id="main-nav"></div>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,7 +95,6 @@ $(function() {
 </div>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -78,6 +104,7 @@ $(function() {
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="solver_8h_source.html">solver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="getout__info_8h_source.html">getout_info.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="run__modes_8h_source.html">run_modes.h</a>&quot;</code><br />
@@ -90,15 +117,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8cpp.html#ae964ff8411b4fdcaf65cb5529aea4bef">PrintHelp</a> ()</td></tr>
 <tr class="memdesc:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints help information (if -help flag called)  <br /></td></tr>
 <tr class="separator:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73521ead7c32e248c34f11f69456146a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8cpp.html#a73521ead7c32e248c34f11f69456146a">RunInt</a> (double *a, double *b, double *c, struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *ans)</td></tr>
-<tr class="memdesc:a73521ead7c32e248c34f11f69456146a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs program in interactive mod.  <br /></td></tr>
-<tr class="separator:a73521ead7c32e248c34f11f69456146a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa08707bcdc220967d7f596c8dfb3d88a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8cpp.html#aa08707bcdc220967d7f596c8dfb3d88a">RunConsole</a> (char *argv[], double *a, double *b, double *c, struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *ans)</td></tr>
-<tr class="memdesc:aa08707bcdc220967d7f596c8dfb3d88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs program in console input mode.  <br /></td></tr>
-<tr class="separator:aa08707bcdc220967d7f596c8dfb3d88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23eb858e064032acd629f61b1d1a6483"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8cpp.html#a23eb858e064032acd629f61b1d1a6483">RunFile</a> ()</td></tr>
-<tr class="memdesc:a23eb858e064032acd629f61b1d1a6483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs program in file input mode.  <br /></td></tr>
-<tr class="separator:a23eb858e064032acd629f61b1d1a6483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35914a4ff00afc7d52b5e718b2a239a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8cpp.html#ac35914a4ff00afc7d52b5e718b2a239a">RunSolve</a> (struct <a class="el" href="struct_param.html">Param</a> *param, double *a, double *b, double *c, struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *ans, const char *argv[], const int argc)</td></tr>
+<tr class="memdesc:ac35914a4ff00afc7d52b5e718b2a239a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs solving process.  <br /></td></tr>
+<tr class="separator:ac35914a4ff00afc7d52b5e718b2a239a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ae964ff8411b4fdcaf65cb5529aea4bef" name="ae964ff8411b4fdcaf65cb5529aea4bef"></a>
@@ -120,41 +141,53 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa08707bcdc220967d7f596c8dfb3d88a" name="aa08707bcdc220967d7f596c8dfb3d88a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa08707bcdc220967d7f596c8dfb3d88a">&#9670;&#160;</a></span>RunConsole()</h2>
+<a id="ac35914a4ff00afc7d52b5e718b2a239a" name="ac35914a4ff00afc7d52b5e718b2a239a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac35914a4ff00afc7d52b5e718b2a239a">&#9670;&#160;</a></span>RunSolve()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int RunConsole </td>
+          <td class="memname">int RunSolve </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td>
+          <td class="paramname"><em>ans</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>argv</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td>
-          <td class="paramname"><em>ans</em>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>argc</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -164,96 +197,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Runs program in console input mode. </p>
+<p>Runs solving process. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>command line </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ans</td><td>answer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>params of working equation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console input </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ans</td><td>equation answer </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Success if program ran successfully </dd>
+<dl class="section return"><dt>Returns</dt><dd>enum Success if program successfully worked </dd>
 <dd>
-Failure if there was an error </dd></dl>
-
-</div>
-</div>
-<a id="a23eb858e064032acd629f61b1d1a6483" name="a23eb858e064032acd629f61b1d1a6483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23eb858e064032acd629f61b1d1a6483">&#9670;&#160;</a></span>RunFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int RunFile </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Runs program in file input mode. </p>
-<dl class="section return"><dt>Returns</dt><dd>Success if program ran successfully </dd>
-<dd>
-Failure if there was an error </dd></dl>
-
-</div>
-</div>
-<a id="a73521ead7c32e248c34f11f69456146a" name="a73521ead7c32e248c34f11f69456146a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73521ead7c32e248c34f11f69456146a">&#9670;&#160;</a></span>RunInt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int RunInt </td>
-          <td>(</td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td>
-          <td class="paramname"><em>ans</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Runs program in interactive mod. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ans</td><td>answer </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Success if program ran successfully </dd>
-<dd>
-Failure if there was an error </dd></dl>
+enum Failure if there was an error while solving program </dd></dl>
 
 </div>
 </div>
@@ -277,9 +236,13 @@ Failure if there was an error </dd></dl>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="run__modes_8cpp.html">run_modes.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
 </body>
 </html>

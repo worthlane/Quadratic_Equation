@@ -1,5 +1,6 @@
 var getout__info_8h =
 [
+    [ "Param", "struct_param.html", "struct_param" ],
     [ "ErrorList", "getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24", [
       [ "FlagError", "getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9", null ],
       [ "GetFileNameError", "getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf", null ],
@@ -13,23 +14,30 @@ var getout__info_8h =
       [ "CloseInputError", "getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce", null ],
       [ "CloseOutputError", "getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace", null ]
     ] ],
-    [ "WorkingMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcb", [
-      [ "UnknownMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcba0dceec92253fea03d73c2ff68e1dfb1f", null ],
-      [ "HelpMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcba4cdc57131ee9762bf7368da71581c50d", null ],
-      [ "IntMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcbac7993236620ca70849c7c42ea790e02e", null ],
-      [ "TestMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcba41bc18d21cc3fd3011c9cc6eea7093f4", null ],
-      [ "ConsoleMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcbaf27d714037db32ee7158066cd992a83b", null ],
-      [ "FileMode", "getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcbabd273357f44e637474d4a17922cea24e", null ]
+    [ "Flags", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295f", [
+      [ "UnknownFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361", null ],
+      [ "IntFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5", null ],
+      [ "StdFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8", null ],
+      [ "StdinFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa", null ],
+      [ "FromFileFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006", null ],
+      [ "ConsoleFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59", null ],
+      [ "StdoutFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8", null ],
+      [ "ToFileFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa", null ],
+      [ "SolveFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d", null ],
+      [ "HelpFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a", null ],
+      [ "TestFlag", "getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0", null ]
     ] ],
     [ "ClearInput", "getout__info_8h.html#a6dbc86ddc9e73f74ccd96ca3a1bbf89f", null ],
+    [ "DefineFlag", "getout__info_8h.html#acde0c6f2cf16f73f8c82818a947e831a", null ],
     [ "FGetCoef", "getout__info_8h.html#ae0d25954484de324aaadfc7ce35eb594", null ],
-    [ "FileRun", "getout__info_8h.html#a2ebe9dcccd93f73a0369a2f98ba784f4", null ],
+    [ "FlagCheck", "getout__info_8h.html#abf26a5a0a1472bd59f3375ac2bf097c4", null ],
     [ "FPrintRoots", "getout__info_8h.html#a67cd3a3cb6eaf2e76847b6ee76a10161", null ],
     [ "FSkipFormatText", "getout__info_8h.html#ab759cd19e5cf2ccbc7b2925e07de9e9c", null ],
     [ "GetCoef", "getout__info_8h.html#a8123382aab0235af2ba9348c35189db6", null ],
+    [ "GetConsole", "getout__info_8h.html#a587cce848273474245415f0f31cccdbf", null ],
     [ "GetFileName", "getout__info_8h.html#a46436e5aae92c60bd734b6a4f7fa885b", null ],
     [ "PrintError", "getout__info_8h.html#a23223325a407e86fb6710787162945d5", null ],
-    [ "ReadConsoleCoef", "getout__info_8h.html#a160cf8356e26999dfd5b1dbec31d322e", null ],
-    [ "ReadFlag", "getout__info_8h.html#a7e8eac2b830d76481a05448b92134c27", null ],
-    [ "RepeatQuestion", "getout__info_8h.html#a4979de8d2eadac0a7f5410f6130a5520", null ]
+    [ "ReadCoefficients", "getout__info_8h.html#a56993b13addd2da4061311411db28066", null ],
+    [ "ReadFlags", "getout__info_8h.html#a1015da87194adb7595b4205a9d0c620e", null ],
+    [ "RepeatQuestion", "getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac", null ]
 ];

@@ -42,17 +42,47 @@ enum Comparison
 
 int Compare(const double a, const double b);
 
+/************************************************************//**
+ * @brief Solves quadratic equation (ax^2 + bx + c = 0)
+ * 
+ * @param[in] a coefficient
+ * @param[in] b coefficient
+ * @param[in] c coefficient
+ * @param[out] ans equation answer
+ ************************************************************/
+
 void QuadSolver(const double a, const double b, const double c, struct QuadSolutions* ans);   // solving equation
 
+/************************************************************//**
+ * @brief Solves linear equatiion (bx + c = 0)
+ * 
+ * @param[in] b coefficient
+ * @param[in] c coefficient
+ * @param[out] ans equation answer
+ ************************************************************/
+
 void LinearSolver(const double b, const double c, struct QuadSolutions* ans);
+
+/************************************************************//**
+ * @brief Enums number of equation roots
+ ************************************************************/
 
 enum Roots 
 {
   INF_ROOTS  = -1,       ///< equation has infinite amount of roots
   ZERO_ROOTS =  0,       ///< equation has no roots
   ONE_ROOT   =  1,       ///< equation has one root
-  TWO_ROOTS  =  2,      ///< equation has two different roots
+  TWO_ROOTS  =  2,       ///< equation has two different roots
 };
+
+/************************************************************//**
+ * @brief Returns maximum of two numbers
+ * 
+ * @param[in] a number 
+ * @param[in] b number
+ * @return a if a > b
+ * @return b if b >= a 
+ ************************************************************/
 
 int Max(const int a, const int b);
 

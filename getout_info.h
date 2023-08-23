@@ -4,14 +4,15 @@
 */
 
 static const unsigned int LEN = 100;            ///< maximum length of file names or input strings
-static const int read_amount = 3;
+static const int read_amount = 3;               ///< amount of coefs in one file read
+
 /************************************************************//**
- * @brief enums working mode
+ * @brief enums flags
  ************************************************************/
 
 enum Flags
 {
-    UnknownFlag  = -1,            ///< UnknownFlag
+    UnknownFlag  = -1,            ///< Unknown Flag
   
     IntFlag      =  1,            ///< Type flag: interactive         
     StdFlag      =  2,            ///< Type flag: standart
@@ -47,12 +48,16 @@ enum class ErrorList
     CloseOutputError = 11
 };
 
+/************************************************************//**
+ * @brief Struct of parameters, which describe solving process
+ ************************************************************/
+
 struct Param
 {
-    int type;
-    int input;
-    int output;
-    int mode;
+    int type;           ///< type of solve (interactive or standart)
+    int input;          ///< input type (STDIN / file / console)
+    int output;         ///< output type (STDOUT / file)
+    int mode;           ///< program mode (test / solving / help)
 };
 
 
@@ -128,29 +133,63 @@ bool GetFileName(char* file_name, const char mode[]);
 bool RepeatQuestion(const char mode[]);
 
 /************************************************************//**
- * @brief Reads equation coefficients from input file\n 
- *        Prints answers to output file
- * 
- * @param[in] fpin input file 
- * @param[in] fpout output file (may be STDOUT)
- ************************************************************/
-
-void FileRun(FILE* fpin, FILE* fpout);
-
-/************************************************************//**
  * @brief Prints error
  * 
  * @param[in] error 
  ************************************************************/
 
-int DefineFlag(const char flag[]);
-
 void PrintError(ErrorList error);
+
+/************************************************************//**
+ * @brief Checks flag type and applies it to program parameters
+ * 
+ * @param[in] flag flag 
+ * @param[in] param struct of program parameters
+ ************************************************************/
 
 void FlagCheck(const int flag, struct Param* param);
 
-void ReadFlags(int argc, char* argv[], struct Param* mode);
+/************************************************************//**
+ * @brief Reads flags from console
+ * 
+ * @param[in] argc amount of console words
+ * @param[in] argv console input
+ * @param[out] param parameters of program
+ ************************************************************/
 
-bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char* argv[], int argc);
+void ReadFlags(const int argc, const char* argv[], struct Param* param);
+
+/************************************************************//**
+ * @brief Reads coefficients
+ * 
+ * @param[in] param parameters of program working process (we need input parameter)
+ * @param[in] argv console input
+ * @param[in] argc amount of console arguments
+ * @param[out] a coefficient
+ * @param[out] b coefficient
+ * @param[out] c coeficient
+ * @return true if program successfuly read coefficients
+ * @return false if there was an error while reading coefficients
+ ************************************************************/
+
+bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, const char* argv[], const int argc);
+
+/************************************************************//**
+ * @brief Get the coefficient from console
+ * 
+ * @param string console argument
+ * @param a coefficient
+ * @return true if coefficient got successfully
+ * @return false if there was an error while getting coefficient
+ ************************************************************/
 
 bool GetConsole(const char string[], double* a);
+
+/************************************************************//**
+ * @brief defines flag in flag list
+ * 
+ * @param flag console argument
+ * @return enum of flags 
+ ************************************************************/
+
+int DefineFlag(const char flag[]);

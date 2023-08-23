@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['more_2',['MORE',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02',1,'solver.h']]]
+  ['less_0',['LESS',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f',1,'solver.h']]],
+  ['linearsolver_1',['LinearSolver',['../solver_8cpp.html#a17c1c8cba642bb665adb23e97c4b9021',1,'LinearSolver(const double b, const double c, struct QuadSolutions *ans):&#160;solver.cpp'],['../solver_8h.html#a17c1c8cba642bb665adb23e97c4b9021',1,'LinearSolver(const double b, const double c, struct QuadSolutions *ans):&#160;solver.cpp']]]
 ];

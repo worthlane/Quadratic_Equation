@@ -23,16 +23,18 @@ enum \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}} \{ \m
 , \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf}{ONE\+\_\+\+ROOT}} = 1
 , \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81}{TWO\+\_\+\+ROOTS}} = 2
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enums number of equation roots. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{solver_8h_ab0266453092266ede62ba4ee1b07f00c}{Compare}} (const double a, const double b)
 \begin{DoxyCompactList}\small\item\em Function compares two double numbers, with EPSILON (1e-\/6) accuracy. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8h_a7dab98fdaa53dd412f8a7dca242fbace}{Quad\+Solver}} (const double a, const double b, const double c)
-\begin{DoxyCompactList}\small\item\em Solves quadratic equation. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8h_acd32c562edaabf4eeeba462809eb6c1b}{Linear\+Solver}} (const double b, const double c)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{solver_8h_a552e9db5abab528b1524cbfc4006414a}{Quad\+Solver}} (const double a, const double b, const double c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Solves quadratic equation (ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{solver_8h_a17c1c8cba642bb665adb23e97c4b9021}{Linear\+Solver}} (const double b, const double c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Solves linear equatiion (bx + c = 0) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{solver_8h_a1d66cc9de544c2e84ed4a01d475fde95}{Max}} (const int a, const int b)
+\begin{DoxyCompactList}\small\item\em Returns maximum of two numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -70,6 +72,10 @@ MORE&a \texorpdfstring{$>$}{>} b \\
 \index{Roots@{Roots}!solver.h@{solver.h}}
 \doxysubsubsection{\texorpdfstring{Roots}{Roots}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{solver_8h_a34f6126547cfdaeca6fb82d45a97692a}{Roots}}}
+
+
+
+Enums number of equation roots. 
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{INF\_ROOTS@{INF\_ROOTS}!solver.h@{solver.h}}\index{solver.h@{solver.h}!INF\_ROOTS@{INF\_ROOTS}}}\Hypertarget{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36}\label{solver_8h_a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36} 
@@ -116,23 +122,58 @@ MORE if a \texorpdfstring{$>$}{>} b
 
 LESS if a \texorpdfstring{$<$}{<} b 
 \end{DoxyReturn}
-\Hypertarget{solver_8h_acd32c562edaabf4eeeba462809eb6c1b}\label{solver_8h_acd32c562edaabf4eeeba462809eb6c1b} 
+\Hypertarget{solver_8h_a17c1c8cba642bb665adb23e97c4b9021}\label{solver_8h_a17c1c8cba642bb665adb23e97c4b9021} 
 \index{solver.h@{solver.h}!LinearSolver@{LinearSolver}}
 \index{LinearSolver@{LinearSolver}!solver.h@{solver.h}}
 \doxysubsubsection{\texorpdfstring{LinearSolver()}{LinearSolver()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Linear\+Solver (\begin{DoxyParamCaption}\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Linear\+Solver (\begin{DoxyParamCaption}\item[{const double}]{b,  }\item[{const double}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
 
-\Hypertarget{solver_8h_a7dab98fdaa53dd412f8a7dca242fbace}\label{solver_8h_a7dab98fdaa53dd412f8a7dca242fbace} 
+
+
+Solves linear equatiion (bx + c = 0) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em ans} & equation answer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{solver_8h_a1d66cc9de544c2e84ed4a01d475fde95}\label{solver_8h_a1d66cc9de544c2e84ed4a01d475fde95} 
+\index{solver.h@{solver.h}!Max@{Max}}
+\index{Max@{Max}!solver.h@{solver.h}}
+\doxysubsubsection{\texorpdfstring{Max()}{Max()}}
+{\footnotesize\ttfamily int Max (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})}
+
+
+
+Returns maximum of two numbers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a if a \texorpdfstring{$>$}{>} b 
+
+b if b \texorpdfstring{$>$}{>}= a 
+\end{DoxyReturn}
+\Hypertarget{solver_8h_a552e9db5abab528b1524cbfc4006414a}\label{solver_8h_a552e9db5abab528b1524cbfc4006414a} 
 \index{solver.h@{solver.h}!QuadSolver@{QuadSolver}}
 \index{QuadSolver@{QuadSolver}!solver.h@{solver.h}}
 \doxysubsubsection{\texorpdfstring{QuadSolver()}{QuadSolver()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Quad\+Solver (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Quad\+Solver (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const double}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
 
 
 
-Solves quadratic equation. 
+Solves quadratic equation (ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0) 
 
-Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0 
+
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em a} & coefficient \\
 \hline
@@ -140,7 +181,6 @@ Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0
 \hline
 \mbox{\texttt{ in}}  & {\em c} & coefficient \\
 \hline
+\mbox{\texttt{ out}}  & {\em ans} & equation answer \\
+\hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-pointer to structure, which contains\+: amount of roots, first root(if it exists), second root(if it exists) 
-\end{DoxyReturn}

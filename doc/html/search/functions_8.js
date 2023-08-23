@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['readcoefficients_0',['ReadCoefficients',['../getout__info_8cpp.html#a56993b13addd2da4061311411db28066',1,'ReadCoefficients(struct Param *param, double *a, double *b, double *c, const char *argv[], const int argc):&#160;getout_info.cpp'],['../getout__info_8h.html#a56993b13addd2da4061311411db28066',1,'ReadCoefficients(struct Param *param, double *a, double *b, double *c, const char *argv[], const int argc):&#160;getout_info.cpp']]],
+  ['readflags_1',['ReadFlags',['../getout__info_8cpp.html#a1015da87194adb7595b4205a9d0c620e',1,'ReadFlags(const int argc, const char *argv[], struct Param *param):&#160;getout_info.cpp'],['../getout__info_8h.html#a1015da87194adb7595b4205a9d0c620e',1,'ReadFlags(const int argc, const char *argv[], struct Param *param):&#160;getout_info.cpp']]],
+  ['repeatquestion_2',['RepeatQuestion',['../getout__info_8cpp.html#a2f3d71ac338c2990785e79a3a58b04ac',1,'RepeatQuestion(const char mode[]):&#160;getout_info.cpp'],['../getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac',1,'RepeatQuestion(const char mode[]):&#160;getout_info.cpp']]],
+  ['runsolve_3',['RunSolve',['../run__modes_8cpp.html#ac35914a4ff00afc7d52b5e718b2a239a',1,'RunSolve(struct Param *param, double *a, double *b, double *c, struct QuadSolutions *ans, const char *argv[], const int argc):&#160;run_modes.cpp'],['../run__modes_8h.html#ac35914a4ff00afc7d52b5e718b2a239a',1,'RunSolve(struct Param *param, double *a, double *b, double *c, struct QuadSolutions *ans, const char *argv[], const int argc):&#160;run_modes.cpp']]],
+  ['runtest_4',['RunTest',['../run__modes_8cpp.html#a4a2eff499a3c811ef4d814024ba98ef0',1,'RunTest():&#160;run_modes.cpp'],['../run__modes_8h.html#a4a2eff499a3c811ef4d814024ba98ef0',1,'RunTest():&#160;run_modes.cpp']]]
+];

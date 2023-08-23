@@ -1,16 +1,19 @@
 \doxysection{solver.\+cpp File Reference}
 \hypertarget{solver_8cpp}{}\label{solver_8cpp}\index{solver.cpp@{solver.cpp}}
 {\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
 {\ttfamily \#include \"{}solver.\+h\"{}}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{solver_8cpp_ab0266453092266ede62ba4ee1b07f00c}{Compare}} (const double a, const double b)
 \begin{DoxyCompactList}\small\item\em Function compares two double numbers, with EPSILON (1e-\/6) accuracy. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace}{Quad\+Solver}} (const double a, const double b, const double c)
-\begin{DoxyCompactList}\small\item\em Solves quadratic equation. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b}{Linear\+Solver}} (const double b, const double c)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{solver_8cpp_a552e9db5abab528b1524cbfc4006414a}{Quad\+Solver}} (const double a, const double b, const double c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Solves quadratic equation (ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{solver_8cpp_a17c1c8cba642bb665adb23e97c4b9021}{Linear\+Solver}} (const double b, const double c, struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}ans)
+\begin{DoxyCompactList}\small\item\em Solves linear equatiion (bx + c = 0) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{solver_8cpp_a1d66cc9de544c2e84ed4a01d475fde95}{Max}} (const int a, const int b)
+\begin{DoxyCompactList}\small\item\em Returns maximum of two numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -38,23 +41,58 @@ MORE if a \texorpdfstring{$>$}{>} b
 
 LESS if a \texorpdfstring{$<$}{<} b 
 \end{DoxyReturn}
-\Hypertarget{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b}\label{solver_8cpp_acd32c562edaabf4eeeba462809eb6c1b} 
+\Hypertarget{solver_8cpp_a17c1c8cba642bb665adb23e97c4b9021}\label{solver_8cpp_a17c1c8cba642bb665adb23e97c4b9021} 
 \index{solver.cpp@{solver.cpp}!LinearSolver@{LinearSolver}}
 \index{LinearSolver@{LinearSolver}!solver.cpp@{solver.cpp}}
 \doxysubsubsection{\texorpdfstring{LinearSolver()}{LinearSolver()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Linear\+Solver (\begin{DoxyParamCaption}\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Linear\+Solver (\begin{DoxyParamCaption}\item[{const double}]{b,  }\item[{const double}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
 
-\Hypertarget{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace}\label{solver_8cpp_a7dab98fdaa53dd412f8a7dca242fbace} 
+
+
+Solves linear equatiion (bx + c = 0) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em ans} & equation answer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{solver_8cpp_a1d66cc9de544c2e84ed4a01d475fde95}\label{solver_8cpp_a1d66cc9de544c2e84ed4a01d475fde95} 
+\index{solver.cpp@{solver.cpp}!Max@{Max}}
+\index{Max@{Max}!solver.cpp@{solver.cpp}}
+\doxysubsubsection{\texorpdfstring{Max()}{Max()}}
+{\footnotesize\ttfamily int Max (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})}
+
+
+
+Returns maximum of two numbers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a if a \texorpdfstring{$>$}{>} b 
+
+b if b \texorpdfstring{$>$}{>}= a 
+\end{DoxyReturn}
+\Hypertarget{solver_8cpp_a552e9db5abab528b1524cbfc4006414a}\label{solver_8cpp_a552e9db5abab528b1524cbfc4006414a} 
 \index{solver.cpp@{solver.cpp}!QuadSolver@{QuadSolver}}
 \index{QuadSolver@{QuadSolver}!solver.cpp@{solver.cpp}}
 \doxysubsubsection{\texorpdfstring{QuadSolver()}{QuadSolver()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*} Quad\+Solver (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Quad\+Solver (\begin{DoxyParamCaption}\item[{const double}]{a,  }\item[{const double}]{b,  }\item[{const double}]{c,  }\item[{struct \mbox{\hyperlink{struct_quad_solutions}{Quad\+Solutions}} \texorpdfstring{$\ast$}{*}}]{ans }\end{DoxyParamCaption})}
 
 
 
-Solves quadratic equation. 
+Solves quadratic equation (ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0) 
 
-Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0 
+
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em a} & coefficient \\
 \hline
@@ -62,7 +100,6 @@ Format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0
 \hline
 \mbox{\texttt{ in}}  & {\em c} & coefficient \\
 \hline
+\mbox{\texttt{ out}}  & {\em ans} & equation answer \\
+\hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-pointer to structure, which contains\+: amount of roots, first root(if it exists), second root(if it exists) 
-\end{DoxyReturn}

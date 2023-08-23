@@ -7,5 +7,5 @@ var searchData=
   ['compare_4',['Compare',['../solver_8cpp.html#ab0266453092266ede62ba4ee1b07f00c',1,'Compare(const double a, const double b):&#160;solver.cpp'],['../solver_8h.html#ab0266453092266ede62ba4ee1b07f00c',1,'Compare(const double a, const double b):&#160;solver.cpp']]],
   ['comparison_5',['Comparison',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0',1,'solver.h']]],
   ['complete_6',['Complete',['../run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1',1,'run_modes.h']]],
-  ['consolemode_7',['ConsoleMode',['../getout__info_8h.html#a1352c5fcb6cfad612ba26a0e91355bcbaf27d714037db32ee7158066cd992a83b',1,'getout_info.h']]]
+  ['consoleflag_7',['ConsoleFlag',['../getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59',1,'getout_info.h']]]
 ];

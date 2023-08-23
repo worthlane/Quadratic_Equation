@@ -23,7 +23,7 @@ bool GetFileName(char* file_name, const char mode[])                       // ge
     }
     if (strcmp(file_name, "q") == 0)        // user decided to quit program
     {
-        printf("Bye Bye");
+        printf("Bye Bye\n");
         return false;
     }
     ClearInput(stdin);
@@ -68,7 +68,7 @@ void ClearInput(FILE* fp)                       // clears input from '\n' char a
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool GetCoef(double* a, const char ch)                   // gets coefficient from STDIN
+bool GetCoef(double* a, const char ch)                       // gets coefficient from STDIN
 {
     assert(a != NULL);
 
@@ -142,23 +142,23 @@ bool RepeatQuestion(const char mode[])
 
 //------------------------------------------------------------------------------------------------------------------
 
-void ReadFlags(int argc, char* argv[], struct Param* param)
-{
+void ReadFlags(const int argc, const char* argv[], struct Param* param)     // reads flags
+{ 
     int flag = UnknownFlag;
 
     for (int i = 1; i < argc; i++)
     {
-        if (argv[i][0] == '-')
+        if (argv[i][0] == '-')                                              // checks all arguments
         {
-            flag = DefineFlag(argv[i]);
-            FlagCheck(flag, param);
+            flag = DefineFlag(argv[i]);                                     // defines flag
+            FlagCheck(flag, param);                                         // compares flag with flag list
         }
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-void FlagCheck(const int flag, struct Param* param)
+void FlagCheck(const int flag, struct Param* param)                         // checks flag type and applies it to program
 {
     switch (flag)
     {
@@ -198,7 +198,7 @@ void FlagCheck(const int flag, struct Param* param)
 
 //------------------------------------------------------------------------------------------------------------------
 
-int DefineFlag(const char flag[])
+int DefineFlag(const char flag[])               // defines flag
 {
     if (!strcmp(flag, "-int"))
         return IntFlag;
@@ -235,7 +235,7 @@ int DefineFlag(const char flag[])
 
 //------------------------------------------------------------------------------------------------------------------
 
-void PrintError(ErrorList error)
+void PrintError(ErrorList error)            // prints errors from errorlist
 {
     switch (error)
     {
@@ -260,7 +260,6 @@ void PrintError(ErrorList error)
         case ErrorList::OpenTestError:      perror("ERROR: FAILED TO OPEN TEST FILE");
                                             break;
         
-        
         case ErrorList::OpenInputError:     perror("ERROR: FAILED TO OPEN INPUT FILE");
                                             break;
         
@@ -280,17 +279,20 @@ void PrintError(ErrorList error)
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char* argv[], int argc)
+bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, const char* argv[], const int argc)
 {
     switch (param->input)
     {
-        case StdinFlag:
+        case StdinFlag:                                         // reads coefs from stdin
+        {    
             printf("Equation format: ax^2 + bx + c = 0\n");
             if (!GetCoef(a, 'a')) return false;                                     
             if (!GetCoef(b, 'b')) return false;                            
             if (!GetCoef(c, 'c')) return false;   
             return true;
-        case ConsoleFlag:
+        }
+        case ConsoleFlag:                                       // reads coefs from console
+        {    
             for (int i = 1; i < argc; i++)
             {
                 if (DefineFlag(argv[i]) == ConsoleFlag)
@@ -308,7 +310,9 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char
                 }
             }
             return false;
-        case FromFileFlag:
+        }
+        case FromFileFlag:                                      // reads coefs from file
+        {    
             char infile_name[LEN] = "no name"; 
             if (!GetFileName(infile_name, "input")) return false;
             FILE* fpin = fopen(infile_name, "r");
@@ -325,6 +329,12 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, char
             if (fclose(fpin))
                 PrintError(ErrorList::CloseInputError);
             return true;
+        }
+        default:
+        {
+            PrintError(ErrorList::FlagError);
+            return false;
+        }
     }
     return true;
 }
