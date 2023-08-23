@@ -338,3 +338,55 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, cons
     }
     return true;
 }
+
+//------------------------------------------------------------------------------------------------------------------
+
+bool Menu(struct Param* param)
+{
+    printf("\n");
+    printf("How do you want to continue?\n"
+           "Input:\n"
+           "(1) STDIN      (2) From file\n"
+           "(q) Quit\n");
+    int inchoice = 0;
+    if (scanf("%d", &inchoice) == 0)
+    {
+        printf("Bye Bye\n");
+        return false;
+    }
+    else
+    {
+        if (inchoice == 1)
+            param->input = StdinFlag;
+        else if (inchoice == 2)
+            param->input = FromFileFlag;
+        else
+        {
+            printf("Bye Bye\n");
+            return false;
+        }
+        
+    }
+    printf("Output:\n"
+           "(1) STDOUT      (2) To file\n"
+           "(q) Quit\n");
+    int outchoice = 0;
+    if (scanf("%d", &outchoice) == 0)
+    {
+        printf("Bye Bye\n");
+        return false;
+    }
+    else
+    {
+        if (outchoice == 1)
+            param->output = StdoutFlag;
+        else if (outchoice == 2)
+            param->output = ToFileFlag;
+        else
+        {
+            printf("Bye Bye\n");
+            return false;
+        }
+    }
+    return true;
+}

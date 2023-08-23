@@ -30,11 +30,13 @@ void \mbox{\hyperlink{getout__info_8cpp_a1015da87194adb7595b4205a9d0c620e}{Read\
 void \mbox{\hyperlink{getout__info_8cpp_abf26a5a0a1472bd59f3375ac2bf097c4}{Flag\+Check}} (const int flag, struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
 \begin{DoxyCompactList}\small\item\em Checks flag type and applies it to program parameters. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{getout__info_8cpp_acde0c6f2cf16f73f8c82818a947e831a}{Define\+Flag}} (const char flag\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em defines flag in flag list \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Defines flag in flag list. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{getout__info_8cpp_a23223325a407e86fb6710787162945d5}{Print\+Error}} (\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} error)
 \begin{DoxyCompactList}\small\item\em Prints error. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{getout__info_8cpp_a56993b13addd2da4061311411db28066}{Read\+Coefficients}} (struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param, double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, const int argc)
-\begin{DoxyCompactList}\small\item\em Reads coefficients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reads coefficients. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8cpp_aecfb0bd1baa36e5ac1e0ce114f6c72d5}{Menu}} (struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Asks user to continue and changes program modes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -61,11 +63,11 @@ Function clears STDIN from useless symbols, until it meets \textquotesingle{}\te
 
 
 
-defines flag in flag list 
+Defines flag in flag list. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em flag} & console argument \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em flag} & console argument \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -179,10 +181,10 @@ false if user inputed invalid data, and chose to shut down the program
 Get the coefficient from console. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em string} & console argument \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em string} & console argument \\
 \hline
-{\em a} & coefficient \\
+\mbox{\texttt{ out}}  & {\em a} & coefficient \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -211,6 +213,26 @@ Function gets the file name from STDIN stream.
 true if function got the name succesfully 
 
 false if function did not get name or user exited program 
+\end{DoxyReturn}
+\Hypertarget{getout__info_8cpp_aecfb0bd1baa36e5ac1e0ce114f6c72d5}\label{getout__info_8cpp_aecfb0bd1baa36e5ac1e0ce114f6c72d5} 
+\index{getout\_info.cpp@{getout\_info.cpp}!Menu@{Menu}}
+\index{Menu@{Menu}!getout\_info.cpp@{getout\_info.cpp}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}}
+{\footnotesize\ttfamily bool Menu (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
+
+
+
+Asks user to continue and changes program modes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em param} & parameters of program \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if user want to continue 
+
+false if user decided to quit program 
 \end{DoxyReturn}
 \Hypertarget{getout__info_8cpp_a23223325a407e86fb6710787162945d5}\label{getout__info_8cpp_a23223325a407e86fb6710787162945d5} 
 \index{getout\_info.cpp@{getout\_info.cpp}!PrintError@{PrintError}}

@@ -36,6 +36,7 @@ var getout__info_8h =
     [ "GetCoef", "getout__info_8h.html#a8123382aab0235af2ba9348c35189db6", null ],
     [ "GetConsole", "getout__info_8h.html#a587cce848273474245415f0f31cccdbf", null ],
     [ "GetFileName", "getout__info_8h.html#a46436e5aae92c60bd734b6a4f7fa885b", null ],
+    [ "Menu", "getout__info_8h.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5", null ],
     [ "PrintError", "getout__info_8h.html#a23223325a407e86fb6710787162945d5", null ],
     [ "ReadCoefficients", "getout__info_8h.html#a56993b13addd2da4061311411db28066", null ],
     [ "ReadFlags", "getout__info_8h.html#a1015da87194adb7595b4205a9d0c620e", null ],

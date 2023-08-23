@@ -177,8 +177,8 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, cons
 /************************************************************//**
  * @brief Get the coefficient from console
  * 
- * @param string console argument
- * @param a coefficient
+ * @param[in] string console argument
+ * @param[out] a coefficient
  * @return true if coefficient got successfully
  * @return false if there was an error while getting coefficient
  ************************************************************/
@@ -186,10 +186,20 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, cons
 bool GetConsole(const char string[], double* a);
 
 /************************************************************//**
- * @brief defines flag in flag list
+ * @brief Defines flag in flag list
  * 
- * @param flag console argument
+ * @param[in] flag console argument
  * @return enum of flags 
  ************************************************************/
 
 int DefineFlag(const char flag[]);
+
+/************************************************************//**
+ * @brief Asks user to continue and changes program modes
+ * 
+ * @param[out] param parameters of program
+ * @return true if user want to continue
+ * @return false if user decided to quit program
+ ************************************************************/
+
+bool Menu(struct Param* param);

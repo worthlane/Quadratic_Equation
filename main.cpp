@@ -35,11 +35,11 @@ int main(const int argc, const char* argv[])
         {
             case HelpFlag:
                 PrintHelp();
-                if (!RepeatQuestion("solve equation in interactive mode"))        
+                if (!Menu(&param))        
                     return Success;
                 else
                 {
-                    param.mode = IntFlag;
+                    param.mode = SolveFlag;
                     continue;
                 }
             case TestFlag:
@@ -49,13 +49,10 @@ int main(const int argc, const char* argv[])
                 break;
         }
         if (RunSolve(&param, &a, &b, &c, &ans, argv, argc) == Failure) return Failure;
-        if (!RepeatQuestion("solve another equation?"))        
+        if (!Menu(&param))        
             return Success;
         else
-        {
-            param.mode = IntFlag;
             continue;
-        }
     }
     times_run++;                                                    // solved equations counter
     printf("Bye Bye\n");

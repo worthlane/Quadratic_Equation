@@ -83,11 +83,19 @@ void PrintHelp()
 {
     printf("Quadratic equation solver\n\n"
            "equation format: ax^2 + bx + c = 0\n"
-           "default mode: input coefficients in console (./a.out a b c)\n"
-           "-file flag for input from file\n"
-           "-int  flag for interactive input from stdin\n"
+           "Type flags:\n"
+           "-int            interactive type of equation enter\n"
+           "-std            standart type of equation enter (a1x^2 + b1x - a2x^2 + c1 ...) (coming soon)\n"
+           "Input flags:\n"
+           "-fromfile       flag for input from file\n"
+           "-stdin          flag for input from stdin\n"
+           "-console a b c  flag for console input (a b c - coefficients)\n"
+           "Output flags:\n"
+           "-tofile         flag for output into file\n"
+           "-stdout         flag for output in stdout\n"
+           "Mode flags:\n"
            "-test flag for test mode activation (for developers)\n"
-           "-help flag for help\n");
+           "-help flag for help\n\n");
 }
 
 //------------------------------------------------------------------------------------------------------------------

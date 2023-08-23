@@ -194,8 +194,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:a587cce848273474245415f0f31cccdbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the coefficient from console.  <br /></td></tr>
 <tr class="separator:a587cce848273474245415f0f31cccdbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acde0c6f2cf16f73f8c82818a947e831a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#acde0c6f2cf16f73f8c82818a947e831a">DefineFlag</a> (const char flag[])</td></tr>
-<tr class="memdesc:acde0c6f2cf16f73f8c82818a947e831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines flag in flag list  <br /></td></tr>
+<tr class="memdesc:acde0c6f2cf16f73f8c82818a947e831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines flag in flag list.  <br /></td></tr>
 <tr class="separator:acde0c6f2cf16f73f8c82818a947e831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5">Menu</a> (struct <a class="el" href="struct_param.html">Param</a> *param)</td></tr>
+<tr class="memdesc:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks user to continue and changes program modes.  <br /></td></tr>
+<tr class="separator:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions, that can input and output data. Supports FILE input/output and STDIN input. </p>
@@ -324,10 +327,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>defines flag in flag list </p>
+<p>Defines flag in flag list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">flag</td><td>console argument </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>console argument </td></tr>
   </table>
   </dd>
 </dl>
@@ -558,8 +561,8 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
 <p>Get the coefficient from console. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">string</td><td>console argument </td></tr>
-    <tr><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>console argument </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
   </table>
   </dd>
 </dl>
@@ -606,6 +609,35 @@ false if there was an error while getting coefficient </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if function got the name succesfully </dd>
 <dd>
 false if function did not get name or user exited program </dd></dl>
+
+</div>
+</div>
+<a id="aecfb0bd1baa36e5ac1e0ce114f6c72d5" name="aecfb0bd1baa36e5ac1e0ce114f6c72d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecfb0bd1baa36e5ac1e0ce114f6c72d5">&#9670;&#160;</a></span>Menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Menu </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
+          <td class="paramname"><em>param</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asks user to continue and changes program modes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>parameters of program </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if user want to continue </dd>
+<dd>
+false if user decided to quit program </dd></dl>
 
 </div>
 </div>
