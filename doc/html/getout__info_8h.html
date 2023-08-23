@@ -199,6 +199,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5">Menu</a> (struct <a class="el" href="struct_param.html">Param</a> *param)</td></tr>
 <tr class="memdesc:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks user to continue and changes program modes.  <br /></td></tr>
 <tr class="separator:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a7dc7bff77d5cd3e57ea4536a9f9183c2">OpenInputFile</a> (char *infile_name)</td></tr>
+<tr class="memdesc:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens input file.  <br /></td></tr>
+<tr class="separator:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions, that can input and output data. Supports FILE input/output and STDIN input. </p>
@@ -638,6 +641,33 @@ false if function did not get name or user exited program </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if user want to continue </dd>
 <dd>
 false if user decided to quit program </dd></dl>
+
+</div>
+</div>
+<a id="a7dc7bff77d5cd3e57ea4536a9f9183c2" name="a7dc7bff77d5cd3e57ea4536a9f9183c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc7bff77d5cd3e57ea4536a9f9183c2">&#9670;&#160;</a></span>OpenInputFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE * OpenInputFile </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>infile_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens input file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">infile_name</td><td>space for input file name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to file </dd></dl>
 
 </div>
 </div>

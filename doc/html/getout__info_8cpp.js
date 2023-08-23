@@ -10,6 +10,7 @@ var getout__info_8cpp =
     [ "GetConsole", "getout__info_8cpp.html#a587cce848273474245415f0f31cccdbf", null ],
     [ "GetFileName", "getout__info_8cpp.html#a46436e5aae92c60bd734b6a4f7fa885b", null ],
     [ "Menu", "getout__info_8cpp.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5", null ],
+    [ "OpenInputFile", "getout__info_8cpp.html#a7dc7bff77d5cd3e57ea4536a9f9183c2", null ],
     [ "PrintError", "getout__info_8cpp.html#a23223325a407e86fb6710787162945d5", null ],
     [ "ReadCoefficients", "getout__info_8cpp.html#a56993b13addd2da4061311411db28066", null ],
     [ "ReadFlags", "getout__info_8cpp.html#a1015da87194adb7595b4205a9d0c620e", null ],

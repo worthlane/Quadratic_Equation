@@ -95,7 +95,7 @@ void PrintHelp()
            "-stdout         flag for output in stdout\n"
            "Mode flags:\n"
            "-test flag for test mode activation (for developers)\n"
-           "-help flag for help\n\n");
+           "-help flag for help mode\n\n");
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -104,6 +104,15 @@ void PrintHelp()
 
 int RunSolve(struct Param* param, double* a, double* b, double* c, struct QuadSolutions* ans, const char* argv[], const int argc)
 {
+    assert (param != NULL);
+    assert (  ans != NULL);
+    assert (    a != NULL);
+    assert (    b != NULL);
+    assert (    c != NULL);
+    assert (    a != b);
+    assert (    b != c);
+    assert (    a != c);
+
     if (!ReadCoefficients(param, a, b, c, argv, argc)) return Failure;                               // reads coefficients
     QuadSolver(*a, *b, *c, ans);                                                                     // solves quadratic equation
     char outfile_name[LEN] = "no name";

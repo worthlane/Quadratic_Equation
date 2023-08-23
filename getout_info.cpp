@@ -78,7 +78,7 @@ bool GetCoef(double* a, const char ch)                       // gets coefficient
         PrintError(ErrorList::InvalidCoefError);             // not a coefficient conditions
         printf("Do you want to continue? (1 - Yes): ");
         ClearInput(stdin);
-        bool flag = false;
+        int flag = false;
         scanf("%d", &flag);
         if (flag)                                            // user wants to try again
         {
@@ -90,6 +90,7 @@ bool GetCoef(double* a, const char ch)                       // gets coefficient
             return false;
         }
     }
+    ClearInput(stdin);
     return true;
 }
 
@@ -120,6 +121,8 @@ void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp)   
 
 bool GetConsole(const char string[], double* a)
 {
+    assert (a != NULL);
+
     if (sscanf(string, "%lf", a) == 0)
     {
         PrintError(ErrorList::ReadConsoleError);
@@ -133,7 +136,7 @@ bool GetConsole(const char string[], double* a)
 bool RepeatQuestion(const char mode[])
 {
     printf("Do you want to %s? (1 - Yes): ", mode);
-    bool repeat_flag = false;
+    int repeat_flag = false;
     scanf("%d", &repeat_flag);                                      
     ClearInput(stdin);
     if (!repeat_flag) printf("Bye Bye");
@@ -144,6 +147,8 @@ bool RepeatQuestion(const char mode[])
 
 void ReadFlags(const int argc, const char* argv[], struct Param* param)     // reads flags
 { 
+    assert (param != NULL);
+
     int flag = UnknownFlag;
 
     for (int i = 1; i < argc; i++)
@@ -160,6 +165,8 @@ void ReadFlags(const int argc, const char* argv[], struct Param* param)     // r
 
 void FlagCheck(const int flag, struct Param* param)                         // checks flag type and applies it to program
 {
+    assert (param != NULL);
+
     switch (flag)
     {
         case IntFlag:           param->type = Max(param->type, IntFlag);
@@ -199,7 +206,7 @@ void FlagCheck(const int flag, struct Param* param)                         // c
 //------------------------------------------------------------------------------------------------------------------
 
 int DefineFlag(const char flag[])               // defines flag
-{
+{  
     if (!strcmp(flag, "-int"))
         return IntFlag;
 
@@ -281,6 +288,14 @@ void PrintError(ErrorList error)            // prints errors from errorlist
 
 bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, const char* argv[], const int argc)
 {
+    assert (param != NULL);
+    assert (    a != NULL);
+    assert (    b != NULL);
+    assert (    c != NULL);
+    assert (    a != b);
+    assert (    b != c);
+    assert (    a != c);
+    
     switch (param->input)
     {
         case StdinFlag:                                         // reads coefs from stdin
@@ -314,13 +329,8 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, cons
         case FromFileFlag:                                      // reads coefs from file
         {    
             char infile_name[LEN] = "no name"; 
-            if (!GetFileName(infile_name, "input")) return false;
-            FILE* fpin = fopen(infile_name, "r");
-            if (!fpin)
-            {
-                PrintError(ErrorList::OpenInputError);
-                return false;
-            }
+            FILE* fpin = OpenInputFile(infile_name);
+            if (fpin == nullptr) return false;
             if (fscanf(fpin, "%lf%lf%lf", a, b, c) != read_amount)
             {
                 PrintError(ErrorList::FileInputError);
@@ -343,22 +353,24 @@ bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, cons
 
 bool Menu(struct Param* param)
 {
+    assert (param != NULL);
+
     printf("\n");
     printf("How do you want to continue?\n"
            "Input:\n"
            "(1) STDIN      (2) From file\n"
            "(q) Quit\n");
-    int inchoice = 0;
-    if (scanf("%d", &inchoice) == 0)
+    int inchoise = 0;
+    if (scanf("%d", &inchoise) == 0)
     {
         printf("Bye Bye\n");
         return false;
     }
     else
     {
-        if (inchoice == 1)
+        if (inchoise == 1)
             param->input = StdinFlag;
-        else if (inchoice == 2)
+        else if (inchoise == 2)
             param->input = FromFileFlag;
         else
         {
@@ -370,17 +382,17 @@ bool Menu(struct Param* param)
     printf("Output:\n"
            "(1) STDOUT      (2) To file\n"
            "(q) Quit\n");
-    int outchoice = 0;
-    if (scanf("%d", &outchoice) == 0)
+    int outchoise = 0;
+    if (scanf("%d", &outchoise) == 0)
     {
         printf("Bye Bye\n");
         return false;
     }
     else
     {
-        if (outchoice == 1)
+        if (outchoise == 1)
             param->output = StdoutFlag;
-        else if (outchoice == 2)
+        else if (outchoise == 2)
             param->output = ToFileFlag;
         else
         {
@@ -389,4 +401,26 @@ bool Menu(struct Param* param)
         }
     }
     return true;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+
+FILE* OpenInputFile(char* infile_name)
+{
+    assert (infile_name != NULL);
+    
+    while (true)
+    {
+        if (!GetFileName(infile_name, "input")) return nullptr;
+        FILE* fpin = fopen(infile_name, "r");
+        if (!fpin)
+        {
+            PrintError(ErrorList::OpenInputError);
+            if (RepeatQuestion("try again")) 
+                continue;
+            else
+                return nullptr;
+        }
+        return fpin;
+    }
 }

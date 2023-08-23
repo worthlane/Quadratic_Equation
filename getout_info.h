@@ -203,3 +203,12 @@ int DefineFlag(const char flag[]);
  ************************************************************/
 
 bool Menu(struct Param* param);
+
+/************************************************************//**
+ * @brief Opens input file
+ * 
+ * @param[in] infile_name space for input file name
+ * @return pointer to file
+ ************************************************************/
+
+FILE* OpenInputFile(char* infile_name);

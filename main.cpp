@@ -18,13 +18,13 @@ int main(const int argc, const char* argv[])
 {
     int times_run = 1;
     int console_ran = 0;
-    double a = NAN_DOUBLE;                                          // coefficients initialization
+    double a = NAN_DOUBLE;                                                         // coefficients initialization
     double b = NAN_DOUBLE;
     double c = NAN_DOUBLE;
 
-    struct Param param = {IntFlag, StdinFlag, StdoutFlag, SolveFlag};
+    struct Param param        = {IntFlag, StdinFlag, StdoutFlag, SolveFlag};       // program parameters
 
-    struct QuadSolutions  ans     = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};
+    struct QuadSolutions  ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};                 // answer initialization
     
     if (argc != 1)
         ReadFlags(argc, argv, &param);

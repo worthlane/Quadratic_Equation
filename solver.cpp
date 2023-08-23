@@ -24,6 +24,7 @@ void QuadSolver(const double a, const double b, const double c, struct QuadSolut
     assert (isfinite (a));
     assert (isfinite (b));
     assert (isfinite (c));
+    assert (ans != NULL);
 
     if (Compare(a, 0) == EQUAL)
     {
@@ -58,6 +59,7 @@ void LinearSolver(const double b, const double c, struct QuadSolutions* ans)
 {
     assert (isfinite (b));
     assert (isfinite (c));
+    assert (ans != NULL);
 
     if (Compare(b, 0) == EQUAL)
     {
