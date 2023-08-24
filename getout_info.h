@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /*! \file
 * \brief Contains functions, that can input and output data. Supports FILE input/output and STDIN input.
 */
@@ -6,27 +7,54 @@
 static const unsigned int LEN = 100;            ///< maximum length of file names or input strings
 static const int read_amount = 3;               ///< amount of coefs in one file read
 
-/************************************************************//**
- * @brief enums flags
- ************************************************************/
+//------------------------------------------------------------------------------------------------------------------
 
-enum Flags
+static const char* LONG_INTERACTIVE_FLAG  = "--int";
+
+static const char* LONG_FROMFILE_FLAG     = "--fromfile";
+
+static const char* LONG_CONSOLE_FLAG      = "--console";
+
+static const char* LONG_STDIN_FLAG        = "--stdin";
+
+static const char* LONG_TOFILE_FLAG       = "--tofile";
+
+static const char* LONG_STDOUT_FLAG       = "--stdout";
+
+static const char* LONG_HELP_FLAG         = "--help";
+
+static const char* LONG_TEST_FLAG         = "--test";
+
+static const char* LONG_SOLVE_FLAG        = "--solve";
+
+//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+static const char* SHORT_INTERACTIVE_FLAG = "-i";
+
+static const char* SHORT_FROMFILE_FLAG    = "-f";
+
+static const char* SHORT_CONSOLE_FLAG     = "-c";
+
+static const char* SHORT_STDIN_FLAG       = "-s";
+
+static const char* SHORT_TOFILE_FLAG      = "-b";
+
+static const char* SHORT_STDOUT_FLAG      = "-o";
+
+static const char* SHORT_HELP_FLAG        = "-h";
+
+static const char* SHORT_TEST_FLAG        = "-t";
+
+static const char* SHORT_SOLVE_FLAG       = "-s";
+
+//------------------------------------------------------------------------------------------------------------------
+
+struct CommandLine
 {
-    UnknownFlag  = -1,            ///< Unknown Flag
-  
-    IntFlag      =  1,            ///< Type flag: interactive         
-    StdFlag      =  2,            ///< Type flag: standart
-    
-    StdinFlag    =  3,            ///< Input flag: stdin input
-    FromFileFlag =  4,            ///< Input flag: input from file
-    ConsoleFlag  =  5,            ///< Input flag: input from console           
-
-    StdoutFlag   =  6,            ///< Output flag: output in stdout
-    ToFileFlag   =  7,            ///< Output flag: output in file
-
-    SolveFlag    =  8,            ///< Mode flag: solving mode
-    HelpFlag     =  9,            ///< Mode flag: help mode                
-    TestFlag     = 10             ///< Mode flag: test mode          
+    char consolecoef[read_amount][LEN];
+    char infile[LEN];
+    char outfile[LEN];
+    char helpflag[LEN];
 };
 
 /************************************************************//**
@@ -35,17 +63,33 @@ enum Flags
 
 enum class ErrorList
 {
-    FlagError        =  1,
-    GetFileNameError =  2,
-    FileInputError   =  3,
-    InvalidCoefError =  4, 
-    RootsAmountError =  5,
-    ReadConsoleError =  6,
-    OpenTestError    =  7,
-    CloseTestError   =  8,
-    OpenInputError   =  9,
-    CloseInputError  = 10,
-    CloseOutputError = 11
+    USER_QUIT           = -2,
+
+    UNKNOWN_ERROR       = -1,
+
+    NOT_AN_ERROR        =  0,
+
+    FLAG_ERROR          =  1,
+    GET_FILE_NAME_ERROR =  2,
+    FILE_INPUT_ERROR    =  3,
+    INVALID_COEF_ERROR  =  4,
+    READ_CONSOLE_ERROR  =  5,
+
+    ROOTS_AMOUNT_ERROR  =  6,
+
+    OPEN_TEST_ERROR     =  7,
+    CLOSE_TEST_ERROR    =  8,
+    OPEN_INPUT_ERROR    =  9,
+    CLOSE_INPUT_ERROR   = 10,
+    OPEN_OUTPUT_ERROR   = 11,
+    CLOSE_OUTPUT_ERROR  = 12
+};
+
+struct FlagInfo
+{
+    const char* LONG_FLAGS[LEN];
+    const char* SHORT_FLAGS[LEN];
+    const char* HELP_OUTPUT[LEN];
 };
 
 /************************************************************//**
@@ -54,44 +98,64 @@ enum class ErrorList
 
 struct Param
 {
-    int type;           ///< type of solve (interactive or standart)
-    int input;          ///< input type (STDIN / file / console)
-    int output;         ///< output type (STDOUT / file)
-    int mode;           ///< program mode (test / solving / help)
+    enum TypeFlags : unsigned char
+    {
+        Interactive = 0,
+        Standart    = 1,
+    };
+
+    unsigned char type   : 1; ///< type of solve (interactive or standart)
+
+    enum InputFlags : unsigned char
+    {
+        Stdin    = 0,
+        FromFile = 1,
+        Console  = 2,
+    };
+
+    unsigned char input  : 2; ///< input type (STDIN / file / console)
+
+    enum OutputFlags : unsigned char
+    {
+        Stdout = 0,
+        ToFile = 1,
+    };
+
+    unsigned char output : 1; ///< output type (STDOUT / file)
+
+    enum ModeFlags : unsigned char
+    {
+        Solve = 0,
+        Help  = 1,
+        Test  = 2
+    };
+
+    unsigned char mode  : 2; ///< program mode (test / solving / help)
 };
 
 
 /************************************************************//**
  * @brief Function clears STDIN from useless symbols, until it meets '\\n'
- * 
+ *
  * @param[in] fp file
  ************************************************************/
 
 void ClearInput(FILE* fp);
 
 /************************************************************//**
- * @brief Function skips useless for program text:
- *        "coef ="
- * 
- * @param[in] fp file
- ************************************************************/
-
-void FSkipFormatText(FILE* fp);
-
-/************************************************************//**
  * @brief Function gets coefficient from a file
- * 
+ *
  * @param[in] fp file
  * @param[in] a contains coefficient value
  * @return true if function succesfully got the coefficient
  * @return false if file had incorrect coefficient input (program stops)
  ************************************************************/
 
-bool FGetCoef(FILE* fp, double* a);
+bool FileGetCoef(FILE* fp, double* a);
 
 /************************************************************//**
- * @brief Function gets coefficient from STDIN 
- * 
+ * @brief Function gets coefficient from STDIN
+ *
  * @param[in] a contains coefficient value
  * @param[in] ch shows which coefficient function is getting
  * @return true if function succesfully got the coefficient
@@ -102,18 +166,18 @@ bool GetCoef(double* a, const char ch);
 
 /************************************************************//**
  * @brief Function prints roots in STDOUT.
- * 
+ *
  * @param[in] roots amount of roots, that the equation has
  * @param[in] x1 first root (it may be the only root, if "roots" parameter is equal to 1)
  * @param[in] x2 second root (if it exists)
  * @param[in] fp output stream
  ************************************************************/
 
-void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp);
+void PrintRoots(const int roots, const double x1, const double x2, FILE* fp);
 
 /************************************************************//**
  * @brief Function gets the file name from STDIN stream
- * 
+ *
  * @param[in] file_name name of the file
  * @param[in] mode "input"/"output" file type
  * @return true if function got the name succesfully
@@ -124,7 +188,7 @@ bool GetFileName(char* file_name, const char mode[]);
 
 /************************************************************//**
  * @brief Function asks user, does he want to repeat program running
- * 
+ *
  * @param[in] mode modifies question
  * @return true if user want to repeat
  * @return false if user want to quit
@@ -134,34 +198,25 @@ bool RepeatQuestion(const char mode[]);
 
 /************************************************************//**
  * @brief Prints error
- * 
- * @param[in] error 
+ *
+ * @param[in] error
  ************************************************************/
 
-void PrintError(ErrorList error);
-
-/************************************************************//**
- * @brief Checks flag type and applies it to program parameters
- * 
- * @param[in] flag flag 
- * @param[in] param struct of program parameters
- ************************************************************/
-
-void FlagCheck(const int flag, struct Param* param);
+void PrintError(ErrorList error, const char file_name[]);
 
 /************************************************************//**
  * @brief Reads flags from console
- * 
+ *
  * @param[in] argc amount of console words
  * @param[in] argv console input
  * @param[out] param parameters of program
  ************************************************************/
 
-void ReadFlags(const int argc, const char* argv[], struct Param* param);
+void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments);
 
 /************************************************************//**
  * @brief Reads coefficients
- * 
+ *
  * @param[in] param parameters of program working process (we need input parameter)
  * @param[in] argv console input
  * @param[in] argc amount of console arguments
@@ -172,31 +227,22 @@ void ReadFlags(const int argc, const char* argv[], struct Param* param);
  * @return false if there was an error while reading coefficients
  ************************************************************/
 
-bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, const char* argv[], const int argc);
+ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments);
 
 /************************************************************//**
  * @brief Get the coefficient from console
- * 
+ *
  * @param[in] string console argument
  * @param[out] a coefficient
  * @return true if coefficient got successfully
  * @return false if there was an error while getting coefficient
  ************************************************************/
 
-bool GetConsole(const char string[], double* a);
-
-/************************************************************//**
- * @brief Defines flag in flag list
- * 
- * @param[in] flag console argument
- * @return enum of flags 
- ************************************************************/
-
-int DefineFlag(const char flag[]);
+bool GetConsole(char string[], double* a);
 
 /************************************************************//**
  * @brief Asks user to continue and changes program modes
- * 
+ *
  * @param[out] param parameters of program
  * @return true if user want to continue
  * @return false if user decided to quit program
@@ -206,9 +252,11 @@ bool Menu(struct Param* param);
 
 /************************************************************//**
  * @brief Opens input file
- * 
+ *
  * @param[in] infile_name space for input file name
  * @return pointer to file
  ************************************************************/
 
 FILE* OpenInputFile(char* infile_name);
+
+void ChangeParams(const char flag[], struct Param* param);

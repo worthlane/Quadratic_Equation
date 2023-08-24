@@ -2,47 +2,54 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <ctype.h>
 
 #include "getout_info.h"
 #include "solver.h"
 
 /* File input format:
- * a1 b1 c1 
+ * a1 b1 c1
  * a2 b2 c2      */
 
+static inline int Max(const int a, const int b);
 
-bool GetFileName(char* file_name, const char mode[])                       // getting file name 
+bool GetFileName(char* file_name, const char mode[])                       // getting file name
 {
-    assert(file_name != NULL);
+    assert(file_name);
 
-    printf("Please, enter the %s file directory: (q to quit) ", mode);  
-    if (scanf("%s", file_name) == 0)
+    printf("Please, enter the %s file directory: (q to quit) ", mode);
+
+    if (scanf("%s", file_name) == 0) // TODO
     {
-        PrintError(ErrorList::GetFileNameError);
+        PrintError(ErrorList::GET_FILE_NAME_ERROR, nullptr);
         return false;
     }
+
+    ClearInput(stdin);
+
     if (strcmp(file_name, "q") == 0)        // user decided to quit program
     {
         printf("Bye Bye\n");
         return false;
     }
-    ClearInput(stdin);
+
     if (strcmp(mode, "input") == 0)         // case: getting input file name
     {
         printf("Input from: %s\n", file_name);
     }
+
     return true;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool FGetCoef(FILE* fp, double* a)                          // getting coefficient from file
+bool FileGetCoef(FILE* fp, double* a)                          // getting coefficient from file
 {
-    assert (a != NULL);
+    assert (a);
 
     if (fscanf(fp, "%lf", a) == 0)
     {
-        PrintError(ErrorList::FileInputError);              // (not "coef =" format)
+        PrintError(ErrorList::FILE_INPUT_ERROR, nullptr);               // (not "coef =" format)
         fclose(fp);
         return false;
     }
@@ -51,81 +58,77 @@ bool FGetCoef(FILE* fp, double* a)                          // getting coefficie
 
 //------------------------------------------------------------------------------------------------------------------
 
-void FSkipFormatText(FILE* fp)                  // skipping "coef =" part
-{
-    fgetc(fp);                                  // skipping "coef"
-    fgetc(fp);                                  // skipping " "
-    fgetc(fp);                                  // skipping "="
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
 void ClearInput(FILE* fp)                       // clears input from '\n' char and else trash
 {
     int ch = 0;
-    while ((ch = fgetc(fp)) != '\n' && ch != EOF);
+    while ((ch = fgetc(fp)) != '\n' && ch != EOF) {}
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool GetCoef(double* a, const char ch)                       // gets coefficient from STDIN
+bool GetCoef(double* a, const char ch)                         // gets coefficient from STDIN
 {
-    assert(a != NULL);
+    assert(a);
 
     printf("Input coefficient %c: ", ch);
+
     while (scanf("%lf", a) == 0)
     {
-        PrintError(ErrorList::InvalidCoefError);             // not a coefficient conditions
-        printf("Do you want to continue? (1 - Yes): ");
         ClearInput(stdin);
-        int flag = false;
-        scanf("%d", &flag);
-        if (flag)                                            // user wants to try again
-        {
-        printf("Input coefficient %c: ", ch);
-        continue;
-        } else                                               // user doesn't want to continue
-        {
-            printf("PROGRAM SHUT DOWN");
-            return false;
-        }
+
+        PrintError(ErrorList::INVALID_COEF_ERROR, nullptr);             // not a coefficient conditions
+
+        return false;
     }
-    ClearInput(stdin);
+    int character = 0;
+    while ((character = getchar()) != '\n' && character != EOF)
+    {
+        if (!isspace(character))
+            {
+                PrintError(ErrorList::INVALID_COEF_ERROR, nullptr);
+                ClearInput(stdin);
+                return false;
+            }
+    }
+     //TODO 2371jdshqdh invalid input (isspace)
+    //TODO -0 output fix;
     return true;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-void FPrintRoots(const int roots, const double x1, const double x2, FILE* fp)    // prints roots in fp stream
+void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    // prints roots in fp stream
 {
+    assert (fp);
+
     switch (roots)
     {
         case ZERO_ROOTS:    fprintf(fp, "Your equation has zero roots.\n");
                             break;
-        
-        case ONE_ROOT:      fprintf(fp, "Your equation has one root: x = %lg\n", x1);
+
+        case ONE_ROOT:      fprintf(fp, "Your equation has one root: x = %lg, and I'm Groot.\n", x1);
                             break;
-        
+
         case TWO_ROOTS:     fprintf(fp, "Your equation has two roots: x1 = %lg, x2 = %lg\n", x1, x2);
                             break;
-        
+
         case INF_ROOTS:     fprintf(fp, "Your equation has infinite amount of roots.\n");
                             break;
-        
-        default:            PrintError(ErrorList::RootsAmountError);
+
+        default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
                             break;
   }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool GetConsole(const char string[], double* a)
+bool GetConsole(char string[], double* a)
 {
-    assert (a != NULL);
+    assert (a);
 
     if (sscanf(string, "%lf", a) == 0)
     {
-        PrintError(ErrorList::ReadConsoleError);
+        PrintError(ErrorList::READ_CONSOLE_ERROR, nullptr);
         return false;
     }
     return true;
@@ -136,231 +139,239 @@ bool GetConsole(const char string[], double* a)
 bool RepeatQuestion(const char mode[])
 {
     printf("Do you want to %s? (1 - Yes): ", mode);
+
     int repeat_flag = false;
-    scanf("%d", &repeat_flag);                                      
+    scanf("%d", &repeat_flag);
     ClearInput(stdin);
+
     if (!repeat_flag) printf("Bye Bye");
     return repeat_flag;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-void ReadFlags(const int argc, const char* argv[], struct Param* param)     // reads flags
-{ 
-    assert (param != NULL);
-
-    int flag = UnknownFlag;
-
+void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments)     // reads flags
+{
     for (int i = 1; i < argc; i++)
     {
-        if (argv[i][0] == '-')                                              // checks all arguments
+        if (argv[i][0] == '-')                                                                           // checks all arguments
         {
-            flag = DefineFlag(argv[i]);                                     // defines flag
-            FlagCheck(flag, param);                                         // compares flag with flag list
+            ChangeParams(argv[i], param);
+
+            if ((!strcmp(argv[i], LONG_FROMFILE_FLAG) || !strcmp(argv[i], SHORT_FROMFILE_FLAG)) &&
+                (i + 1) < argc && (argv[i + 1][0] != '-'))
+                strncpy(arguments->infile,         argv[i + 1], LEN);
+
+            if ((!strcmp(argv[i], LONG_TOFILE_FLAG)   || !strcmp(argv[i], SHORT_TOFILE_FLAG))   &&
+                (i + 1) < argc && (argv[i + 1][0] != '-'))
+                strncpy(arguments->outfile,        argv[i + 1], LEN);
+
+            if ((!strcmp(argv[i], LONG_CONSOLE_FLAG ) || !strcmp(argv[i], SHORT_CONSOLE_FLAG))  &&
+                (i + 3) < argc && (argv[i + 1][0] != '-'))
+            {
+                strncpy(arguments->consolecoef[0], argv[i + 1], LEN);
+                strncpy(arguments->consolecoef[1], argv[i + 2], LEN);
+                strncpy(arguments->consolecoef[2], argv[i + 3], LEN);
+            }
+            if ((!strcmp(argv[i], LONG_HELP_FLAG)   || !strcmp(argv[i], SHORT_HELP_FLAG))       &&
+                (i + 1) < argc)
+                strncpy(arguments->helpflag,       argv[i + 1], LEN);
         }
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-void FlagCheck(const int flag, struct Param* param)                         // checks flag type and applies it to program
+void ChangeParams(const char flag[], struct Param* param)               // defines flag
 {
-    assert (param != NULL);
+    assert(param);
 
-    switch (flag)
-    {
-        case IntFlag:           param->type = Max(param->type, IntFlag);
-                                break;
-        
-        case StdFlag:           param->type = Max(param->type, StdFlag);
-                                break;
-        
-        case StdinFlag:         param->input = Max(param->input, StdinFlag);
-                                break;
+    // Type flags
+    if (!strcmp(flag, LONG_INTERACTIVE_FLAG) ||
+        !strcmp(flag, SHORT_INTERACTIVE_FLAG))
+        param->type   = Max(param->type,   Param::Interactive);
 
-        case FromFileFlag:      param->input = Max(param->input, FromFileFlag);
-                                break;
+    // Input flags
+    if (!strcmp(flag, LONG_FROMFILE_FLAG)    ||
+        !strcmp(flag, SHORT_FROMFILE_FLAG))
+        param->input  = Max(param->input,  Param::FromFile);
 
-        case ConsoleFlag:       param->input = Max(param->input, ConsoleFlag);
-                                break;
+    if (!strcmp(flag, LONG_CONSOLE_FLAG)     ||
+        !strcmp(flag, SHORT_CONSOLE_FLAG))
+        param->input  = Max(param->input,  Param::Console);
 
-        case StdoutFlag:        param->output = Max(param->output, StdoutFlag);
-                                break;
+    if (!strcmp(flag, LONG_STDIN_FLAG)       ||
+        !strcmp(flag, SHORT_STDIN_FLAG))
+        param->input  = Max(param->input,  Param::Stdin);
 
-        case ToFileFlag:        param->output = Max(param->output, ToFileFlag);
-                                break;
+    // Output flags
+    if (!strcmp(flag, LONG_TOFILE_FLAG)      ||
+        !strcmp(flag, SHORT_TOFILE_FLAG))
+        param->output = Max(param->output, Param::ToFile);
 
-        case SolveFlag:         param->mode = Max(param->mode, SolveFlag);
-                                break;
+    if (!strcmp(flag, LONG_STDOUT_FLAG)      ||
+        !strcmp(flag, SHORT_STDOUT_FLAG))
+        param->output = Max(param->output, Param::Stdout);
 
-        case HelpFlag:          param->mode = Max(param->mode, HelpFlag);
-                                break;
+    // Mode flags
+    if (!strcmp(flag, LONG_HELP_FLAG)        ||
+        !strcmp(flag, SHORT_HELP_FLAG))
+        param->mode   = Max(param->mode,   Param::Help);
 
-        case TestFlag:          param->mode = Max(param->mode, TestFlag);
-                                break;
+    if (!strcmp(flag, LONG_TEST_FLAG)        ||
+        !strcmp(flag, SHORT_TEST_FLAG))
+        param->mode   = Max(param->mode,   Param::Test);
 
-        default:                break;
-    }
+    if (!strcmp(flag, LONG_SOLVE_FLAG)       ||
+        !strcmp(flag, SHORT_SOLVE_FLAG))
+        param->mode   = Max(param->mode,   Param::Solve);
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-int DefineFlag(const char flag[])               // defines flag
-{  
-    if (!strcmp(flag, "-int"))
-        return IntFlag;
-
-    if (!strcmp(flag, "-fromfile"))
-        return FromFileFlag;
-
-    if (!strcmp(flag, "-tofile"))
-        return ToFileFlag;
-
-    if (!strcmp(flag, "-help"))
-        return HelpFlag;
-
-    if (!strcmp(flag, "-test"))
-        return TestFlag;
-
-    if (!strcmp(flag, "-std"))
-        return StdFlag;
-
-    if (!strcmp(flag, "-console"))
-        return ConsoleFlag;
-
-    if (!strcmp(flag, "-stdin"))
-        return StdinFlag;
-
-    if (!strcmp(flag, "-stdout"))
-        return StdoutFlag;
-
-    if (!strcmp(flag, "-solve"))
-        return SolveFlag;
-
-    return UnknownFlag;
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
-void PrintError(ErrorList error)            // prints errors from errorlist
+void PrintError(ErrorList error, const char file_name[])             // prints errors from errorlist
 {
     switch (error)
     {
-        case ErrorList::FlagError:          perror("ERROR: UNEXPECTED FLAGS");
-                                            break;
-        
-        case ErrorList::GetFileNameError:   perror("ERROR: FAILED TO GET FILE NAME");
-                                            break;
-        
-        case ErrorList::FileInputError:     perror("ERROR: INCORRECT FILE INPUT");
-                                            break;
-        
-        case ErrorList::InvalidCoefError:   perror("ERROR: INVALID COEFFICIENT");
-                                            break;
-        
-        case ErrorList::RootsAmountError:   perror("ERROR: UNEXPECTED AMOUNT OF ROOTS.");
-                                            break;
-        
-        case ErrorList::ReadConsoleError:   perror("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
-                                            break;
-        
-        case ErrorList::OpenTestError:      perror("ERROR: FAILED TO OPEN TEST FILE");
-                                            break;
-        
-        case ErrorList::OpenInputError:     perror("ERROR: FAILED TO OPEN INPUT FILE");
-                                            break;
-        
-        case ErrorList::CloseTestError:     perror("WARNING: FAILED TO CLOSE TEST FILE");
-                                            break;
+        case ErrorList::FLAG_ERROR:          perror("ERROR: UNEXPECTED FLAGS");
+                                             break;
 
-        case ErrorList::CloseInputError:    perror("WARNING: FAILED TO CLOSE INPUT FILE");
-                                            break;
-        
-        case ErrorList::CloseOutputError:   perror("WARNING: FAILED TO CLOSE OUTPUT FILE");
-                                            break;
-        
-        default:                            perror("ERROR: UNDEFINED ERROR");
-                                            break;
+        case ErrorList::GET_FILE_NAME_ERROR: perror("ERROR: FAILED TO GET FILE NAME");
+                                             break;
+
+        case ErrorList::FILE_INPUT_ERROR:    perror("ERROR: INCORRECT FILE INPUT");
+                                             break;
+
+        case ErrorList::INVALID_COEF_ERROR:  perror("ERROR: INVALID COEFFICIENT");
+                                             break;
+
+        case ErrorList::ROOTS_AMOUNT_ERROR:  perror("ERROR: UNEXPECTED AMOUNT OF ROOTS.");
+                                             break;
+
+        case ErrorList::READ_CONSOLE_ERROR:  perror("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
+                                             break;
+
+        case ErrorList::OPEN_TEST_ERROR:     perror("ERROR: FAILED TO OPEN TEST FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::OPEN_INPUT_ERROR:    perror("ERROR: FAILED TO OPEN INPUT FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::CLOSE_TEST_ERROR:    perror("WARNING: FAILED TO CLOSE TEST FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::CLOSE_INPUT_ERROR:   perror("WARNING: FAILED TO CLOSE INPUT FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::OPEN_OUTPUT_ERROR:   perror("WARNING: FAILED TO OPEN OUTPUT FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::CLOSE_OUTPUT_ERROR:  perror("WARNING: FAILED TO CLOSE OUTPUT FILE");
+                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+                                             break;
+
+        case ErrorList::NOT_AN_ERROR:        break;
+
+        default:                             perror("ERROR: UNKNOWN ERROR");
+                                             break;
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool ReadCoefficients(struct Param* param, double* a, double* b, double* c, const char* argv[], const int argc)
+ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments)
 {
-    assert (param != NULL);
-    assert (    a != NULL);
-    assert (    b != NULL);
-    assert (    c != NULL);
-    assert (    a != b);
-    assert (    b != c);
-    assert (    a != c);
-    
+    assert (param);
+    assert (a);
+    assert (b);
+    assert (c);
+    assert (a != b);
+    assert (b != c);
+    assert (a != c);
+
     switch (param->input)
     {
-        case StdinFlag:                                         // reads coefs from stdin
-        {    
+        case Param::Stdin:                                         // reads coefs from stdin
+        {
             printf("Equation format: ax^2 + bx + c = 0\n");
-            if (!GetCoef(a, 'a')) return false;                                     
-            if (!GetCoef(b, 'b')) return false;                            
-            if (!GetCoef(c, 'c')) return false;   
-            return true;
+
+            if (!GetCoef(a, 'a')) return ErrorList::INVALID_COEF_ERROR;
+            if (!GetCoef(b, 'b')) return ErrorList::INVALID_COEF_ERROR;
+            if (!GetCoef(c, 'c')) return ErrorList::INVALID_COEF_ERROR;
+
+            return ErrorList::NOT_AN_ERROR;
         }
-        case ConsoleFlag:                                       // reads coefs from console
-        {    
-            for (int i = 1; i < argc; i++)
+
+        case Param::Console:                                       // reads coefs from console
+        {
+            if (!GetConsole(arguments->consolecoef[0], a)) return ErrorList::READ_CONSOLE_ERROR;
+            if (!GetConsole(arguments->consolecoef[1], b)) return ErrorList::READ_CONSOLE_ERROR;
+            if (!GetConsole(arguments->consolecoef[2], c)) return ErrorList::READ_CONSOLE_ERROR;
+
+            param->input = Param::Stdin;
+            return ErrorList::NOT_AN_ERROR;
+        }
+
+        case Param::FromFile:                                      // reads coefs from file
+        {
+            FILE* fpin = nullptr;
+            static char infile_name[LEN] = "no name";
+            if (!arguments->infile)
             {
-                if (DefineFlag(argv[i]) == ConsoleFlag)
+                fpin = OpenInputFile(infile_name);
+            }
+            else
+            {
+                fpin = fopen(arguments->infile, "r");
+                strncpy(infile_name, arguments->infile, LEN);
+                if (!fpin)
                 {
-                    if ((i + 3) >= argc)
-                    {
-                        PrintError(ErrorList::ReadConsoleError);
-                        return false;
-                    }
-                    if (!GetConsole(argv[i + 1], a)) return false;
-                    if (!GetConsole(argv[i + 2], b)) return false;
-                    if (!GetConsole(argv[i + 3], c)) return false;
-                    param->input = StdinFlag;
-                    return true;
+                    PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
+                    return ErrorList::OPEN_INPUT_ERROR;
                 }
+                memset(arguments->infile, 0, LEN);
             }
-            return false;
-        }
-        case FromFileFlag:                                      // reads coefs from file
-        {    
-            char infile_name[LEN] = "no name"; 
-            FILE* fpin = OpenInputFile(infile_name);
-            if (fpin == nullptr) return false;
-            if (fscanf(fpin, "%lf%lf%lf", a, b, c) != read_amount)
-            {
-                PrintError(ErrorList::FileInputError);
-                return false;
-            }
+
+            assert (fpin);
+
+            if (!FileGetCoef(fpin, a)) return ErrorList::INVALID_COEF_ERROR;
+            if (!FileGetCoef(fpin, b)) return ErrorList::INVALID_COEF_ERROR;
+            if (!FileGetCoef(fpin, c)) return ErrorList::INVALID_COEF_ERROR;
+
             if (fclose(fpin))
-                PrintError(ErrorList::CloseInputError);
-            return true;
+                PrintError(ErrorList::CLOSE_INPUT_ERROR, infile_name);
+
+            return ErrorList::NOT_AN_ERROR;
         }
+
         default:
         {
-            PrintError(ErrorList::FlagError);
-            return false;
+            PrintError(ErrorList::FLAG_ERROR, nullptr);
+            return ErrorList::FLAG_ERROR;
         }
     }
-    return true;
+    return ErrorList::NOT_AN_ERROR;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool Menu(struct Param* param)
+bool Menu(struct Param* param)      // calls menu
 {
-    assert (param != NULL);
+    assert (param);
 
-    printf("\n");
-    printf("How do you want to continue?\n"
+    printf("\n"
+           "How do you want to continue?\n"
            "Input:\n"
            "(1) STDIN      (2) From file\n"
            "(q) Quit\n");
+
     int inchoise = 0;
+
     if (scanf("%d", &inchoise) == 0)
     {
         printf("Bye Bye\n");
@@ -369,20 +380,24 @@ bool Menu(struct Param* param)
     else
     {
         if (inchoise == 1)
-            param->input = StdinFlag;
+            param->input = Param::Stdin;
+
         else if (inchoise == 2)
-            param->input = FromFileFlag;
+            param->input = Param::FromFile;
+
         else
         {
             printf("Bye Bye\n");
             return false;
         }
-        
+
     }
     printf("Output:\n"
            "(1) STDOUT      (2) To file\n"
            "(q) Quit\n");
+
     int outchoise = 0;
+
     if (scanf("%d", &outchoise) == 0)
     {
         printf("Bye Bye\n");
@@ -391,9 +406,11 @@ bool Menu(struct Param* param)
     else
     {
         if (outchoise == 1)
-            param->output = StdoutFlag;
+            param->output = Param::Stdout;
+
         else if (outchoise == 2)
-            param->output = ToFileFlag;
+            param->output = Param::ToFile;
+
         else
         {
             printf("Bye Bye\n");
@@ -405,22 +422,32 @@ bool Menu(struct Param* param)
 
 //------------------------------------------------------------------------------------------------------------------
 
-FILE* OpenInputFile(char* infile_name)
+FILE* OpenInputFile(char* infile_name)      // opens input file
 {
-    assert (infile_name != NULL);
-    
+    assert(infile_name);
+
     while (true)
     {
         if (!GetFileName(infile_name, "input")) return nullptr;
+
         FILE* fpin = fopen(infile_name, "r");
         if (!fpin)
         {
-            PrintError(ErrorList::OpenInputError);
-            if (RepeatQuestion("try again")) 
+            PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
+
+            if (RepeatQuestion("try again"))
                 continue;
             else
                 return nullptr;
         }
+
         return fpin;
     }
+}
+
+// -----------------------------------------------------------------------------------------
+
+static inline int Max(const int a, const int b) // returns maximum of two numbers
+{
+    return (a > b) ? a : b;
 }

@@ -6,7 +6,7 @@
 
 static const double EPSILON    =  1e-9;
 static const double NAN_DOUBLE = -1;
-static const int NAN_INT       = -1;
+static const int    NAN_INT    = -1;
 
 /************************************************************//**
  * @brief Struct contains parameters of answers of the solved equation
@@ -14,7 +14,7 @@ static const int NAN_INT       = -1;
 
 struct QuadSolutions
 {
-  int amount;         ///< amount of roots
+  int    amount;          ///< amount of roots
   double first;        ///< first root
   double second;       ///< second root
 };
@@ -69,20 +69,11 @@ void LinearSolver(const double b, const double c, struct QuadSolutions* ans);
 
 enum Roots 
 {
-  INF_ROOTS  = -1,       ///< equation has infinite amount of roots
-  ZERO_ROOTS =  0,       ///< equation has no roots
-  ONE_ROOT   =  1,       ///< equation has one root
-  TWO_ROOTS  =  2,       ///< equation has two different roots
+  UNDEFINED_ROOTS  = -2,       ///< equation has undefined amount of roots
+  INF_ROOTS        = -1,       ///< equation has infinite amount of roots
+  ZERO_ROOTS       =  0,       ///< equation has no roots
+  ONE_ROOT         =  1,       ///< equation has one root
+  TWO_ROOTS        =  2,       ///< equation has two different roots
 };
 
-/************************************************************//**
- * @brief Returns maximum of two numbers
- * 
- * @param[in] a number 
- * @param[in] b number
- * @return a if a > b
- * @return b if b >= a 
- ************************************************************/
-
-int Max(const int a, const int b);
 

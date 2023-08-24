@@ -1,60 +1,56 @@
 #include <stdio.h>
+#include <math.h>
 
 #include "solver.h"
 #include "getout_info.h"
 #include "run_modes.h"
 
-/*
-console flags:
--file : file input and output (stdout in output file for stdout stream)
--int  : interactive stdin input
--test : test mode (for developer)
--help : help mode
+// #define TEST_MODE
 
-no flag - stdin input
-*/
-
-int main(const int argc, const char* argv[]) 
+int main(const int argc, const char* argv[])
 {
-    int times_run = 1;
-    int console_ran = 0;
-    double a = NAN_DOUBLE;                                                         // coefficients initialization
-    double b = NAN_DOUBLE;
-    double c = NAN_DOUBLE;
+    static struct Param param = {Param::Interactive, Param::Stdin,
+                                 Param::Stdout,      Param::Solve}; // program parameters
+    static struct CommandLine arguments = {};
 
-    struct Param param        = {IntFlag, StdinFlag, StdoutFlag, SolveFlag};       // program parameters
 
-    struct QuadSolutions  ans = {NAN_INT, NAN_DOUBLE, NAN_DOUBLE};                 // answer initialization
-    
     if (argc != 1)
-        ReadFlags(argc, argv, &param);
+        ReadFlags(argc, argv, &param, &arguments);
 
-    while (true) 
+    while (true)
     {
         switch (param.mode)
         {
-            case HelpFlag:
-                PrintHelp();
-                if (!Menu(&param))        
-                    return Success;
+            case Param::Help:
+
+                PrintHelp(&arguments);
+                if (!Menu(&param))
+                    return (int) ErrorList::NOT_AN_ERROR;
                 else
                 {
-                    param.mode = SolveFlag;
+                    param.mode = Param::Solve;
                     continue;
                 }
-            case TestFlag:
+
+            case Param::Test:
+                #ifdef TEST_MODE
                 RunTest();
                 return Success;
+                #endif
             default:
                 break;
         }
-        if (RunSolve(&param, &a, &b, &c, &ans, argv, argc) == Failure) return Failure;
-        if (!Menu(&param))        
-            return Success;
+
+        ErrorList run_error = ErrorList::UNKNOWN_ERROR;
+
+        if ((run_error = RunSolve(&param, &arguments)) != ErrorList::NOT_AN_ERROR) return (int) run_error;
+
+        if (!Menu(&param))
+            return (int) ErrorList::USER_QUIT;
         else
             continue;
     }
-    times_run++;                                                    // solved equations counter
+
     printf("Bye Bye\n");
-    return Success;
+    return (int) ErrorList::NOT_AN_ERROR;
 }
