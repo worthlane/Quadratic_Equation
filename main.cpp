@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 #include "solver.h"
 #include "getout_info.h"
@@ -12,7 +13,6 @@ int main(const int argc, const char* argv[])
     static struct Param param = {Param::Interactive, Param::Stdin,
                                  Param::Stdout,      Param::Solve}; // program parameters
     static struct CommandLine arguments = {};
-
 
     if (argc != 1)
         ReadFlags(argc, argv, &param, &arguments);

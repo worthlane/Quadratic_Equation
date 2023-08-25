@@ -16,9 +16,9 @@
  * a1 b1 c1
  * a2 b2 c2      */
 
-static inline int Max(const int a, const int b);
+inline int Max(const int a, const int b);
 
-bool GetFileName(char* file_name, const char mode[])                       // getting file name
+ErrorList GetFileName(char* file_name, const char mode[])                       // getting file name
 {
     assert(file_name);
 
@@ -30,20 +30,21 @@ bool GetFileName(char* file_name, const char mode[])                       // ge
 
     if (strlen(BUF) >= LEN - 1)
     {
-        PrintError(ErrorList::GET_FILE_NAME_ERROR, "Too long name");
-        return false;
+        PrintError(ErrorList::BUFF_OVERSIZE_ERROR, nullptr);
+        fflush(stdin);
+        return ErrorList::BUFF_OVERSIZE_ERROR;
     }
 
     if (sscanf(BUF, "%s", file_name) == 0) // TODO
     {
         PrintError(ErrorList::GET_FILE_NAME_ERROR, nullptr);
-        return false;
+        return ErrorList::GET_FILE_NAME_ERROR;
     }
 
     if (strcmp(file_name, "q") == 0)        // user decided to quit program
     {
         printf("Bye Bye\n");
-        return false;
+        return ErrorList::USER_QUIT;
     }
 
     if (strcmp(mode, "input") == 0)         // case: getting input file name
@@ -51,7 +52,7 @@ bool GetFileName(char* file_name, const char mode[])                       // ge
         printf("Input from: %s\n", file_name);
     }
 
-    return true;
+    return ErrorList::NOT_AN_ERROR;
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -133,11 +134,13 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool GetConsole(char string[], double* a)
+bool GetConsole(char* string, double* a, double* b, double* c)
 {
     assert (a);
+    assert (b);
+    assert (c);
 
-    if (sscanf(string, "%lf", a) == 0)
+    if (sscanf(string, "%lf%lf%lf", a, b, c) == 0)
     {
         PrintError(ErrorList::READ_CONSOLE_ERROR, nullptr);
         return false;
@@ -155,14 +158,17 @@ bool RepeatQuestion(const char mode[])
     scanf("%d", &repeat_flag);
     ClearInput(stdin);
 
-    if (!repeat_flag) printf("Bye Bye");
-    return repeat_flag;
+    if (repeat_flag != 1) printf("Bye Bye");
+    return (repeat_flag == 1) ? true : false;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 
 void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments)     // reads flags
 {
+    char coef1[LEN] = "";
+    char coef2[LEN] = "";
+    char coef3[LEN] = "";
     for (int i = 1; i < argc; i++)
     {
         if (argv[i][0] == '-')                                                                           // checks all arguments
@@ -180,9 +186,11 @@ void ReadFlags(const int argc, const char* argv[], struct Param* param, struct C
             if ((!strcmp(argv[i], LONG_CONSOLE_FLAG ) || !strcmp(argv[i], SHORT_CONSOLE_FLAG))  &&
                 (i + 3) < argc && (argv[i + 1][0] != '-'))
             {
-                strncpy(arguments->consolecoef[0], argv[i + 1], LEN);
-                strncpy(arguments->consolecoef[1], argv[i + 2], LEN);
-                strncpy(arguments->consolecoef[2], argv[i + 3], LEN);
+                strncpy(coef1, argv[i + 1], LEN);
+                strncpy(coef2, argv[i + 2], LEN);
+                strncpy(coef3, argv[i + 3], LEN);
+
+                TripleString(coef1, coef2, coef3, arguments->consolecoefs);
             }
             if ((!strcmp(argv[i], LONG_HELP_FLAG)   || !strcmp(argv[i], SHORT_HELP_FLAG))       &&
                 (i + 1) < argc)
@@ -349,11 +357,8 @@ ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c,
 
         case Param::Console:                                       // reads coefs from console
         {
-            if (!GetConsole(arguments->consolecoef[0], a)) return ErrorList::READ_CONSOLE_ERROR;
-            if (!GetConsole(arguments->consolecoef[1], b)) return ErrorList::READ_CONSOLE_ERROR;
-            if (!GetConsole(arguments->consolecoef[2], c)) return ErrorList::READ_CONSOLE_ERROR;
+            if (!GetConsole(arguments->consolecoefs, a, b, c)) return ErrorList::READ_CONSOLE_ERROR;
 
-            param->input = Param::Stdin;
             return ErrorList::NOT_AN_ERROR;
         }
 
@@ -365,10 +370,7 @@ ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c,
             {
                 fpin = OpenInputFile(infile_name);
                 if (!fpin)
-                {
-                    PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
                     return ErrorList::USER_QUIT;
-                }
             }
             else
             {
@@ -473,7 +475,8 @@ FILE* OpenInputFile(char* infile_name)      // opens input file
 
     while (true)
     {
-        if (!GetFileName(infile_name, "input")) return nullptr;
+        ErrorList get_name = GetFileName(infile_name, "input");
+        if (get_name == ErrorList::USER_QUIT) return nullptr;
 
         FILE* fpin = fopen(infile_name, "r");
         if (!fpin)
@@ -492,8 +495,19 @@ FILE* OpenInputFile(char* infile_name)      // opens input file
 
 // -----------------------------------------------------------------------------------------
 
-static inline int Max(const int a, const int b) // returns maximum of two numbers
+inline int Max(const int a, const int b) // returns maximum of two numbers
 {
     return (a > b) ? a : b;
+}
+
+// -----------------------------------------------------------------------------------------
+
+void TripleString(char* string1, char* string2, char* string3, char* outstring)
+{
+    strncat(string1, " ", LEN);
+    strncat(string2, " ", LEN);
+    strncat(outstring, string1, LEN);
+    strncat(string2, string3, LEN);
+    strncat(outstring, string2, LEN);
 }
 

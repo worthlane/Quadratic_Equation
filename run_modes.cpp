@@ -251,11 +251,12 @@ ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
     char outfile_name[LEN] = "no name";
     FILE *fpout = nullptr;
 
-    if (arguments->outfile == nullptr)
+    if (!strlen(arguments->outfile))
     {
         if (param->output == Param::ToFile)
         {
-            if (!GetFileName(outfile_name, "output")) return ErrorList::GET_FILE_NAME_ERROR;
+            if (GetFileName(outfile_name, "output") != ErrorList::NOT_AN_ERROR)
+                return ErrorList::GET_FILE_NAME_ERROR;
             fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");           // stdout check
         }
         else
@@ -281,3 +282,87 @@ ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
 
 // -----------------------------------------------------------------------------------------
 
+ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param)
+{
+    printf("Equation format: ax^2 + bx + c = 0\n");
+    while (true)
+    {
+        if (!GetCoef(a, 'a'))
+        {
+            if (!RepeatQuestion("try again"))
+                return ErrorList::USER_QUIT;
+        }
+        else
+             break;
+    }
+    while (true)
+    {
+        if (!GetCoef(b, 'b'))
+        {
+            if (!RepeatQuestion("try again"))
+                return ErrorList::USER_QUIT;
+        }
+        else
+            break;
+    }
+    while (true)
+    {
+        if (!GetCoef(c, 'c'))
+        {
+            if (!RepeatQuestion("try again"))
+                return ErrorList::USER_QUIT;
+        }
+        else
+            break;
+    }
+
+    return ErrorList::NOT_AN_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------
+
+ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param)
+{
+    FILE* fpin = nullptr;
+    static char infile_name[LEN] = "no name";
+    if (!strlen(param->argument))
+    {
+        fpin = OpenInputFile(infile_name);
+        if (!fpin)
+        {
+            PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
+            return ErrorList::USER_QUIT;
+        }
+    }
+    else
+    {
+        fpin = fopen(param->argument, "r");
+        strncpy(infile_name, param->argument, LEN);
+        if (!fpin)
+        {
+            PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
+            return ErrorList::OPEN_INPUT_ERROR;
+        }
+        memset(param->argument, 0, LEN);
+    }
+
+    assert (fpin);
+
+    if (!FileGetCoef(fpin, a)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, b)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, c)) return ErrorList::INVALID_COEF_ERROR;
+
+    if (fclose(fpin))
+        PrintError(ErrorList::CLOSE_INPUT_ERROR, infile_name);
+
+    return ErrorList::NOT_AN_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------
+
+ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param)
+{
+    if (!GetConsole(param->argument, a, b, c)) return ErrorList::READ_CONSOLE_ERROR;
+
+    return ErrorList::NOT_AN_ERROR;
+}

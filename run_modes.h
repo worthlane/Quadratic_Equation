@@ -45,7 +45,35 @@ void OneTest(const double a, const double b, const double c, const struct QuadSo
 
 struct FlagInfo
 {
-  char* LONG_FLAG;
-  char* SHORT_FLAG;
+  const char* LONG_FLAG;
+  const char* SHORT_FLAG;
+  char* argument;
   ErrorList (*FlagFunc) (double* a, double* b, double* c, struct FlagInfo* param);
 };
+
+ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param);
+
+ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param);
+
+ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param);
+
+// ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param);
+
+static struct FlagInfo STD_INPUT = {LONG_STDIN_FLAG, SHORT_STDIN_FLAG, nullptr, StdinInput};
+
+static struct FlagInfo FILE_INPUT = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG, nullptr, FileInput};
+
+static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG, SHORT_CONSOLE_FLAG, nullptr, nullptr};
+
+static struct FlagInfo STD_OUTPUT = {LONG_STDOUT_FLAG, SHORT_STDOUT_FLAG, nullptr, nullptr};
+
+static struct FlagInfo FILE_OUTPUT = {LONG_TOFILE_FLAG, SHORT_TOFILE_FLAG, nullptr, nullptr};
+
+static struct FlagInfo SOLVE_MODE = {LONG_SOLVE_FLAG, SHORT_SOLVE_FLAG, nullptr, nullptr};
+
+static struct FlagInfo HELP_MODE = {LONG_HELP_FLAG, SHORT_HELP_FLAG, nullptr, nullptr};
+
+static struct FlagInfo TEST_MODE = {LONG_TEST_FLAG, SHORT_TEST_FLAG, nullptr, nullptr};
+
+static struct FlagInfo* FlagList[] = {&STD_INPUT, &FILE_INPUT, &CONSOLE_INPUT, &STD_OUTPUT,
+                                      &FILE_OUTPUT, &SOLVE_MODE, &HELP_MODE, &TEST_MODE};

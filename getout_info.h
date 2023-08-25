@@ -51,7 +51,7 @@ static const char* SHORT_SOLVE_FLAG       = "-s";
 
 struct CommandLine
 {
-    char consolecoef[read_amount][LEN];
+    char consolecoefs[LEN];
     char infile[LEN];
     char outfile[LEN];
     char helpflag[LEN];
@@ -178,7 +178,7 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp);
  * @return false if function did not get name or user exited program
  ************************************************************/
 
-bool GetFileName(char* file_name, const char mode[]);
+ErrorList GetFileName(char* file_name, const char mode[]);
 
 /************************************************************//**
  * @brief Function asks user, does he want to repeat program running
@@ -208,31 +208,9 @@ void PrintError(ErrorList error, const char file_name[]);
 
 void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments);
 
-/************************************************************//**
- * @brief Reads coefficients
- *
- * @param[in] param parameters of program working process (we need input parameter)
- * @param[in] argv console input
- * @param[in] argc amount of console arguments
- * @param[out] a coefficient
- * @param[out] b coefficient
- * @param[out] c coeficient
- * @return true if program successfuly read coefficients
- * @return false if there was an error while reading coefficients
- ************************************************************/
-
 ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments);
 
-/************************************************************//**
- * @brief Get the coefficient from console
- *
- * @param[in] string console argument
- * @param[out] a coefficient
- * @return true if coefficient got successfully
- * @return false if there was an error while getting coefficient
- ************************************************************/
-
-bool GetConsole(char string[], double* a);
+bool GetConsole(char* string, double* a, double* b, double* c);
 
 /************************************************************//**
  * @brief Asks user to continue and changes program modes
@@ -254,3 +232,5 @@ bool Menu(struct Param* param);
 FILE* OpenInputFile(char* infile_name);
 
 void ChangeParams(const char flag[], struct Param* param);
+
+void TripleString(char* string1, char* string2, char* string3, char* outstring);
