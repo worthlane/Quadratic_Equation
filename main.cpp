@@ -6,7 +6,7 @@
 #include "getout_info.h"
 #include "run_modes.h"
 
-#define TEST_MODE
+#define TEST
 
 int main(const int argc, const char* argv[])
 {
@@ -33,7 +33,7 @@ int main(const int argc, const char* argv[])
                 }
 
             case Param::Test:
-                #ifdef TEST_MODE
+                #ifdef TEST
                 RunTest();
                 return Success;
                 #endif

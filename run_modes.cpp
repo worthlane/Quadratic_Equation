@@ -366,3 +366,170 @@ ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param)
 
     return ErrorList::NOT_AN_ERROR;
 }
+
+// -----------------------------------------------------------------------------------------
+
+ErrorList StdoutOutput(double* a, double* b, double* c, struct FlagInfo* param)
+{
+    struct QuadSolutions ans = {};
+    QuadSolver(*a, *b, *c, &ans);
+    PrintRoots(ans.amount, ans.first, ans.second, stdout);
+}
+
+// -----------------------------------------------------------------------------------------
+
+ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param)
+{
+    struct QuadSolutions ans = {};
+    QuadSolver(*a, *b, *c, &ans);
+
+    char outfile_name[LEN] = "no name";
+    FILE *fpout = nullptr;
+
+    if (!strlen(param->argument))
+    {
+        if (GetFileName(outfile_name, "output") != ErrorList::NOT_AN_ERROR)
+            return ErrorList::GET_FILE_NAME_ERROR;
+        fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");
+    }
+    else
+    {
+        fpout = fopen(param->argument, "a");
+        strncpy(outfile_name, param->argument, LEN);
+        memset(param->argument, 0, LEN);
+    }
+    PrintRoots(ans.amount, ans.first, ans.second, fpout);
+    if (fpout != stdout && fclose(fpout))
+        PrintError(ErrorList::CLOSE_OUTPUT_ERROR, outfile_name);
+    return ErrorList::NOT_AN_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------
+
+void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+               struct ProgramCondition* pointers)
+{
+    for (int i = 1; i < argc; i++)
+    {
+        if (argv[i][0] == '-' && argv[i][1] == '-')
+        {
+            LongFlagCheck(argc, argv, FlagList, pointers, i);
+        }
+        if (argv[i][0] == '-' && argv[i][1] != '-')
+        {
+            ShortFlagCheck(argc, argv, FlagList, pointers, i);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------
+
+void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+                   struct ProgramCondition* pointers, int i)
+{
+    for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
+    {
+        if (argv[i] == FlagList[flag_ptr]->LONG_FLAG)
+        {
+            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
+            {
+                if (flag_ptr > pointers->input_ptr)
+                {
+                    memset(FlagList[pointers->input_ptr]->argument, 0, LEN);
+                    pointers->input_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
+            {
+                if (flag_ptr > pointers->output_ptr)
+                {
+                    memset(FlagList[pointers->output_ptr]->argument, 0, LEN);
+                    pointers->output_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+            else
+            {
+                if (flag_ptr > pointers->mode_ptr)
+                {
+                    memset(FlagList[pointers->mode_ptr]->argument, 0, LEN);
+                    pointers->mode_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------
+
+void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+                   struct ProgramCondition* pointers, int i)
+{
+    for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
+    {
+        if (argv[i] == FlagList[flag_ptr]->SHORT_FLAG)
+        {
+            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
+            {
+                if (flag_ptr > pointers->input_ptr)
+                {
+                    memset(FlagList[pointers->input_ptr]->argument, 0, LEN);
+                    pointers->input_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
+            {
+                if (flag_ptr > pointers->output_ptr)
+                {
+                    memset(FlagList[pointers->output_ptr]->argument, 0, LEN);
+                    pointers->output_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+            else
+            {
+                if (flag_ptr > pointers->mode_ptr)
+                {
+                    memset(FlagList[pointers->mode_ptr]->argument, 0, LEN);
+                    pointers->mode_ptr = flag_ptr;
+                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------
+
+void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+                  struct ProgramCondition* pointers, int i, int flag_ptr)
+{
+    char coef1[LEN] = "";
+    char coef2[LEN] = "";
+    char coef3[LEN] = "";
+    if (flag_ptr == file_input_flag || flag_ptr == file_output_flag)
+    {
+        if (argv[i + 1][0] != '-')
+            strncpy(FlagList[flag_ptr]->argument, argv[i + 1], LEN);
+    }
+    if (flag_ptr == console_input_flag)
+    {
+        if (argv[i + 1][0] != '-' && i + 3 < argc)
+        {
+            strncpy(coef1, argv[i + 1], LEN);
+            strncpy(coef2, argv[i + 2], LEN);
+            strncpy(coef3, argv[i + 3], LEN);
+            TripleString(coef1, coef2, coef3, FlagList[flag_ptr]->argument);
+        }
+    }
+    if (flag_ptr == help_flag)
+    {
+        if (argv[i + 1][0] == '-')
+           strncpy(FlagList[flag_ptr]->argument, argv[i + 1], LEN);
+    }
+
+}
+
