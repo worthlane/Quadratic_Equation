@@ -42,3 +42,10 @@ enum Complete
 ErrorList RunSolve(struct Param* param, struct CommandLine* arguments);
 
 void OneTest(const double a, const double b, const double c, const struct QuadSolutions* test);
+
+struct FlagInfo
+{
+  char* LONG_FLAG;
+  char* SHORT_FLAG;
+  ErrorList (*FlagFunc) (double* a, double* b, double* c, struct FlagInfo* param);
+};

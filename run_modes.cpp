@@ -8,6 +8,12 @@
 #include "getout_info.h"
 #include "run_modes.h"
 
+#define STD  "\x1b[0m"
+#define CYAN "\x1b[36;1m"
+#define GRUN "\x1b[32;1m"
+#define RED  "\x1b[31;1m"
+
+
 /* Test file format:
   a coef | b coef | c coef | roots amn | first root | second root   (first&second roots if they exist)
   __.___   __.___   __.___   _________   ___._______   ___.________   (1 space between numbers)
@@ -23,26 +29,26 @@ void OneTest(const double a, const double b, const double c, const struct QuadSo
     QuadSolver(a, b, c, &ans);              // solving the equation
     if (ans.amount != test->amount)         // comparing the amount of roots
     {
-        printf("TEST %d: Incorrect amount of roots\n", test_number++);
-        printf("\tTEST: %d, PROGRAM: %d\n", test->amount, ans.amount);
+        printf(RED "TEST %d: Incorrect amount of roots\n" STD, test_number++);
+        printf(RED "\tTEST: %d, PROGRAM: %d\n" STD, test->amount, ans.amount);
         return;
     }
 
     if      (test->amount == ZERO_ROOTS ||
              test->amount == INF_ROOTS)     // from this time test and program roots can't be different
     {
-        printf("TEST %d: Correct\n", test_number++);
+        printf(CYAN "TEST %d: Correct\n" STD, test_number++);
     }
     else if (test->amount == ONE_ROOT)
     {
         if (Compare(test->first, ans.first) == EQUAL)           // comparing one root
         {
-            printf("TEST %d: Correct\n", test_number++);
+            printf(CYAN "TEST %d: Correct\n" STD, test_number++);
         }
         else
         {
-            printf("TEST %d: Incorrect answer\n", test_number++);
-            printf("\tTEST: %lg | PROGRAM: %lg\n", test->first, ans.first);
+            printf(RED "TEST %d: Incorrect answer\n" STD, test_number++);
+            printf(RED "\tTEST: %lg | PROGRAM: %lg\n" STD, test->first, ans.first);
         }
     }
     else if (test->amount == TWO_ROOTS)
@@ -51,12 +57,12 @@ void OneTest(const double a, const double b, const double c, const struct QuadSo
         if ((Compare(test->first, ans.first)  == EQUAL && Compare(test->second, ans.second) == EQUAL) ||
             (Compare(test->first, ans.second) == EQUAL && Compare(test->second, ans.first)  == EQUAL))
         {
-            printf("TEST %d: Correct\n", test_number++);
+            printf(CYAN "TEST %d: Correct\n" STD, test_number++);
         }
         else
         {
-            printf("TEST %d: Incorrect answer\n", test_number++);
-            printf("\tTEST: %lg %lg | PROGRAM: %lg %lg\n", test->first, test->second, ans.first, ans.second);
+            printf(RED "TEST %d: Incorrect answer\n" STD, test_number++);
+            printf(RED "\tTEST: %lg %lg | PROGRAM: %lg %lg\n" STD, test->first, test->second, ans.first, ans.second);
         }
     }
 }
@@ -87,7 +93,7 @@ void RunTest()                                           // runs tests from TEST
     if (fclose(fp))
         PrintError(ErrorList::CLOSE_TEST_ERROR, TEST_FILE);
 
-    printf("Tests runned succesfully\n");
+    printf(GRUN "Tests runned succesfully\n" STD);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -234,7 +240,7 @@ ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
     ErrorList read_error = ErrorList::UNKNOWN_ERROR;
     if ((read_error = ReadCoefficients(param, &a, &b, &c, arguments)) != ErrorList::NOT_AN_ERROR)
     {
-        if (!RepeatQuestion("try again"))
+        if (read_error == ErrorList::USER_QUIT || !RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
         else
             return ErrorList::NOT_AN_ERROR;
@@ -273,11 +279,5 @@ ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
     return ErrorList::NOT_AN_ERROR;
 }
 
-//------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
 
-/*struct Program
-{
-    char* LONG_FLAG;
-    char* SHORT_FLAG;
-    (ErrorList) (*RunSolve) (struct Param* param, struct CommandLine* arguments);
-};*/

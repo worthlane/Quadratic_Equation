@@ -7,6 +7,11 @@
 #include "getout_info.h"
 #include "solver.h"
 
+#define RED  "\x1b[31;1m"
+#define YEL  "\x1b[33;1m"
+#define STD  "\x1b[0m"
+#define CYAN "\x1b[36;1m"
+
 /* File input format:
  * a1 b1 c1
  * a2 b2 c2      */
@@ -17,15 +22,23 @@ bool GetFileName(char* file_name, const char mode[])                       // ge
 {
     assert(file_name);
 
+    char BUF[LEN] = {};
+
     printf("Please, enter the %s file directory: (q to quit) ", mode);
 
-    if (scanf("%s", file_name) == 0) // TODO
+    fgets(BUF, LEN, stdin);
+
+    if (strlen(BUF) >= LEN - 1)
+    {
+        PrintError(ErrorList::GET_FILE_NAME_ERROR, "Too long name");
+        return false;
+    }
+
+    if (sscanf(BUF, "%s", file_name) == 0) // TODO
     {
         PrintError(ErrorList::GET_FILE_NAME_ERROR, nullptr);
         return false;
     }
-
-    ClearInput(stdin);
 
     if (strcmp(file_name, "q") == 0)        // user decided to quit program
     {
@@ -90,8 +103,6 @@ bool GetCoef(double* a, const char ch)                         // gets coefficie
                 return false;
             }
     }
-     //TODO 2371jdshqdh invalid input (isspace)
-    //TODO -0 output fix;
     return true;
 }
 
@@ -103,16 +114,16 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    
 
     switch (roots)
     {
-        case ZERO_ROOTS:    fprintf(fp, "Your equation has zero roots.\n");
+        case ZERO_ROOTS:    fprintf(fp,CYAN "Your equation has zero roots.\n" STD);
                             break;
 
-        case ONE_ROOT:      fprintf(fp, "Your equation has one root: x = %lg, and I'm Groot.\n", x1);
+        case ONE_ROOT:      fprintf(fp,CYAN "Your equation has one root: x = %lg, and I'm Groot.\n" STD, x1);
                             break;
 
-        case TWO_ROOTS:     fprintf(fp, "Your equation has two roots: x1 = %lg, x2 = %lg\n", x1, x2);
+        case TWO_ROOTS:     fprintf(fp,CYAN "Your equation has two roots: x1 = %lg, x2 = %lg\n" STD, x1, x2);
                             break;
 
-        case INF_ROOTS:     fprintf(fp, "Your equation has infinite amount of roots.\n");
+        case INF_ROOTS:     fprintf(fp,CYAN "Your equation has infinite amount of roots.\n" STD);
                             break;
 
         default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
@@ -233,51 +244,54 @@ void PrintError(ErrorList error, const char file_name[])             // prints e
 {
     switch (error)
     {
-        case ErrorList::FLAG_ERROR:          perror("ERROR: UNEXPECTED FLAGS");
+        case ErrorList::BUFF_OVERSIZE_ERROR: perror(RED "ERROR: TOO LONG INPUT" STD);
                                              break;
 
-        case ErrorList::GET_FILE_NAME_ERROR: perror("ERROR: FAILED TO GET FILE NAME");
+        case ErrorList::FLAG_ERROR:          perror(RED "ERROR: UNEXPECTED FLAGS" STD);
                                              break;
 
-        case ErrorList::FILE_INPUT_ERROR:    perror("ERROR: INCORRECT FILE INPUT");
+        case ErrorList::GET_FILE_NAME_ERROR: perror(RED "ERROR: FAILED TO GET FILE NAME" STD);
                                              break;
 
-        case ErrorList::INVALID_COEF_ERROR:  perror("ERROR: INVALID COEFFICIENT");
+        case ErrorList::FILE_INPUT_ERROR:    perror(RED "ERROR: INCORRECT FILE INPUT" STD);
                                              break;
 
-        case ErrorList::ROOTS_AMOUNT_ERROR:  perror("ERROR: UNEXPECTED AMOUNT OF ROOTS.");
+        case ErrorList::INVALID_COEF_ERROR:  perror(RED "ERROR: INVALID COEFFICIENT" STD);
                                              break;
 
-        case ErrorList::READ_CONSOLE_ERROR:  perror("ERROR: FAILED TO READ CONSOLE COEFFFICIENT");
+        case ErrorList::ROOTS_AMOUNT_ERROR:  perror(RED "ERROR: UNEXPECTED AMOUNT OF ROOTS." STD);
                                              break;
 
-        case ErrorList::OPEN_TEST_ERROR:     perror("ERROR: FAILED TO OPEN TEST FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::READ_CONSOLE_ERROR:  perror(RED "ERROR: FAILED TO READ CONSOLE COEFFFICIENT" STD);
                                              break;
 
-        case ErrorList::OPEN_INPUT_ERROR:    perror("ERROR: FAILED TO OPEN INPUT FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::OPEN_TEST_ERROR:     perror(RED "ERROR: FAILED TO OPEN TEST FILE" STD);
+                                             fprintf(stderr,RED "FILE NAME: \"%s\"\n" STD, file_name);
                                              break;
 
-        case ErrorList::CLOSE_TEST_ERROR:    perror("WARNING: FAILED TO CLOSE TEST FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::OPEN_INPUT_ERROR:    perror(RED "ERROR: FAILED TO OPEN INPUT FILE" STD);
+                                             fprintf(stderr,RED "FILE NAME: \"%s\"\n" STD, file_name);
                                              break;
 
-        case ErrorList::CLOSE_INPUT_ERROR:   perror("WARNING: FAILED TO CLOSE INPUT FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::CLOSE_TEST_ERROR:    perror(YEL "WARNING: FAILED TO CLOSE TEST FILE" STD);
+                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
                                              break;
 
-        case ErrorList::OPEN_OUTPUT_ERROR:   perror("WARNING: FAILED TO OPEN OUTPUT FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::CLOSE_INPUT_ERROR:   perror(YEL "WARNING: FAILED TO CLOSE INPUT FILE" STD);
+                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
                                              break;
 
-        case ErrorList::CLOSE_OUTPUT_ERROR:  perror("WARNING: FAILED TO CLOSE OUTPUT FILE");
-                                             fprintf(stderr, "FILE NAME: \"%s\"\n", file_name);
+        case ErrorList::OPEN_OUTPUT_ERROR:   perror(YEL "WARNING: FAILED TO OPEN OUTPUT FILE" STD);
+                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
+                                             break;
+
+        case ErrorList::CLOSE_OUTPUT_ERROR:  perror(YEL "WARNING: FAILED TO CLOSE OUTPUT FILE" STD);
+                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
                                              break;
 
         case ErrorList::NOT_AN_ERROR:        break;
 
-        default:                             perror("ERROR: UNKNOWN ERROR");
+        default:                             perror(RED "ERROR: UNKNOWN ERROR" STD);
                                              break;
     }
 }
@@ -299,10 +313,36 @@ ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c,
         case Param::Stdin:                                         // reads coefs from stdin
         {
             printf("Equation format: ax^2 + bx + c = 0\n");
-
-            if (!GetCoef(a, 'a')) return ErrorList::INVALID_COEF_ERROR;
-            if (!GetCoef(b, 'b')) return ErrorList::INVALID_COEF_ERROR;
-            if (!GetCoef(c, 'c')) return ErrorList::INVALID_COEF_ERROR;
+            while (true)
+            {
+                if (!GetCoef(a, 'a'))
+                {
+                    if (!RepeatQuestion("try again"))
+                        return ErrorList::USER_QUIT;
+                }
+                else
+                    break;
+            }
+            while (true)
+            {
+                if (!GetCoef(b, 'b'))
+                {
+                    if (!RepeatQuestion("try again"))
+                        return ErrorList::USER_QUIT;
+                }
+                else
+                    break;
+            }
+            while (true)
+            {
+                if (!GetCoef(c, 'c'))
+                {
+                    if (!RepeatQuestion("try again"))
+                        return ErrorList::USER_QUIT;
+                }
+                else
+                    break;
+            }
 
             return ErrorList::NOT_AN_ERROR;
         }
@@ -321,9 +361,14 @@ ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c,
         {
             FILE* fpin = nullptr;
             static char infile_name[LEN] = "no name";
-            if (!arguments->infile)
+            if (!strlen(arguments->infile))
             {
                 fpin = OpenInputFile(infile_name);
+                if (!fpin)
+                {
+                    PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
+                    return ErrorList::USER_QUIT;
+                }
             }
             else
             {
@@ -451,3 +496,4 @@ static inline int Max(const int a, const int b) // returns maximum of two number
 {
     return (a > b) ? a : b;
 }
+

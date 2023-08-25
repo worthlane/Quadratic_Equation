@@ -5,7 +5,7 @@
 #include "getout_info.h"
 #include "run_modes.h"
 
-// #define TEST_MODE
+#define TEST_MODE
 
 int main(const int argc, const char* argv[])
 {
@@ -45,7 +45,7 @@ int main(const int argc, const char* argv[])
 
         if ((run_error = RunSolve(&param, &arguments)) != ErrorList::NOT_AN_ERROR) return (int) run_error;
 
-        if (!Menu(&param))
+        if (run_error == ErrorList::USER_QUIT || !Menu(&param))
             return (int) ErrorList::USER_QUIT;
         else
             continue;

@@ -70,26 +70,20 @@ enum class ErrorList
     NOT_AN_ERROR        =  0,
 
     FLAG_ERROR          =  1,
-    GET_FILE_NAME_ERROR =  2,
-    FILE_INPUT_ERROR    =  3,
-    INVALID_COEF_ERROR  =  4,
-    READ_CONSOLE_ERROR  =  5,
+    BUFF_OVERSIZE_ERROR =  2,
+    GET_FILE_NAME_ERROR =  3,
+    FILE_INPUT_ERROR    =  4,
+    INVALID_COEF_ERROR  =  5,
+    READ_CONSOLE_ERROR  =  6,
 
-    ROOTS_AMOUNT_ERROR  =  6,
+    ROOTS_AMOUNT_ERROR  =  7,
 
-    OPEN_TEST_ERROR     =  7,
-    CLOSE_TEST_ERROR    =  8,
-    OPEN_INPUT_ERROR    =  9,
-    CLOSE_INPUT_ERROR   = 10,
-    OPEN_OUTPUT_ERROR   = 11,
-    CLOSE_OUTPUT_ERROR  = 12
-};
-
-struct FlagInfo
-{
-    const char* LONG_FLAGS[LEN];
-    const char* SHORT_FLAGS[LEN];
-    const char* HELP_OUTPUT[LEN];
+    OPEN_TEST_ERROR     =  8,
+    CLOSE_TEST_ERROR    =  9,
+    OPEN_INPUT_ERROR    = 10,
+    CLOSE_INPUT_ERROR   = 11,
+    OPEN_OUTPUT_ERROR   = 12,
+    CLOSE_OUTPUT_ERROR  = 13
 };
 
 /************************************************************//**

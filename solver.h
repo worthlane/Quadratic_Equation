@@ -32,7 +32,7 @@ enum Comparison
 
 /************************************************************//**
  * @brief Function compares two double numbers, with EPSILON (1e-6) accuracy
- * 
+ *
  * @param[in] a first number
  * @param[in] b second number
  * @return EQUAL if a = b
@@ -44,7 +44,7 @@ int Compare(const double a, const double b);
 
 /************************************************************//**
  * @brief Solves quadratic equation (ax^2 + bx + c = 0)
- * 
+ *
  * @param[in] a coefficient
  * @param[in] b coefficient
  * @param[in] c coefficient
@@ -55,7 +55,7 @@ void QuadSolver(const double a, const double b, const double c, struct QuadSolut
 
 /************************************************************//**
  * @brief Solves linear equatiion (bx + c = 0)
- * 
+ *
  * @param[in] b coefficient
  * @param[in] c coefficient
  * @param[out] ans equation answer
@@ -67,7 +67,7 @@ void LinearSolver(const double b, const double c, struct QuadSolutions* ans);
  * @brief Enums number of equation roots
  ************************************************************/
 
-enum Roots 
+enum Roots
 {
   UNDEFINED_ROOTS  = -2,       ///< equation has undefined amount of roots
   INF_ROOTS        = -1,       ///< equation has infinite amount of roots
@@ -76,4 +76,4 @@ enum Roots
   TWO_ROOTS        =  2,       ///< equation has two different roots
 };
 
-
+double IsZero(double* nmb);
