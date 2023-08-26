@@ -6,46 +6,48 @@
 #include "getout_info.h"
 #include "run_modes.h"
 
-#define TEST
+// #define DEBUG
 
 int main(const int argc, const char* argv[])
 {
-    static struct Param param = {Param::Interactive, Param::Stdin,
-                                 Param::Stdout,      Param::Solve}; // program parameters
     static struct CommandLine arguments = {};
 
+    static struct ProgramCondition pointers = {stdin_flag, stdout_flag, solve_flag};
+
     if (argc != 1)
-        ReadFlags(argc, argv, &param, &arguments);
+        FlagParse(argc, argv, FlagList, &pointers);
+
+    #ifdef DEBUG
+    printf("%d %d %d\n", pointers.input_ptr, pointers.output_ptr, pointers.mode_ptr);
+    #endif
 
     while (true)
     {
-        switch (param.mode)
+        switch (pointers.mode_ptr)
         {
-            case Param::Help:
-
+            case help_flag:
                 PrintHelp(&arguments);
-                if (!Menu(&param))
+                if (!Menu(&pointers))
                     return (int) ErrorList::NOT_AN_ERROR;
                 else
                 {
-                    param.mode = Param::Solve;
+                    pointers.mode_ptr = solve_flag;
                     continue;
                 }
-
-            case Param::Test:
-                #ifdef TEST
+            #ifdef TEST
+            case test_flag:
                 RunTest();
                 return Success;
-                #endif
+            #endif
             default:
                 break;
         }
 
         ErrorList run_error = ErrorList::UNKNOWN_ERROR;
 
-        if ((run_error = RunSolve(&param, &arguments)) != ErrorList::NOT_AN_ERROR) return (int) run_error;
+        if ((run_error = RunSolve(FlagList, &pointers)) != ErrorList::NOT_AN_ERROR) return (int) run_error;
 
-        if (run_error == ErrorList::USER_QUIT || !Menu(&param))
+        if (run_error == ErrorList::USER_QUIT || !Menu(&pointers))
             return (int) ErrorList::USER_QUIT;
         else
             continue;

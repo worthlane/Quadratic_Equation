@@ -405,67 +405,6 @@ ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c,
     return ErrorList::NOT_AN_ERROR;
 }
 
-//------------------------------------------------------------------------------------------------------------------
-
-bool Menu(struct Param* param)      // calls menu
-{
-    assert (param);
-
-    printf("\n"
-           "How do you want to continue?\n"
-           "Input:\n"
-           "(1) STDIN      (2) From file\n"
-           "(q) Quit\n");
-
-    int inchoise = 0;
-
-    if (scanf("%d", &inchoise) == 0)
-    {
-        printf("Bye Bye\n");
-        return false;
-    }
-    else
-    {
-        if (inchoise == 1)
-            param->input = Param::Stdin;
-
-        else if (inchoise == 2)
-            param->input = Param::FromFile;
-
-        else
-        {
-            printf("Bye Bye\n");
-            return false;
-        }
-
-    }
-    printf("Output:\n"
-           "(1) STDOUT      (2) To file\n"
-           "(q) Quit\n");
-
-    int outchoise = 0;
-
-    if (scanf("%d", &outchoise) == 0)
-    {
-        printf("Bye Bye\n");
-        return false;
-    }
-    else
-    {
-        if (outchoise == 1)
-            param->output = Param::Stdout;
-
-        else if (outchoise == 2)
-            param->output = Param::ToFile;
-
-        else
-        {
-            printf("Bye Bye\n");
-            return false;
-        }
-    }
-    return true;
-}
 
 //------------------------------------------------------------------------------------------------------------------
 

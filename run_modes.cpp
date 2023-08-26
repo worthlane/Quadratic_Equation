@@ -227,18 +227,18 @@ void PrintHelp(struct CommandLine* arguments)
 
 // Runs process of solving equation
 
-ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
+ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointers)
 {
-    assert (param);
+    assert (FlagInfo);
+    assert (pointers);
 
     double a = NAN;          // a coef initialization
     double b = NAN;          // b coef initialization
     double c = NAN;          // c coef initalization
 
-    struct QuadSolutions ans = {UNDEFINED_ROOTS, NAN, NAN};                 // answer initialization
-
-    ErrorList read_error = ErrorList::UNKNOWN_ERROR;
-    if ((read_error = ReadCoefficients(param, &a, &b, &c, arguments)) != ErrorList::NOT_AN_ERROR)
+    ErrorList read_error = FlagInfo[pointers->input_ptr]->FlagFunc(&a, &b, &c,
+                                                                   FlagInfo[pointers->input_ptr]);
+    if (read_error != ErrorList::NOT_AN_ERROR)
     {
         if (read_error == ErrorList::USER_QUIT || !RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
@@ -246,38 +246,11 @@ ErrorList RunSolve(struct Param* param, struct CommandLine* arguments)
             return ErrorList::NOT_AN_ERROR;
     }
 
-    QuadSolver(a, b, c, &ans);                                              // solves quadratic equation
+    ErrorList output_error = FlagInfo[pointers->output_ptr]->FlagFunc(&a, &b, &c,
+                                                                      FlagInfo[pointers->output_ptr]);
 
-    char outfile_name[LEN] = "no name";
-    FILE *fpout = nullptr;
 
-    if (!strlen(arguments->outfile))
-    {
-        if (param->output == Param::ToFile)
-        {
-            if (GetFileName(outfile_name, "output") != ErrorList::NOT_AN_ERROR)
-                return ErrorList::GET_FILE_NAME_ERROR;
-            fpout = (strcmp(outfile_name, "stdout") == 0) ? stdout : fopen(outfile_name, "a");           // stdout check
-        }
-        else
-            fpout = stdout;
-    }
-    else
-    {
-        fpout = fopen(arguments->outfile, "a");
-        strncpy(outfile_name, arguments->outfile, LEN);
-        memset(arguments->outfile, 0, LEN);
-    }
-
-    if (!fpout)
-    {
-        fpout = stdout;
-    }
-
-    PrintRoots(ans.amount, ans.first, ans.second, fpout);
-    if (fpout != stdout && fclose(fpout))
-        PrintError(ErrorList::CLOSE_OUTPUT_ERROR, outfile_name);
-    return ErrorList::NOT_AN_ERROR;
+    return output_error;
 }
 
 // -----------------------------------------------------------------------------------------
@@ -374,6 +347,7 @@ ErrorList StdoutOutput(double* a, double* b, double* c, struct FlagInfo* param)
     struct QuadSolutions ans = {};
     QuadSolver(*a, *b, *c, &ans);
     PrintRoots(ans.amount, ans.first, ans.second, stdout);
+    return ErrorList::NOT_AN_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------
@@ -406,56 +380,56 @@ ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param)
 
 // -----------------------------------------------------------------------------------------
 
-void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                struct ProgramCondition* pointers)
 {
     for (int i = 1; i < argc; i++)
     {
         if (argv[i][0] == '-' && argv[i][1] == '-')
         {
-            LongFlagCheck(argc, argv, FlagList, pointers, i);
+            LongFlagCheck(argc, argv, FlagInfo, pointers, i);
         }
         if (argv[i][0] == '-' && argv[i][1] != '-')
         {
-            ShortFlagCheck(argc, argv, FlagList, pointers, i);
+            ShortFlagCheck(argc, argv, FlagInfo, pointers, i);
         }
     }
 }
 
 // -----------------------------------------------------------------------------------------
 
-void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                    struct ProgramCondition* pointers, int i)
 {
     for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
     {
-        if (argv[i] == FlagList[flag_ptr]->LONG_FLAG)
+        if (!strncmp(argv[i], FlagInfo[flag_ptr]->LONG_FLAG, LEN))
         {
             if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
             {
                 if (flag_ptr > pointers->input_ptr)
                 {
-                    memset(FlagList[pointers->input_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->input_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
             else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
             {
                 if (flag_ptr > pointers->output_ptr)
                 {
-                    memset(FlagList[pointers->output_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->output_ptr]->argument, 0, LEN);
                     pointers->output_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
             else
             {
                 if (flag_ptr > pointers->mode_ptr)
                 {
-                    memset(FlagList[pointers->mode_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
         }
@@ -464,38 +438,38 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList
 
 // -----------------------------------------------------------------------------------------
 
-void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                    struct ProgramCondition* pointers, int i)
 {
     for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
     {
-        if (argv[i] == FlagList[flag_ptr]->SHORT_FLAG)
+        if (!strncmp(argv[i], FlagInfo[flag_ptr]->SHORT_FLAG, LEN))
         {
             if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
             {
                 if (flag_ptr > pointers->input_ptr)
                 {
-                    memset(FlagList[pointers->input_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN); // TODO
                     pointers->input_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
             else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
             {
                 if (flag_ptr > pointers->output_ptr)
                 {
-                    memset(FlagList[pointers->output_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->output_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
             else
             {
                 if (flag_ptr > pointers->mode_ptr)
                 {
-                    memset(FlagList[pointers->mode_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagList, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
         }
@@ -504,16 +478,18 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagLis
 
 // -----------------------------------------------------------------------------------------
 
-void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                   struct ProgramCondition* pointers, int i, int flag_ptr)
 {
     char coef1[LEN] = "";
     char coef2[LEN] = "";
     char coef3[LEN] = "";
+    if (i + 1 >= argc)
+        return;
     if (flag_ptr == file_input_flag || flag_ptr == file_output_flag)
     {
         if (argv[i + 1][0] != '-')
-            strncpy(FlagList[flag_ptr]->argument, argv[i + 1], LEN);
+            strncpy(FlagInfo[flag_ptr]->argument, argv[i + 1], LEN);
     }
     if (flag_ptr == console_input_flag)
     {
@@ -522,14 +498,75 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagList[
             strncpy(coef1, argv[i + 1], LEN);
             strncpy(coef2, argv[i + 2], LEN);
             strncpy(coef3, argv[i + 3], LEN);
-            TripleString(coef1, coef2, coef3, FlagList[flag_ptr]->argument);
+            TripleString(coef1, coef2, coef3, FlagInfo[flag_ptr]->argument);
         }
     }
     if (flag_ptr == help_flag)
     {
         if (argv[i + 1][0] == '-')
-           strncpy(FlagList[flag_ptr]->argument, argv[i + 1], LEN);
+           strncpy(FlagInfo[flag_ptr]->argument, argv[i + 1], LEN);
     }
+}
 
+//------------------------------------------------------------------------------------------------------------------
+
+bool Menu(struct ProgramCondition* pointers)      // calls menu
+{
+    assert (pointers);
+
+    printf("\n"
+           "How do you want to continue?\n"
+           "Input:\n"
+           "(1) STDIN      (2) From file\n"
+           "(q) Quit\n");
+
+    int inchoise = 0;
+
+    if (scanf("%d", &inchoise) == 0)
+    {
+        printf("Bye Bye\n");
+        return false;
+    }
+    else
+    {
+        if (inchoise == 1)
+            pointers->input_ptr = stdin_flag;
+
+        else if (inchoise == 2)
+            pointers->input_ptr = file_input_flag;
+
+        else
+        {
+            printf("Bye Bye\n");
+            return false;
+        }
+
+    }
+    printf("Output:\n"
+           "(1) STDOUT      (2) To file\n"
+           "(q) Quit\n");
+
+    int outchoise = 0;
+
+    if (scanf("%d", &outchoise) == 0)
+    {
+        printf("Bye Bye\n");
+        return false;
+    }
+    else
+    {
+        if (outchoise == 1)
+            pointers->output_ptr = stdout_flag;
+
+        else if (outchoise == 2)
+            pointers->output_ptr = file_output_flag;
+
+        else
+        {
+            printf("Bye Bye\n");
+            return false;
+        }
+    }
+    return true;
 }
 

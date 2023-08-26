@@ -40,7 +40,7 @@ enum Complete
  * @return enum Failure if there was an error while solving program
  ************************************************************/
 
-ErrorList RunSolve(struct Param* param, struct CommandLine* arguments);
+ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointers);
 
 void OneTest(const double a, const double b, const double c, const struct QuadSolutions* test);
 
@@ -69,55 +69,60 @@ ErrorList StdoutOutput(double* a, double* b, double* c, struct FlagInfo* param);
 
 ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param);
 
-// ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param);
 
-static struct FlagInfo STD_INPUT = {LONG_STDIN_FLAG, SHORT_STDIN_FLAG, nullptr, StdinInput};
+static char NO_ARGUMENT[LEN] = "";
 
-static struct FlagInfo FILE_INPUT = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG, nullptr, FileInput};
 
-static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG, SHORT_CONSOLE_FLAG, nullptr, ConsoleInput};
+static struct FlagInfo STD_INPUT = {LONG_STDIN_FLAG, SHORT_STDIN_FLAG, NO_ARGUMENT, StdinInput};
 
-static struct FlagInfo STD_OUTPUT = {LONG_STDOUT_FLAG, SHORT_STDOUT_FLAG, nullptr, StdoutOutput};
+static struct FlagInfo FILE_INPUT = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG, NO_ARGUMENT, FileInput};
 
-static struct FlagInfo FILE_OUTPUT = {LONG_TOFILE_FLAG, SHORT_TOFILE_FLAG, nullptr, FileOutput};
+static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG, SHORT_CONSOLE_FLAG, NO_ARGUMENT, ConsoleInput};
 
-static struct FlagInfo SOLVE_MODE = {LONG_SOLVE_FLAG, SHORT_SOLVE_FLAG, nullptr, nullptr};
+static struct FlagInfo STD_OUTPUT = {LONG_STDOUT_FLAG, SHORT_STDOUT_FLAG, NO_ARGUMENT, StdoutOutput};
 
-static struct FlagInfo HELP_MODE = {LONG_HELP_FLAG, SHORT_HELP_FLAG, nullptr, nullptr};
+static struct FlagInfo FILE_OUTPUT = {LONG_TOFILE_FLAG, SHORT_TOFILE_FLAG, NO_ARGUMENT, FileOutput};
+
+static struct FlagInfo SOLVE_MODE = {LONG_SOLVE_FLAG, SHORT_SOLVE_FLAG, NO_ARGUMENT, nullptr};
+
+static struct FlagInfo HELP_MODE = {LONG_HELP_FLAG, SHORT_HELP_FLAG, NO_ARGUMENT, nullptr};
 #ifdef TEST
-static struct FlagInfo TEST_MODE = {LONG_TEST_FLAG, SHORT_TEST_FLAG, nullptr, nullptr};
+static struct FlagInfo TEST_MODE = {LONG_TEST_FLAG, SHORT_TEST_FLAG, NO_ARGUMENT, nullptr};
 static const int flag_amount = 8;
 #else
+static struct FlagInfo TEST_MODE = {nullptr, nullptr, NO_ARGUMENT, nullptr};
 static const int flag_amount = 7;
 #endif
 
 enum Flags
 {
-    stdin_flag = 1,
-    file_input_flag = 2,
-    console_input_flag = 3,
+    stdin_flag         = 0,
+    file_input_flag    = 1,
+    console_input_flag = 2,
 
-    stdout_flag = 4,
-    file_output_flag = 5,
+    stdout_flag        = 3,
+    file_output_flag   = 4,
 
-    solve_flag = 6,
-    help_flag = 7,
+    solve_flag         = 5,
+    help_flag          = 6,
     #ifdef TEST
-    test_flag = 8
+    test_flag          = 7
     #endif
 };
 
 static struct FlagInfo* FlagList[] = {&STD_INPUT, &FILE_INPUT, &CONSOLE_INPUT, &STD_OUTPUT,
-                                      &FILE_OUTPUT, &SOLVE_MODE, &HELP_MODE};
+                                      &FILE_OUTPUT, &SOLVE_MODE, &HELP_MODE, &TEST_MODE};
 
-void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                struct ProgramCondition* pointers);
 
-void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                    struct ProgramCondition* pointers, int i);
 
-void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                    struct ProgramCondition* pointers, int i);
 
-void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagList[],
+void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                   struct ProgramCondition* pointers, int i, int flag_ptr);
+
+bool Menu(struct ProgramCondition* pointers);

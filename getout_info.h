@@ -31,19 +31,19 @@ static const char* LONG_SOLVE_FLAG        = "--solve";
 
 static const char* SHORT_INTERACTIVE_FLAG = "-i";
 
-static const char* SHORT_FROMFILE_FLAG    = "-f";
+static const char* SHORT_FROMFILE_FLAG    = "-ff";
 
 static const char* SHORT_CONSOLE_FLAG     = "-c";
 
-static const char* SHORT_STDIN_FLAG       = "-s";
+static const char* SHORT_STDIN_FLAG       = "-i";
 
-static const char* SHORT_TOFILE_FLAG      = "-b";
+static const char* SHORT_TOFILE_FLAG      = "-tf";
 
 static const char* SHORT_STDOUT_FLAG      = "-o";
 
 static const char* SHORT_HELP_FLAG        = "-h";
 
-static const char* SHORT_TEST_FLAG        = "-t";
+static const char* SHORT_TEST_FLAG        = "-tt";
 
 static const char* SHORT_SOLVE_FLAG       = "-s";
 
@@ -211,16 +211,6 @@ void ReadFlags(const int argc, const char* argv[], struct Param* param, struct C
 ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments);
 
 bool GetConsole(char* string, double* a, double* b, double* c);
-
-/************************************************************//**
- * @brief Asks user to continue and changes program modes
- *
- * @param[out] param parameters of program
- * @return true if user want to continue
- * @return false if user decided to quit program
- ************************************************************/
-
-bool Menu(struct Param* param);
 
 /************************************************************//**
  * @brief Opens input file
