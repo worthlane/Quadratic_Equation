@@ -112,24 +112,46 @@ bool GetCoef(double* a, const char ch)                         // gets coefficie
 void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    // prints roots in fp stream
 {
     assert (fp);
-
-    switch (roots)
+    if (fp == stdout)
     {
-        case ZERO_ROOTS:    fprintf(fp,CYAN "Your equation has zero roots.\n" STD);
-                            break;
+        switch (roots)
+        {
+            case ZERO_ROOTS:    fprintf(fp,CYAN "Your equation has zero roots.\n" STD);
+                                break;
 
-        case ONE_ROOT:      fprintf(fp,CYAN "Your equation has one root: x = %lg, and I'm Groot.\n" STD, x1);
-                            break;
+            case ONE_ROOT:      fprintf(fp,CYAN "Your equation has one root: x = %lg, and I'm Groot.\n" STD, x1);
+                                break;
 
-        case TWO_ROOTS:     fprintf(fp,CYAN "Your equation has two roots: x1 = %lg, x2 = %lg\n" STD, x1, x2);
-                            break;
+            case TWO_ROOTS:     fprintf(fp,CYAN "Your equation has two roots: x1 = %lg, x2 = %lg\n" STD, x1, x2);
+                                break;
 
-        case INF_ROOTS:     fprintf(fp,CYAN "Your equation has infinite amount of roots.\n" STD);
-                            break;
+            case INF_ROOTS:     fprintf(fp,CYAN "Your equation has infinite amount of roots.\n" STD);
+                                break;
 
-        default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
-                            break;
-  }
+            default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
+                                break;
+        }
+    }
+    else
+    {
+        switch (roots)
+        {
+            case ZERO_ROOTS:    fprintf(fp,"Your equation has zero roots.\n");
+                                break;
+
+            case ONE_ROOT:      fprintf(fp,"Your equation has one root: x = %lg, and I'm Groot.\n", x1);
+                                break;
+
+            case TWO_ROOTS:     fprintf(fp,"Your equation has two roots: x1 = %lg, x2 = %lg\n", x1, x2);
+                                break;
+
+            case INF_ROOTS:     fprintf(fp,"Your equation has infinite amount of roots.\n");
+                                break;
+
+            default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
+                                break;
+        }
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -441,7 +463,7 @@ inline int Max(const int a, const int b) // returns maximum of two numbers
 
 // -----------------------------------------------------------------------------------------
 
-void TripleString(char* string1, char* string2, char* string3, char* outstring)
+inline void TripleString(char* string1, char* string2, char* string3, char* outstring)
 {
     strncat(string1, " ", LEN);
     strncat(string2, " ", LEN);

@@ -10,12 +10,13 @@
 
 int main(const int argc, const char* argv[])
 {
-    static struct CommandLine arguments = {};
 
     static struct ProgramCondition pointers = {stdin_flag, stdout_flag, solve_flag};
 
     if (argc != 1)
         FlagParse(argc, argv, FlagList, &pointers);
+
+    // printf("%d\n", FindFlag(FlagList[help_flag]->argument, FlagList));
 
     #ifdef DEBUG
     printf("%d %d %d\n", pointers.input_ptr, pointers.output_ptr, pointers.mode_ptr);
@@ -26,7 +27,7 @@ int main(const int argc, const char* argv[])
         switch (pointers.mode_ptr)
         {
             case help_flag:
-                PrintHelp(&arguments);
+                PrintHelp(FlagList);
                 if (!Menu(&pointers))
                     return (int) ErrorList::NOT_AN_ERROR;
                 else

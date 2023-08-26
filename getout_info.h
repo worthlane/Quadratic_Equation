@@ -49,6 +49,22 @@ static const char* SHORT_SOLVE_FLAG       = "-s";
 
 //------------------------------------------------------------------------------------------------------------------
 
+static const char* FROMFILE_HELP     = "[file_name] flag for input from file\n";
+
+static const char* CONSOLE_HELP      = "[a b c] flag for console input (a b c - coefficients)\n";
+
+static const char* STDIN_HELP        = "flag for input from stdin (default config)\n";
+
+static const char* TOFILE_HELP       = "[file_name] flag for output into file\n";
+
+static const char* STDOUT_HELP       = "flag for output in stdout (default config)\n";
+
+static const char* HELP_HELP         = "[target] calls help and prints information about [target]\n";
+
+static const char* SOLVE_HELP        = "for solve mode activation (default config)\n";
+
+//------------------------------------------------------------------------------------------------------------------
+
 struct CommandLine
 {
     char consolecoefs[LEN];
@@ -223,4 +239,4 @@ FILE* OpenInputFile(char* infile_name);
 
 void ChangeParams(const char flag[], struct Param* param);
 
-void TripleString(char* string1, char* string2, char* string3, char* outstring);
+inline void TripleString(char* string1, char* string2, char* string3, char* outstring);

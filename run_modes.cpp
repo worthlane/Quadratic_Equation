@@ -69,7 +69,6 @@ void OneTest(const double a, const double b, const double c, const struct QuadSo
 
 //------------------------------------------------------------------------------------------------------------------
 
-
 void RunTest()                                           // runs tests from TEST_FILE
 {
     FILE* fp = fopen(TEST_FILE, "r");                    // opens TEST_FILE
@@ -98,129 +97,24 @@ void RunTest()                                           // runs tests from TEST
 
 //------------------------------------------------------------------------------------------------------------------
 
-void PrintHelp(struct CommandLine* arguments)
+void PrintHelp(struct FlagInfo* FlagInfo[])
 {
+    printf(CYAN "Quadratic equation solver\n\n"
+           "equation format: ax^2 + bx + c = 0\n"
+           "[argument] - flag arguments\n" STD);
 
-    printf("Quadratic equation solver\n\n");
-    // Type flags
-    if (!strcmp(arguments->helpflag,    LONG_INTERACTIVE_FLAG) ||
-        !strcmp(arguments->helpflag,    SHORT_INTERACTIVE_FLAG))
-    {
-        printf("%s, %-25sinteractive type of equation enter (default config)\n",
-                SHORT_INTERACTIVE_FLAG, LONG_INTERACTIVE_FLAG);
-        return;
-        \
-    }
+    int flag = FindFlag(FlagInfo[help_flag]->argument, FlagInfo);
 
-    // Input flags
-    if (!strcmp(arguments->helpflag,    LONG_FROMFILE_FLAG)    ||
-        !strcmp(arguments->helpflag,    SHORT_FROMFILE_FLAG))
-    {
-        printf("%s, %-25sflag for input from file\n",
-                SHORT_FROMFILE_FLAG,    LONG_FROMFILE_FLAG);
-        return;
-    }
+    if (flag != unknown_flag)
+        printf(GRUN "%-4s, %-25s%s" STD, FlagInfo[flag]->SHORT_FLAG,
+                FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
+    else
+        for (int i = 0; i < flag_amount; i++)
+            printf(GRUN "%-4s, %-25s%s" STD, FlagInfo[i]->SHORT_FLAG,
+                    FlagInfo[i]->LONG_FLAG, FlagInfo[i]->help_info);
 
-    if (!strcmp(arguments->helpflag,    LONG_CONSOLE_FLAG)     ||
-        !strcmp(arguments->helpflag,    SHORT_CONSOLE_FLAG))
-    {
-        printf("%s a b c, %s a b c    flag for console input (a b c - coefficients)\n",
-                SHORT_CONSOLE_FLAG,     LONG_CONSOLE_FLAG);
-        return;
-    }
-
-    if (!strcmp(arguments->helpflag,    LONG_STDIN_FLAG)       ||
-        !strcmp(arguments->helpflag,    SHORT_STDIN_FLAG))
-    {
-        printf("%s, %-25sflag for input from stdin (default config)\n",
-                SHORT_STDIN_FLAG,       LONG_STDIN_FLAG);
-        return;
-    }
-
-    // Output flags
-    if (!strcmp(arguments->helpflag,    LONG_TOFILE_FLAG)      ||
-        !strcmp(arguments->helpflag,    SHORT_TOFILE_FLAG))
-    {
-        printf("%s, %-25sflag for output into file\n",
-                SHORT_TOFILE_FLAG,      LONG_TOFILE_FLAG);
-        return;
-    }
-
-    if (!strcmp(arguments->helpflag,    LONG_STDOUT_FLAG)      ||
-        !strcmp(arguments->helpflag,    SHORT_STDOUT_FLAG))
-    {
-        printf("%s, %-25sflag for output in stdout (default config)\n",
-                SHORT_STDOUT_FLAG,      LONG_STDOUT_FLAG);
-        return;
-    }
-
-    // Mode flags
-    if (!strcmp(arguments->helpflag,    LONG_HELP_FLAG)        ||
-        !strcmp(arguments->helpflag,    SHORT_HELP_FLAG))
-    {
-        printf("%s [target], %s [target] calls help and prints information about [target]\n",
-                SHORT_HELP_FLAG,        LONG_HELP_FLAG);
-        return;
-    }
-
-    if (!strcmp(arguments->helpflag,    LONG_TEST_FLAG)        ||
-        !strcmp(arguments->helpflag,    SHORT_TEST_FLAG))
-    {
-        printf("%s, %-25sfor test mode activation (for developers)\n",
-                SHORT_TEST_FLAG,        LONG_TEST_FLAG);
-        return;
-    }
-
-    if (!strcmp(arguments->helpflag,    LONG_SOLVE_FLAG)       ||
-        !strcmp(arguments->helpflag,    SHORT_SOLVE_FLAG))
-    {
-        printf("%s, %-25sfor solve mode activation (default config)\n",
-                SHORT_SOLVE_FLAG,       LONG_SOLVE_FLAG);
-        return;
-    }
-
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-    printf("equation format: ax^2 + bx + c = 0\n");
-
-    printf("Type flags:\n");
-
-    printf("%s, %-25sinteractive type of equation enter (default config)\n",
-            SHORT_INTERACTIVE_FLAG, LONG_INTERACTIVE_FLAG);
-
-    printf("Input flags:\n");
-
-    printf("%s, %-25sflag for input from stdin (default config)\n",
-            SHORT_STDIN_FLAG,       LONG_STDIN_FLAG);
-
-    printf("%s, %-25sflag for input from file\n",
-            SHORT_FROMFILE_FLAG,    LONG_FROMFILE_FLAG);
-
-    printf("%s a b c, %s a b c    flag for console input (a b c - coefficients)\n",
-            SHORT_CONSOLE_FLAG,     LONG_CONSOLE_FLAG);
-
-    printf("Output flags:\n");
-
-    printf("%s, %-25sflag for output into file\n",
-            SHORT_TOFILE_FLAG,      LONG_TOFILE_FLAG);
-
-    printf("%s, %-25sflag for output in stdout (default config)\n",
-            SHORT_STDOUT_FLAG,      LONG_STDOUT_FLAG);
-
-    printf("Mode flags:\n");
-
-    printf("%s, %-25sfor solve mode activation (default config)\n",
-            SHORT_SOLVE_FLAG,       LONG_SOLVE_FLAG);
-
-    printf("%s, %-25sfor test mode activation (for developers)\n",
-            SHORT_TEST_FLAG,        LONG_TEST_FLAG);
-
-    printf("%s [target], %s [target] calls help and prints information about [target]\n",
-            SHORT_HELP_FLAG,        LONG_HELP_FLAG);
-
-    printf("\nMade by MKA\n"
-           "                                                               08.2023\n\n");
+    printf(CYAN "\nMade by MKA\n"
+           "                                                               08.2023\n\n" STD);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -387,11 +281,11 @@ void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
     {
         if (argv[i][0] == '-' && argv[i][1] == '-')
         {
-            LongFlagCheck(argc, argv, FlagInfo, pointers, i);
+            LongFlagCheck(argc, argv, FlagInfo, pointers, &i);
         }
         if (argv[i][0] == '-' && argv[i][1] != '-')
         {
-            ShortFlagCheck(argc, argv, FlagInfo, pointers, i);
+            ShortFlagCheck(argc, argv, FlagInfo, pointers, &i);
         }
     }
 }
@@ -399,11 +293,11 @@ void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
 // -----------------------------------------------------------------------------------------
 
 void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                   struct ProgramCondition* pointers, int i)
+                   struct ProgramCondition* pointers, int* i)
 {
     for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
     {
-        if (!strncmp(argv[i], FlagInfo[flag_ptr]->LONG_FLAG, LEN))
+        if (!strncmp(argv[*i], FlagInfo[flag_ptr]->LONG_FLAG, LEN))
         {
             if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
             {
@@ -439,11 +333,11 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
 // -----------------------------------------------------------------------------------------
 
 void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                   struct ProgramCondition* pointers, int i)
+                   struct ProgramCondition* pointers, int* i)
 {
     for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
     {
-        if (!strncmp(argv[i], FlagInfo[flag_ptr]->SHORT_FLAG, LEN))
+        if (!strncmp(argv[*i], FlagInfo[flag_ptr]->SHORT_FLAG, LEN))
         {
             if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
             {
@@ -479,32 +373,39 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
 // -----------------------------------------------------------------------------------------
 
 void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                  struct ProgramCondition* pointers, int i, int flag_ptr)
+                  struct ProgramCondition* pointers, int* i, int flag_ptr)
 {
     char coef1[LEN] = "";
     char coef2[LEN] = "";
     char coef3[LEN] = "";
-    if (i + 1 >= argc)
+    if (*i + 1 >= argc)
         return;
     if (flag_ptr == file_input_flag || flag_ptr == file_output_flag)
     {
-        if (argv[i + 1][0] != '-')
-            strncpy(FlagInfo[flag_ptr]->argument, argv[i + 1], LEN);
+        if (argv[*i + 1][0] != '-')
+        {
+            strncpy(FlagInfo[flag_ptr]->argument, argv[*i + 1], LEN);
+            *i++;
+        }
     }
     if (flag_ptr == console_input_flag)
     {
-        if (argv[i + 1][0] != '-' && i + 3 < argc)
+        if (argv[*i + 1][0] != '-' && *i + 3 < argc)
         {
-            strncpy(coef1, argv[i + 1], LEN);
-            strncpy(coef2, argv[i + 2], LEN);
-            strncpy(coef3, argv[i + 3], LEN);
+            strncpy(coef1, argv[*i + 1], LEN);
+            strncpy(coef2, argv[*i + 2], LEN);
+            strncpy(coef3, argv[*i + 3], LEN);
             TripleString(coef1, coef2, coef3, FlagInfo[flag_ptr]->argument);
+            *i += 3;
         }
     }
     if (flag_ptr == help_flag)
     {
-        if (argv[i + 1][0] == '-')
-           strncpy(FlagInfo[flag_ptr]->argument, argv[i + 1], LEN);
+        if (argv[*i + 1][0] == '-')
+        {
+           strncpy(FlagInfo[flag_ptr]->argument, argv[*i + 1], LEN);
+           *i++;
+        }
     }
 }
 
@@ -570,3 +471,31 @@ bool Menu(struct ProgramCondition* pointers)      // calls menu
     return true;
 }
 
+//------------------------------------------------------------------------------------------------------------------
+
+int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
+{
+    printf("%s\n", flag_name);
+    if (flag_name[0] == '-' && flag_name[1] == '-')
+    {
+        printf("--\n");
+        for (int i = 0; i < flag_amount; i++)
+        {
+            printf("%d, %s ", i, flag_name);
+            if (!strncmp(flag_name, FlagInfo[i]->LONG_FLAG, LEN))
+                return i;
+        }
+        return unknown_flag;
+    }
+    if (flag_name[0] == '-' && flag_name[1] != '-')
+    {
+        printf("-\n");
+        for (int i = 0; i < flag_amount; i++)
+        {
+            if (!strncmp(flag_name, FlagInfo[i]->SHORT_FLAG, LEN))
+                return i;
+        }
+        return unknown_flag;
+    }
+    return unknown_flag;
+}
