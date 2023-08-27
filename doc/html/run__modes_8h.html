@@ -9,18 +9,9 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(document).ready(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,20 +23,8 @@
   <td id="projectalign">
    <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">Program solves quadratic equations</div>
+   <div id="projectbrief">Solves quadratic equation</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -57,23 +36,17 @@
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('run__modes_8h.html',''); initResizable(); });
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
 /* @license-end */
 </script>
-<div id="doc-content">
+<div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -95,8 +68,11 @@ $(document).ready(function(){initNavTree('run__modes_8h.html',''); initResizable
 </div>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">run_modes.h File Reference</div></div>
@@ -108,86 +84,134 @@ $(document).ready(function(){initNavTree('run__modes_8h.html',''); initResizable
 
 <p><a href="run__modes_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_flag_info.html">FlagInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information about one flag.  <a href="struct_flag_info.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_program_condition.html">ProgramCondition</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information about mode of program.  <a href="struct_program_condition.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a04eae62d362d4985e36e1e1b3c9f61c1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1">Complete</a> { <a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661">Failure</a> = -1
-, <a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c">Success</a> = 0
+<tr class="memitem:aa705cf7e79a21c2352b00ffe20cd295f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">Flags</a> { <br />
+&#160;&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa96f6ee03766d904dd8265f7665dd657d">unknown_flag</a> = -1
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030">stdin_flag</a> = 0
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa57fc0798d125fab0730568c613f7ff85">file_input_flag</a> = 1
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad1fc1bb7b5d6d5ccfd1fc98e06ee6b98">console_input_flag</a> = 2
+, <br />
+&#160;&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299">stdout_flag</a> = 3
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa8f8310e20ea6081f3c766e37852f14d6">file_output_flag</a> = 4
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739">solve_flag</a> = 5
+, <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4baaefff237e5a100f0889bfcb6986a5">help_flag</a> = 6
+, <br />
+&#160;&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa0574e57b35bd797ca7fdf777848474ee">test_flag</a> = 7
+<br />
  }</td></tr>
-<tr class="memdesc:a04eae62d362d4985e36e1e1b3c9f61c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">enums result of completed program  <a href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1">More...</a><br /></td></tr>
-<tr class="separator:a04eae62d362d4985e36e1e1b3c9f61c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aa705cf7e79a21c2352b00ffe20cd295f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enums flags.  <a href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">More...</a><br /></td></tr>
+<tr class="separator:aa705cf7e79a21c2352b00ffe20cd295f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4a2eff499a3c811ef4d814024ba98ef0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a4a2eff499a3c811ef4d814024ba98ef0">RunTest</a> ()</td></tr>
 <tr class="memdesc:a4a2eff499a3c811ef4d814024ba98ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs tests from TEST_FILE.  <br /></td></tr>
 <tr class="separator:a4a2eff499a3c811ef4d814024ba98ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#ae964ff8411b4fdcaf65cb5529aea4bef">PrintHelp</a> ()</td></tr>
-<tr class="memdesc:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints help information (if -help flag called)  <br /></td></tr>
-<tr class="separator:ae964ff8411b4fdcaf65cb5529aea4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35914a4ff00afc7d52b5e718b2a239a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#ac35914a4ff00afc7d52b5e718b2a239a">RunSolve</a> (struct <a class="el" href="struct_param.html">Param</a> *param, double *a, double *b, double *c, struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *ans, const char *argv[], const int argc)</td></tr>
-<tr class="memdesc:ac35914a4ff00afc7d52b5e718b2a239a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs solving process.  <br /></td></tr>
-<tr class="separator:ac35914a4ff00afc7d52b5e718b2a239a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acce7a8814c422fbb359ac932868a25ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#acce7a8814c422fbb359ac932868a25ae">PrintHelp</a> (struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[])</td></tr>
+<tr class="memdesc:acce7a8814c422fbb359ac932868a25ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints help information about flags.  <br /></td></tr>
+<tr class="separator:acce7a8814c422fbb359ac932868a25ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c957f20da689e9ae2e6c34b1e5bd2aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a6c957f20da689e9ae2e6c34b1e5bd2aa">RunSolve</a> (struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[], struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers)</td></tr>
+<tr class="memdesc:a6c957f20da689e9ae2e6c34b1e5bd2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs program in solving mode.  <br /></td></tr>
+<tr class="separator:a6c957f20da689e9ae2e6c34b1e5bd2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4634f100f00ce80f934eb7faccca537c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a4634f100f00ce80f934eb7faccca537c">OneTest</a> (const double a, const double b, const double c, const struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *test)</td></tr>
+<tr class="memdesc:a4634f100f00ce80f934eb7faccca537c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs one test and checks answers.  <br /></td></tr>
+<tr class="separator:a4634f100f00ce80f934eb7faccca537c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54a8ae74d7eb9f84ecf928e066261a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#ac54a8ae74d7eb9f84ecf928e066261a7">StdinInput</a> (double *a, double *b, double *c, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *param)</td></tr>
+<tr class="memdesc:ac54a8ae74d7eb9f84ecf928e066261a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stdin input flag function.  <br /></td></tr>
+<tr class="separator:ac54a8ae74d7eb9f84ecf928e066261a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb8c17afbf55f87afa59fd0b6fb5258"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a2bb8c17afbf55f87afa59fd0b6fb5258">FileInput</a> (double *a, double *b, double *c, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *param)</td></tr>
+<tr class="memdesc:a2bb8c17afbf55f87afa59fd0b6fb5258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag function for input from file.  <br /></td></tr>
+<tr class="separator:a2bb8c17afbf55f87afa59fd0b6fb5258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069e27b2dff0df0546a7795c5e6530eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a069e27b2dff0df0546a7795c5e6530eb">ConsoleInput</a> (double *a, double *b, double *c, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *param)</td></tr>
+<tr class="memdesc:a069e27b2dff0df0546a7795c5e6530eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag function for input from console.  <br /></td></tr>
+<tr class="separator:a069e27b2dff0df0546a7795c5e6530eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940514f401134c2674b172609ae8cbac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a940514f401134c2674b172609ae8cbac">StdoutOutput</a> (double *a, double *b, double *c, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *param)</td></tr>
+<tr class="memdesc:a940514f401134c2674b172609ae8cbac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag function for output to stdout.  <br /></td></tr>
+<tr class="separator:a940514f401134c2674b172609ae8cbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba43110e2a0f4d10f2f22f91f436f25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#acba43110e2a0f4d10f2f22f91f436f25">FileOutput</a> (double *a, double *b, double *c, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *param)</td></tr>
+<tr class="memdesc:acba43110e2a0f4d10f2f22f91f436f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag function for output to file.  <br /></td></tr>
+<tr class="separator:acba43110e2a0f4d10f2f22f91f436f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd2a86349a3555646048d1bed363b7c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#acd2a86349a3555646048d1bed363b7c1">FlagParse</a> (const int argc, const char *argv[], struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[], struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers)</td></tr>
+<tr class="memdesc:acd2a86349a3555646048d1bed363b7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets flags from console.  <br /></td></tr>
+<tr class="separator:acd2a86349a3555646048d1bed363b7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a7a2c8bfcf62fd22b89a4dea4fb6ae9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a0a7a2c8bfcf62fd22b89a4dea4fb6ae9">LongFlagCheck</a> (const int argc, const char *argv[], struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[], struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers, int *i)</td></tr>
+<tr class="memdesc:a0a7a2c8bfcf62fd22b89a4dea4fb6ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares command line argument with long flag list.  <br /></td></tr>
+<tr class="separator:a0a7a2c8bfcf62fd22b89a4dea4fb6ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16f6991bdfaf6f97ebe1c356f11de21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#aa16f6991bdfaf6f97ebe1c356f11de21">ShortFlagCheck</a> (const int argc, const char *argv[], struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[], struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers, int *i)</td></tr>
+<tr class="memdesc:aa16f6991bdfaf6f97ebe1c356f11de21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares command line argument with short flag list.  <br /></td></tr>
+<tr class="separator:aa16f6991bdfaf6f97ebe1c356f11de21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13cdb300382eb50272b2c6f63df886ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a13cdb300382eb50272b2c6f63df886ec">ReadArgument</a> (const int argc, const char *argv[], struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[], struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers, int *i, int flag_ptr)</td></tr>
+<tr class="memdesc:a13cdb300382eb50272b2c6f63df886ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads flag argument from console.  <br /></td></tr>
+<tr class="separator:a13cdb300382eb50272b2c6f63df886ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f59754c8b8b7e1613fe16f13227fd71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a8f59754c8b8b7e1613fe16f13227fd71">Menu</a> (struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *pointers)</td></tr>
+<tr class="memdesc:a8f59754c8b8b7e1613fe16f13227fd71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls for menu.  <br /></td></tr>
+<tr class="separator:a8f59754c8b8b7e1613fe16f13227fd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0f2e76d450f1a4ff5a4b0fc2430604"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a3e0f2e76d450f1a4ff5a4b0fc2430604">FindFlag</a> (const char *flag_name, struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *<a class="el" href="struct_flag_info.html">FlagInfo</a>[])</td></tr>
+<tr class="memdesc:a3e0f2e76d450f1a4ff5a4b0fc2430604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines flag from flag list.  <br /></td></tr>
+<tr class="separator:a3e0f2e76d450f1a4ff5a4b0fc2430604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e479a3d0f55c152a745f8de058cbac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="run__modes_8h.html#a74e479a3d0f55c152a745f8de058cbac">TripleString</a> (char *string1, char *string2, char *string3, char *outstring)</td></tr>
+<tr class="memdesc:a74e479a3d0f55c152a745f8de058cbac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes one big string from three strings.  <br /></td></tr>
+<tr class="separator:a74e479a3d0f55c152a745f8de058cbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>contains funtions declaration, that needed for test mode </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a04eae62d362d4985e36e1e1b3c9f61c1" name="a04eae62d362d4985e36e1e1b3c9f61c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04eae62d362d4985e36e1e1b3c9f61c1">&#9670;&#160;</a></span>Complete</h2>
+<a id="aa705cf7e79a21c2352b00ffe20cd295f" name="aa705cf7e79a21c2352b00ffe20cd295f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa705cf7e79a21c2352b00ffe20cd295f">&#9670;&#160;</a></span>Flags</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1">Complete</a></td>
+          <td class="memname">enum <a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">Flags</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>enums result of completed program </p>
+<p>Enums flags. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661" name="a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661"></a>Failure&#160;</td><td class="fielddoc"><p>program failured </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa96f6ee03766d904dd8265f7665dd657d" name="aa705cf7e79a21c2352b00ffe20cd295fa96f6ee03766d904dd8265f7665dd657d"></a>unknown_flag&#160;</td><td class="fielddoc"><p>unknown flag </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c" name="a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c"></a>Success&#160;</td><td class="fielddoc"><p>program ran successfully </p>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030" name="aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030"></a>stdin_flag&#160;</td><td class="fielddoc"><p>stdin input flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa57fc0798d125fab0730568c613f7ff85" name="aa705cf7e79a21c2352b00ffe20cd295fa57fc0798d125fab0730568c613f7ff85"></a>file_input_flag&#160;</td><td class="fielddoc"><p>file input flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fad1fc1bb7b5d6d5ccfd1fc98e06ee6b98" name="aa705cf7e79a21c2352b00ffe20cd295fad1fc1bb7b5d6d5ccfd1fc98e06ee6b98"></a>console_input_flag&#160;</td><td class="fielddoc"><p>console input flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299" name="aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299"></a>stdout_flag&#160;</td><td class="fielddoc"><p>stdout output flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa8f8310e20ea6081f3c766e37852f14d6" name="aa705cf7e79a21c2352b00ffe20cd295fa8f8310e20ea6081f3c766e37852f14d6"></a>file_output_flag&#160;</td><td class="fielddoc"><p>file output flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739" name="aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739"></a>solve_flag&#160;</td><td class="fielddoc"><p>solve mode flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa4baaefff237e5a100f0889bfcb6986a5" name="aa705cf7e79a21c2352b00ffe20cd295fa4baaefff237e5a100f0889bfcb6986a5"></a>help_flag&#160;</td><td class="fielddoc"><p>help mode flag </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa0574e57b35bd797ca7fdf777848474ee" name="aa705cf7e79a21c2352b00ffe20cd295fa0574e57b35bd797ca7fdf777848474ee"></a>test_flag&#160;</td><td class="fielddoc"><p>test mode flag </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ae964ff8411b4fdcaf65cb5529aea4bef" name="ae964ff8411b4fdcaf65cb5529aea4bef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae964ff8411b4fdcaf65cb5529aea4bef">&#9670;&#160;</a></span>PrintHelp()</h2>
+<a id="a069e27b2dff0df0546a7795c5e6530eb" name="a069e27b2dff0df0546a7795c5e6530eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069e27b2dff0df0546a7795c5e6530eb">&#9670;&#160;</a></span>ConsoleInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PrintHelp </td>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> ConsoleInput </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints help information (if -help flag called) </p>
-
-</div>
-</div>
-<a id="ac35914a4ff00afc7d52b5e718b2a239a" name="ac35914a4ff00afc7d52b5e718b2a239a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac35914a4ff00afc7d52b5e718b2a239a">&#9670;&#160;</a></span>RunSolve()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int RunSolve </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
-          <td class="paramname"><em>param</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">double *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
@@ -206,8 +230,184 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td>
-          <td class="paramname"><em>ans</em>, </td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag function for input from console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>argument </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList (0 if no error) </dd></dl>
+
+</div>
+</div>
+<a id="a2bb8c17afbf55f87afa59fd0b6fb5258" name="a2bb8c17afbf55f87afa59fd0b6fb5258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bb8c17afbf55f87afa59fd0b6fb5258">&#9670;&#160;</a></span>FileInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> FileInput </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag function for input from file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>argument </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList (0 if no error) </dd></dl>
+
+</div>
+</div>
+<a id="acba43110e2a0f4d10f2f22f91f436f25" name="acba43110e2a0f4d10f2f22f91f436f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba43110e2a0f4d10f2f22f91f436f25">&#9670;&#160;</a></span>FileOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> FileOutput </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag function for output to file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>argument </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList (0 if no error) </dd></dl>
+
+</div>
+</div>
+<a id="a3e0f2e76d450f1a4ff5a4b0fc2430604" name="a3e0f2e76d450f1a4ff5a4b0fc2430604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0f2e76d450f1a4ff5a4b0fc2430604">&#9670;&#160;</a></span>FindFlag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FindFlag </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>flag_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines flag from flag list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag_name</td><td>name of flag </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>list with info about flags </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>enumerated flag number </dd></dl>
+
+</div>
+</div>
+<a id="acd2a86349a3555646048d1bed363b7c1" name="acd2a86349a3555646048d1bed363b7c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd2a86349a3555646048d1bed363b7c1">&#9670;&#160;</a></span>FlagParse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FlagParse </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -218,8 +418,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>argc</em>&#160;</td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -229,22 +435,282 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Runs solving process. </p>
+<p>Gets flags from console. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>params of working equation </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console input </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ans</td><td>equation answer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console arguments </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>info about flags + place for argument </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pointers</td><td>container of program working mode </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>enum Success if program successfully worked </dd>
+
+</div>
+</div>
+<a id="a0a7a2c8bfcf62fd22b89a4dea4fb6ae9" name="a0a7a2c8bfcf62fd22b89a4dea4fb6ae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a7a2c8bfcf62fd22b89a4dea4fb6ae9">&#9670;&#160;</a></span>LongFlagCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LongFlagCheck </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares command line argument with long flag list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console argument </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>list with info about flags </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointers</td><td>pointers to program mode </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>pointer to console argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8f59754c8b8b7e1613fe16f13227fd71" name="a8f59754c8b8b7e1613fe16f13227fd71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f59754c8b8b7e1613fe16f13227fd71">&#9670;&#160;</a></span>Menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Menu </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls for menu. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">pointers</td><td>pointers to program mode </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if user wants to continue </dd>
 <dd>
-enum Failure if there was an error while solving program </dd></dl>
+false if user want to quit </dd></dl>
+
+</div>
+</div>
+<a id="a4634f100f00ce80f934eb7faccca537c" name="a4634f100f00ce80f934eb7faccca537c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4634f100f00ce80f934eb7faccca537c">&#9670;&#160;</a></span>OneTest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OneTest </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="struct_quad_solutions.html">QuadSolutions</a> *&#160;</td>
+          <td class="paramname"><em>test</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs one test and checks answers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">test</td><td>test answers </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acce7a8814c422fbb359ac932868a25ae" name="acce7a8814c422fbb359ac932868a25ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acce7a8814c422fbb359ac932868a25ae">&#9670;&#160;</a></span>PrintHelp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrintHelp </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints help information about flags. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>list of flag information </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a13cdb300382eb50272b2c6f63df886ec" name="a13cdb300382eb50272b2c6f63df886ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13cdb300382eb50272b2c6f63df886ec">&#9670;&#160;</a></span>ReadArgument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadArgument </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flag_ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads flag argument from console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console argument </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>list with info about flags </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointers</td><td>pointers to program mode </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>pointer to console argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c957f20da689e9ae2e6c34b1e5bd2aa" name="a6c957f20da689e9ae2e6c34b1e5bd2aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c957f20da689e9ae2e6c34b1e5bd2aa">&#9670;&#160;</a></span>RunSolve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> RunSolve </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs program in solving mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>information about flags </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointers</td><td>mode of program </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList </dd></dl>
 
 </div>
 </div>
@@ -267,14 +733,229 @@ enum Failure if there was an error while solving program </dd></dl>
 
 </div>
 </div>
-</div><!-- contents -->
-</div><!-- doc-content -->
-<!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="run__modes_8h.html">run_modes.h</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
-  </ul>
+<a id="aa16f6991bdfaf6f97ebe1c356f11de21" name="aa16f6991bdfaf6f97ebe1c356f11de21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16f6991bdfaf6f97ebe1c356f11de21">&#9670;&#160;</a></span>ShortFlagCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ShortFlagCheck </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>argv</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>FlagInfo</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_program_condition.html">ProgramCondition</a> *&#160;</td>
+          <td class="paramname"><em>pointers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares command line argument with short flag list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console argument </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_flag_info.html" title="Contains information about one flag.">FlagInfo</a></td><td>list with info about flags </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointers</td><td>pointers to program mode </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>pointer to console argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
+</div>
+<a id="ac54a8ae74d7eb9f84ecf928e066261a7" name="ac54a8ae74d7eb9f84ecf928e066261a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac54a8ae74d7eb9f84ecf928e066261a7">&#9670;&#160;</a></span>StdinInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> StdinInput </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stdin input flag function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList (0 if no error) </dd></dl>
+
+</div>
+</div>
+<a id="a940514f401134c2674b172609ae8cbac" name="a940514f401134c2674b172609ae8cbac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940514f401134c2674b172609ae8cbac">&#9670;&#160;</a></span>StdoutOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> StdoutOutput </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_flag_info.html">FlagInfo</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag function for output to stdout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error from ErrorList (0 if no error) </dd></dl>
+
+</div>
+</div>
+<a id="a74e479a3d0f55c152a745f8de058cbac" name="a74e479a3d0f55c152a745f8de058cbac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74e479a3d0f55c152a745f8de058cbac">&#9670;&#160;</a></span>TripleString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> TripleString </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>outstring</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes one big string from three strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">string1</td><td>first string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">string2</td><td>second string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">string3</td><td>third string </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">outstring</td><td>string1 + string2 + string3 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
 </body>
 </html>

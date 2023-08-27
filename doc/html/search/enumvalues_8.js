@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['one_5froot_0',['ONE_ROOT',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf',1,'solver.h']]],
-  ['openinputerror_1',['OpenInputError',['../getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e',1,'getout_info.h']]],
-  ['opentesterror_2',['OpenTestError',['../getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a',1,'getout_info.h']]]
+  ['solve_5fflag_0',['solve_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739',1,'run_modes.h']]],
+  ['stdin_5fflag_1',['stdin_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030',1,'run_modes.h']]],
+  ['stdout_5fflag_2',['stdout_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299',1,'run_modes.h']]]
 ];

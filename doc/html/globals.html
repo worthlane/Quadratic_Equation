@@ -9,18 +9,9 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(document).ready(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,20 +23,8 @@
   <td id="projectalign">
    <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">Program solves quadratic equations</div>
+   <div id="projectbrief">Solves quadratic equation</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -57,23 +36,18 @@
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('globals.html',''); initResizable(); });
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
 /* @license-end */
 </script>
-<div id="doc-content">
+<div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -96,19 +70,14 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all file members with links to the files they belong to:</div>
+<div class="textblock">Here is a list of all documented file members with links to the documentation:</div>
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>ClearInput()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a6dbc86ddc9e73f74ccd96ca3a1bbf89f">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a6dbc86ddc9e73f74ccd96ca3a1bbf89f">getout_info.h</a></li>
-<li>Compare()&#160;:&#160;<a class="el" href="solver_8cpp.html#ab0266453092266ede62ba4ee1b07f00c">solver.cpp</a>, <a class="el" href="solver_8h.html#ab0266453092266ede62ba4ee1b07f00c">solver.h</a></li>
+<li>ClearInput()&#160;:&#160;<a class="el" href="getout__info_8h.html#a6dbc86ddc9e73f74ccd96ca3a1bbf89f">getout_info.h</a></li>
+<li>Compare()&#160;:&#160;<a class="el" href="solver_8h.html#ab0266453092266ede62ba4ee1b07f00c">solver.h</a></li>
 <li>Comparison&#160;:&#160;<a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0">solver.h</a></li>
-<li>Complete&#160;:&#160;<a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1">run_modes.h</a></li>
-<li>ConsoleFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59">getout_info.h</a></li>
-</ul>
-
-
-<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>DefineFlag()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#acde0c6f2cf16f73f8c82818a947e831a">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#acde0c6f2cf16f73f8c82818a947e831a">getout_info.h</a></li>
+<li>console_input_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad1fc1bb7b5d6d5ccfd1fc98e06ee6b98">run_modes.h</a></li>
+<li>ConsoleInput()&#160;:&#160;<a class="el" href="run__modes_8h.html#a069e27b2dff0df0546a7795c5e6530eb">run_modes.h</a></li>
 </ul>
 
 
@@ -119,93 +88,96 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
-<li>Failure&#160;:&#160;<a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1a6fb01c5d76aa5b0825fd3c52dc5f3661">run_modes.h</a></li>
-<li>FGetCoef()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#ae0d25954484de324aaadfc7ce35eb594">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#ae0d25954484de324aaadfc7ce35eb594">getout_info.h</a></li>
-<li>FlagCheck()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#abf26a5a0a1472bd59f3375ac2bf097c4">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#abf26a5a0a1472bd59f3375ac2bf097c4">getout_info.h</a></li>
-<li>Flags&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">getout_info.h</a></li>
-<li>FPrintRoots()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a67cd3a3cb6eaf2e76847b6ee76a10161">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a67cd3a3cb6eaf2e76847b6ee76a10161">getout_info.h</a></li>
-<li>FromFileFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006">getout_info.h</a></li>
-<li>FSkipFormatText()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#ab759cd19e5cf2ccbc7b2925e07de9e9c">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#ab759cd19e5cf2ccbc7b2925e07de9e9c">getout_info.h</a></li>
+<li>file_input_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa57fc0798d125fab0730568c613f7ff85">run_modes.h</a></li>
+<li>file_output_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa8f8310e20ea6081f3c766e37852f14d6">run_modes.h</a></li>
+<li>FileGetCoef()&#160;:&#160;<a class="el" href="getout__info_8h.html#a621c4eed995625b67b4d55a7be4f6cf9">getout_info.h</a></li>
+<li>FileInput()&#160;:&#160;<a class="el" href="run__modes_8h.html#a2bb8c17afbf55f87afa59fd0b6fb5258">run_modes.h</a></li>
+<li>FileOutput()&#160;:&#160;<a class="el" href="run__modes_8h.html#acba43110e2a0f4d10f2f22f91f436f25">run_modes.h</a></li>
+<li>FindFlag()&#160;:&#160;<a class="el" href="run__modes_8h.html#a3e0f2e76d450f1a4ff5a4b0fc2430604">run_modes.h</a></li>
+<li>FlagParse()&#160;:&#160;<a class="el" href="run__modes_8h.html#acd2a86349a3555646048d1bed363b7c1">run_modes.h</a></li>
+<li>Flags&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">run_modes.h</a></li>
 </ul>
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>GetCoef()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a8123382aab0235af2ba9348c35189db6">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a8123382aab0235af2ba9348c35189db6">getout_info.h</a></li>
-<li>GetConsole()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a587cce848273474245415f0f31cccdbf">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a587cce848273474245415f0f31cccdbf">getout_info.h</a></li>
-<li>GetFileName()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a46436e5aae92c60bd734b6a4f7fa885b">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a46436e5aae92c60bd734b6a4f7fa885b">getout_info.h</a></li>
+<li>GetCoef()&#160;:&#160;<a class="el" href="getout__info_8h.html#a8123382aab0235af2ba9348c35189db6">getout_info.h</a></li>
+<li>GetConsole()&#160;:&#160;<a class="el" href="getout__info_8h.html#a0a021520dc9fc7de9c871e9d6c388fdd">getout_info.h</a></li>
+<li>GetFileName()&#160;:&#160;<a class="el" href="getout__info_8h.html#a30f14f0cfe0d10f57f5db7f021de6219">getout_info.h</a></li>
 </ul>
 
 
 <h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
-<li>HelpFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a">getout_info.h</a></li>
+<li>help_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4baaefff237e5a100f0889bfcb6986a5">run_modes.h</a></li>
 </ul>
 
 
 <h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
 <li>INF_ROOTS&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36">solver.h</a></li>
-<li>IntFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5">getout_info.h</a></li>
+<li>IsZero()&#160;:&#160;<a class="el" href="solver_8h.html#ab814c58cc81588fced46c6d10ba18023">solver.h</a></li>
 </ul>
 
 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
 <li>LESS&#160;:&#160;<a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0a95c736070f99b99eb80d1eac1f4ca60f">solver.h</a></li>
-<li>LinearSolver()&#160;:&#160;<a class="el" href="solver_8cpp.html#a17c1c8cba642bb665adb23e97c4b9021">solver.cpp</a>, <a class="el" href="solver_8h.html#a17c1c8cba642bb665adb23e97c4b9021">solver.h</a></li>
+<li>LinearSolver()&#160;:&#160;<a class="el" href="solver_8h.html#a17c1c8cba642bb665adb23e97c4b9021">solver.h</a></li>
+<li>LongFlagCheck()&#160;:&#160;<a class="el" href="run__modes_8h.html#a0a7a2c8bfcf62fd22b89a4dea4fb6ae9">run_modes.h</a></li>
 </ul>
 
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>main()&#160;:&#160;<a class="el" href="main_8cpp.html#ad53223b8779f25caeddb70a3b9172967">main.cpp</a></li>
-<li>Max()&#160;:&#160;<a class="el" href="solver_8cpp.html#a1d66cc9de544c2e84ed4a01d475fde95">solver.cpp</a>, <a class="el" href="solver_8h.html#a1d66cc9de544c2e84ed4a01d475fde95">solver.h</a></li>
-<li>Menu()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5">getout_info.h</a></li>
+<li>Menu()&#160;:&#160;<a class="el" href="run__modes_8h.html#a8f59754c8b8b7e1613fe16f13227fd71">run_modes.h</a></li>
 <li>MORE&#160;:&#160;<a class="el" href="solver_8h.html#ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02">solver.h</a></li>
 </ul>
 
 
 <h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>ONE_ROOT&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf">solver.h</a></li>
-<li>OpenInputFile()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a7dc7bff77d5cd3e57ea4536a9f9183c2">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a7dc7bff77d5cd3e57ea4536a9f9183c2">getout_info.h</a></li>
+<li>OneTest()&#160;:&#160;<a class="el" href="run__modes_8h.html#a4634f100f00ce80f934eb7faccca537c">run_modes.h</a></li>
+<li>OpenInputFile()&#160;:&#160;<a class="el" href="getout__info_8h.html#a7dc7bff77d5cd3e57ea4536a9f9183c2">getout_info.h</a></li>
 </ul>
 
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>PrintError()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a23223325a407e86fb6710787162945d5">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a23223325a407e86fb6710787162945d5">getout_info.h</a></li>
-<li>PrintHelp()&#160;:&#160;<a class="el" href="run__modes_8cpp.html#ae964ff8411b4fdcaf65cb5529aea4bef">run_modes.cpp</a>, <a class="el" href="run__modes_8h.html#ae964ff8411b4fdcaf65cb5529aea4bef">run_modes.h</a></li>
+<li>PrintError()&#160;:&#160;<a class="el" href="getout__info_8h.html#a47da2ed19025616106152f92e7990e49">getout_info.h</a></li>
+<li>PrintHelp()&#160;:&#160;<a class="el" href="run__modes_8h.html#acce7a8814c422fbb359ac932868a25ae">run_modes.h</a></li>
+<li>PrintRoots()&#160;:&#160;<a class="el" href="getout__info_8h.html#afd758deeaa582e8e84ecd96cd779218e">getout_info.h</a></li>
 </ul>
 
 
 <h3><a id="index_q" name="index_q"></a>- q -</h3><ul>
-<li>QuadSolver()&#160;:&#160;<a class="el" href="solver_8cpp.html#a552e9db5abab528b1524cbfc4006414a">solver.cpp</a>, <a class="el" href="solver_8h.html#a552e9db5abab528b1524cbfc4006414a">solver.h</a></li>
+<li>QuadSolver()&#160;:&#160;<a class="el" href="solver_8h.html#a552e9db5abab528b1524cbfc4006414a">solver.h</a></li>
 </ul>
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>ReadCoefficients()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a56993b13addd2da4061311411db28066">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a56993b13addd2da4061311411db28066">getout_info.h</a></li>
-<li>ReadFlags()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a1015da87194adb7595b4205a9d0c620e">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a1015da87194adb7595b4205a9d0c620e">getout_info.h</a></li>
-<li>RepeatQuestion()&#160;:&#160;<a class="el" href="getout__info_8cpp.html#a2f3d71ac338c2990785e79a3a58b04ac">getout_info.cpp</a>, <a class="el" href="getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac">getout_info.h</a></li>
+<li>ReadArgument()&#160;:&#160;<a class="el" href="run__modes_8h.html#a13cdb300382eb50272b2c6f63df886ec">run_modes.h</a></li>
+<li>RepeatQuestion()&#160;:&#160;<a class="el" href="getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac">getout_info.h</a></li>
 <li>Roots&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692a">solver.h</a></li>
-<li>RunSolve()&#160;:&#160;<a class="el" href="run__modes_8cpp.html#ac35914a4ff00afc7d52b5e718b2a239a">run_modes.cpp</a>, <a class="el" href="run__modes_8h.html#ac35914a4ff00afc7d52b5e718b2a239a">run_modes.h</a></li>
-<li>RunTest()&#160;:&#160;<a class="el" href="run__modes_8cpp.html#a4a2eff499a3c811ef4d814024ba98ef0">run_modes.cpp</a>, <a class="el" href="run__modes_8h.html#a4a2eff499a3c811ef4d814024ba98ef0">run_modes.h</a></li>
+<li>RunSolve()&#160;:&#160;<a class="el" href="run__modes_8h.html#a6c957f20da689e9ae2e6c34b1e5bd2aa">run_modes.h</a></li>
+<li>RunTest()&#160;:&#160;<a class="el" href="run__modes_8h.html#a4a2eff499a3c811ef4d814024ba98ef0">run_modes.h</a></li>
 </ul>
 
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>SolveFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d">getout_info.h</a></li>
-<li>StdFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8">getout_info.h</a></li>
-<li>StdinFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa">getout_info.h</a></li>
-<li>StdoutFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8">getout_info.h</a></li>
-<li>Success&#160;:&#160;<a class="el" href="run__modes_8h.html#a04eae62d362d4985e36e1e1b3c9f61c1afdfbdf3247bd36a1f17270d5cec74c9c">run_modes.h</a></li>
+<li>ShortFlagCheck()&#160;:&#160;<a class="el" href="run__modes_8h.html#aa16f6991bdfaf6f97ebe1c356f11de21">run_modes.h</a></li>
+<li>solve_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739">run_modes.h</a></li>
+<li>stdin_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030">run_modes.h</a></li>
+<li>StdinInput()&#160;:&#160;<a class="el" href="run__modes_8h.html#ac54a8ae74d7eb9f84ecf928e066261a7">run_modes.h</a></li>
+<li>stdout_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299">run_modes.h</a></li>
+<li>StdoutOutput()&#160;:&#160;<a class="el" href="run__modes_8h.html#a940514f401134c2674b172609ae8cbac">run_modes.h</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>TestFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0">getout_info.h</a></li>
-<li>ToFileFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa">getout_info.h</a></li>
+<li>test_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa0574e57b35bd797ca7fdf777848474ee">run_modes.h</a></li>
+<li>TripleString()&#160;:&#160;<a class="el" href="run__modes_8h.html#a74e479a3d0f55c152a745f8de058cbac">run_modes.h</a></li>
 <li>TWO_ROOTS&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81">solver.h</a></li>
 </ul>
 
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>UnknownFlag&#160;:&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361">getout_info.h</a></li>
+<li>UNDEFINED_ROOTS&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa88e9086811776ffab99059ebdc83c83c">solver.h</a></li>
+<li>unknown_flag&#160;:&#160;<a class="el" href="run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa96f6ee03766d904dd8265f7665dd657d">run_modes.h</a></li>
 </ul>
 
 
@@ -213,12 +185,9 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ZERO_ROOTS&#160;:&#160;<a class="el" href="solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa52da2ea29bc7f0697300ec26acb69715">solver.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
 </body>
 </html>

@@ -344,7 +344,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
             {
                 if (flag_ptr > pointers->input_ptr)
                 {
-                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN); // TODO
+                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->input_ptr = flag_ptr;
                     ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
@@ -353,7 +353,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
             {
                 if (flag_ptr > pointers->output_ptr)
                 {
-                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->output_ptr]->argument, 0, LEN);
                     pointers->output_ptr = flag_ptr;
                     ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
@@ -362,7 +362,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
             {
                 if (flag_ptr > pointers->mode_ptr)
                 {
-                    memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
+                    memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
                     ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
@@ -499,11 +499,14 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
 
 // -----------------------------------------------------------------------------------------
 
-inline void TripleString(char* string1, char* string2, char* string3, char* outstring)
+inline ErrorList TripleString(char* string1, char* string2, char* string3, char* outstring)
 {
+    if (strlen(string1) + strlen(string2) + strlen(string3) > LEN)
+        return ErrorList::BUFF_OVERSIZE_ERROR;
     strncat(string1, " ", LEN);
     strncat(string2, " ", LEN);
     strncat(outstring, string1, LEN);
     strncat(string2, string3, LEN);
     strncat(outstring, string2, LEN);
+    return ErrorList::NOT_AN_ERROR;
 }

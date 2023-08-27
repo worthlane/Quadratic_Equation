@@ -63,16 +63,6 @@ static const char* HELP_HELP         = "[target] calls help and prints informati
 
 static const char* SOLVE_HELP        = "for solve mode activation (default config)\n";
 
-//------------------------------------------------------------------------------------------------------------------
-
-struct CommandLine
-{
-    char consolecoefs[LEN];
-    char infile[LEN];
-    char outfile[LEN];
-    char helpflag[LEN];
-};
-
 /************************************************************//**
  * @brief enums errors
  ************************************************************/
@@ -101,48 +91,6 @@ enum class ErrorList
     OPEN_OUTPUT_ERROR   = 12,
     CLOSE_OUTPUT_ERROR  = 13
 };
-
-/************************************************************//**
- * @brief Struct of parameters, which describe solving process
- ************************************************************/
-
-struct Param
-{
-    enum TypeFlags : unsigned char
-    {
-        Interactive = 0,
-        Standart    = 1,
-    };
-
-    unsigned char type   : 1; ///< type of solve (interactive or standart)
-
-    enum InputFlags : unsigned char
-    {
-        Stdin    = 0,
-        FromFile = 1,
-        Console  = 2,
-    };
-
-    unsigned char input  : 2; ///< input type (STDIN / file / console)
-
-    enum OutputFlags : unsigned char
-    {
-        Stdout = 0,
-        ToFile = 1,
-    };
-
-    unsigned char output : 1; ///< output type (STDOUT / file)
-
-    enum ModeFlags : unsigned char
-    {
-        Solve = 0,
-        Help  = 1,
-        Test  = 2
-    };
-
-    unsigned char mode  : 2; ///< program mode (test / solving / help)
-};
-
 
 /************************************************************//**
  * @brief Function clears STDIN from useless symbols, until it meets '\\n'
@@ -213,6 +161,17 @@ bool RepeatQuestion(const char mode[]);
  ************************************************************/
 
 void PrintError(ErrorList error, const char file_name[]);
+
+/************************************************************//**
+ * @brief Get the Console object
+ *
+ * @param[in] string console argument
+ * @param[out] a coefficient
+ * @param[out] b coefficient
+ * @param[out] c coefficient
+ * @return true if program got the coefficients
+ * @return false if there was failure
+ ************************************************************/
 
 bool GetConsole(char* string, double* a, double* b, double* c);
 

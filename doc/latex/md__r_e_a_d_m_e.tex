@@ -5,24 +5,26 @@
 \hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Compilation\+:}{Compilation:}}\label{md__r_e_a_d_m_e_autotoc_md1}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{g++\ main.cpp\ solver.cpp\ getout\_info.cpp\ testmode.cpp}
+\DoxyCodeLine{make}
 
 \end{DoxyCode}
- \hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Input from\+:}{Input from:}}\label{md__r_e_a_d_m_e_autotoc_md2}
-\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{INTERACTIVE STDIN\+:}{INTERACTIVE STDIN:}}\label{md__r_e_a_d_m_e_autotoc_md3}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Flags\+:}{Flags:}}\label{md__r_e_a_d_m_e_autotoc_md2}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{Type flags\+:}{Type flags:}}\label{md__r_e_a_d_m_e_autotoc_md3}
 flag\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./a.out\ -\/std}
-\DoxyCodeLine{./a.out}
+\DoxyCodeLine{-\/int\ \ \ \ \ \ \ \ \ \ \ \ interactive\ type\ of\ equation\ enter}
+\DoxyCodeLine{-\/std\ \ \ \ \ \ \ \ \ \ \ \ standart\ type\ of\ equation\ enter\ (a1x\string^2\ +\ b1x\ -\/\ a2x\string^2\ +\ c1\ ...)\ (coming\ soon)}
 
 \end{DoxyCode}
- Equation format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0. Program will ask you to enter each coefficient. \hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{FILE\+:}{FILE:}}\label{md__r_e_a_d_m_e_autotoc_md4}
+ Equation format\+: ax\texorpdfstring{$^\wedge$}{\string^}2 + bx + c = 0. Program will ask you to enter each coefficient in interactive type of run. \hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{Input flags\+:}{Input flags:}}\label{md__r_e_a_d_m_e_autotoc_md4}
 flag\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./a.out\ -\/file}
+\DoxyCodeLine{-\/fromfile\ \ \ \ \ \ \ flag\ for\ input\ from\ file}
+\DoxyCodeLine{-\/stdin\ \ \ \ \ \ \ \ \ \ flag\ for\ input\ from\ stdin}
+\DoxyCodeLine{-\/console\ a\ b\ c\ \ flag\ for\ console\ input\ (a\ b\ c\ -\/\ coefficients)}
 
 \end{DoxyCode}
- You will need to type file directory in console like an argument. File input format (coefficients with \textquotesingle{} \textquotesingle{} / \textquotesingle{}\textbackslash{}t\textquotesingle{} / \textquotesingle{}\textbackslash{}n\textquotesingle{} between)\+: 
+ You will need to type file directory if you choose file input format (coefficients with \textquotesingle{} \textquotesingle{} / \textquotesingle{}\textbackslash{}t\textquotesingle{} / \textquotesingle{}\textbackslash{}n\textquotesingle{} between)\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1\ 1\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ a1\ b1\ c1}
 \DoxyCodeLine{1\ \ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ a2\ b2}
@@ -32,17 +34,20 @@ flag\+:
 
 \end{DoxyCode}
  \begin{quote}
-\mbox{[}!\+WARNING\mbox{]} Incorrect file input will skip all non-\/read data and ask user to run program again. \end{quote}
-\#\#\# CONSOLE INPUT 
+\mbox{[}!\+WARNING\mbox{]} Incorrect file input will ask user to run program again. \end{quote}
+\#\#\# Output flags\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./a.out\ 1\ 2\ -\/3\ \ \ \ \ \ \ \ \ \ //\ a\ b\ c}
+\DoxyCodeLine{-\/tofile\ \ \ \ \ \ \ \ \ flag\ for\ output\ into\ file}
+\DoxyCodeLine{-\/stdout\ \ \ \ \ \ \ \ \ flag\ for\ output\ in\ stdout}
 
 \end{DoxyCode}
- Reads coefficients from console. \begin{quote}
-\mbox{[}!\+WARNING\mbox{]} If input is incorrect (one of coefs is not a number), program returns ERROR. \end{quote}
-\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{STANDART STDIN (\+In development)}{STANDART STDIN (In development)}}\label{md__r_e_a_d_m_e_autotoc_md5}
-Reads full equation from STDIN (5x\texorpdfstring{$^\wedge$}{\string^}2 + 6x-\/7+3x\texorpdfstring{$^\wedge$}{\string^}2 = x -\/ x\texorpdfstring{$^\wedge$}{\string^}2 + 3) \hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Help mode}{Help mode}}\label{md__r_e_a_d_m_e_autotoc_md6}
-flag -\/help for calling help \hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{\texorpdfstring{How does it work?}{How does it work?}}\label{md__r_e_a_d_m_e_autotoc_md7}
-Program finds the roots using a discriminant formula. \hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{Repeat\+:}{Repeat:}}\label{md__r_e_a_d_m_e_autotoc_md8}
-You can solve another equation. If you want to continue, you should type \"{}1\"{} or bigger number after the program\textquotesingle{}s question. Any other answer will be regarded as \"{}\+No\"{}. \begin{quote}
-\mbox{[}!\+NOTE\mbox{]} You can use file input only with first run of the program. If you need to solve another equation, you should enter data using interactive STDIN. \end{quote}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{Type flags\+:}{Type flags:}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/test\ flag\ for\ test\ mode\ activation\ (for\ developers)}
+\DoxyCodeLine{-\/help\ flag\ for\ help\ mode}
+
+\end{DoxyCode}
+ flag -\/help for calling help \hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{How does it work?}{How does it work?}}\label{md__r_e_a_d_m_e_autotoc_md6}
+Program finds the roots using a discriminant formula. \hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{\texorpdfstring{Repeat\+:}{Repeat:}}\label{md__r_e_a_d_m_e_autotoc_md7}
+Program will output the menu, in which you can choose how to continue run of the program. 

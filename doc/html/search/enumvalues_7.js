@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['more_0',['MORE',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02',1,'solver.h']]]
+  ['one_5froot_0',['ONE_ROOT',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf',1,'solver.h']]]
 ];

@@ -25,7 +25,7 @@ struct QuadSolutions
 
 enum Comparison
 {
-  LESS  = -1,         ///< a < b
+  LESS  = -1,          ///< a < b
   EQUAL =  0,          ///< a = b
   MORE  =  1,          ///< a > b
 };
@@ -75,5 +75,13 @@ enum Roots
   ONE_ROOT         =  1,       ///< equation has one root
   TWO_ROOTS        =  2,       ///< equation has two different roots
 };
+
+/************************************************************//**
+ * @brief Compares number with zero (EPSILON accuracy)
+ *
+ * @param[in] nmb number
+ * @return 0 if nmb is close to zero
+ * @return nmb if it is not close to zero
+ ************************************************************/
 
 double IsZero(double* nmb);

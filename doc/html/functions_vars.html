@@ -9,18 +9,9 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(document).ready(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,20 +23,8 @@
   <td id="projectalign">
    <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">Program solves quadratic equations</div>
+   <div id="projectbrief">Solves quadratic equation</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -57,23 +36,18 @@
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('functions_vars.html',''); initResizable(); });
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
 /* @license-end */
 </script>
-<div id="doc-content">
+<div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -96,22 +70,23 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all variables with links to the classes they belong to:</div><ul>
+<div class="textblock">Here is a list of all documented variables with links to the class documentation for each member:</div><ul>
 <li>amount&#160;:&#160;<a class="el" href="struct_quad_solutions.html#a8d0c647945ef70b6688ff40794ecc65b">QuadSolutions</a></li>
+<li>argument&#160;:&#160;<a class="el" href="struct_flag_info.html#a39529cad2d3ddd7ed998fcc8b67d3b52">FlagInfo</a></li>
 <li>first&#160;:&#160;<a class="el" href="struct_quad_solutions.html#a6f747d4e16d26acd2ce433d6f322c74b">QuadSolutions</a></li>
-<li>input&#160;:&#160;<a class="el" href="struct_param.html#ae189c52bbb0ef1adc1c041f17f223208">Param</a></li>
-<li>mode&#160;:&#160;<a class="el" href="struct_param.html#a31f2761776c129529330ee250b4251bb">Param</a></li>
-<li>output&#160;:&#160;<a class="el" href="struct_param.html#a209f173fe0c3d90a86a7a26023052eae">Param</a></li>
+<li>FlagFunc&#160;:&#160;<a class="el" href="struct_flag_info.html#a76e5dd77d50d58e45017fbd411c72364">FlagInfo</a></li>
+<li>help_info&#160;:&#160;<a class="el" href="struct_flag_info.html#a41a7045aa669c2a0d25731a9df01a3b9">FlagInfo</a></li>
+<li>input_ptr&#160;:&#160;<a class="el" href="struct_program_condition.html#a8bdf1c35abb8070496a6a6d9552da1fc">ProgramCondition</a></li>
+<li>LONG_FLAG&#160;:&#160;<a class="el" href="struct_flag_info.html#a299ffd2c7c0b4295ef3f4caf654bbb27">FlagInfo</a></li>
+<li>mode_ptr&#160;:&#160;<a class="el" href="struct_program_condition.html#a0b085908588532c82fce28228a308887">ProgramCondition</a></li>
+<li>output_ptr&#160;:&#160;<a class="el" href="struct_program_condition.html#a4355ed97d41aa1b74079546566ddc339">ProgramCondition</a></li>
 <li>second&#160;:&#160;<a class="el" href="struct_quad_solutions.html#ac142510ee0ad59df5dd346605055bd45">QuadSolutions</a></li>
-<li>type&#160;:&#160;<a class="el" href="struct_param.html#a7f7569bbf0acf8464807758ca9f43fb5">Param</a></li>
+<li>SHORT_FLAG&#160;:&#160;<a class="el" href="struct_flag_info.html#a9d5e5977265d7d012bf22a0cdeb64cf8">FlagInfo</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
 </body>
 </html>

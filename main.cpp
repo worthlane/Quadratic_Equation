@@ -38,7 +38,7 @@ int main(const int argc, const char* argv[])
             #ifdef TEST
             case test_flag:
                 RunTest();
-                return Success;
+                return (int) ErrorList::NOT_AN_ERROR;
             #endif
             default:
                 break;

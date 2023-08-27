@@ -9,18 +9,9 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(document).ready(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,20 +23,8 @@
   <td id="projectalign">
    <div id="projectname">quadratic_equation<span id="projectnumber">&#160;alpha</span>
    </div>
-   <div id="projectbrief">Program solves quadratic equations</div>
+   <div id="projectbrief">Solves quadratic equation</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -57,23 +36,17 @@
 var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('getout__info_8h.html',''); initResizable(); });
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
 /* @license-end */
 </script>
-<div id="doc-content">
+<div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -95,9 +68,9 @@ $(document).ready(function(){initNavTree('getout__info_8h.html',''); initResizab
 </div>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">getout_info.h File Reference</div></div>
@@ -110,46 +83,28 @@ $(document).ready(function(){initNavTree('getout__info_8h.html',''); initResizab
 </div>
 <p><a href="getout__info_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_param.html">Param</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct of parameters, which describe solving process.  <a href="struct_param.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aa705cf7e79a21c2352b00ffe20cd295f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">Flags</a> { <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361">UnknownFlag</a> = -1
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5">IntFlag</a> = 1
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8">StdFlag</a> = 2
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa">StdinFlag</a> = 3
-, <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006">FromFileFlag</a> = 4
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59">ConsoleFlag</a> = 5
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8">StdoutFlag</a> = 6
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa">ToFileFlag</a> = 7
-, <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d">SolveFlag</a> = 8
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a">HelpFlag</a> = 9
-, <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0">TestFlag</a> = 10
-<br />
- }</td></tr>
-<tr class="memdesc:aa705cf7e79a21c2352b00ffe20cd295f"><td class="mdescLeft">&#160;</td><td class="mdescRight">enums flags  <a href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">More...</a><br /></td></tr>
-<tr class="separator:aa705cf7e79a21c2352b00ffe20cd295f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacfd63f29116a60b60898d9a37050e24"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> { <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9">FlagError</a> = 1
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf">GetFileNameError</a> = 2
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3">FileInputError</a> = 3
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d">InvalidCoefError</a> = 4
+&#160;&#160;<b>USER_QUIT</b> = -2
+, <b>UNKNOWN_ERROR</b> = -1
+, <b>NOT_AN_ERROR</b> = 0
+, <b>FLAG_ERROR</b> = 1
 , <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf">RootsAmountError</a> = 5
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985">ReadConsoleError</a> = 6
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a">OpenTestError</a> = 7
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43">CloseTestError</a> = 8
+&#160;&#160;<b>BUFF_OVERSIZE_ERROR</b> = 2
+, <b>GET_FILE_NAME_ERROR</b> = 3
+, <b>FILE_INPUT_ERROR</b> = 4
+, <b>INVALID_COEF_ERROR</b> = 5
 , <br />
-&#160;&#160;<a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e">OpenInputError</a> = 9
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce">CloseInputError</a> = 10
-, <a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace">CloseOutputError</a> = 11
+&#160;&#160;<b>READ_CONSOLE_ERROR</b> = 6
+, <b>ROOTS_AMOUNT_ERROR</b> = 7
+, <b>OPEN_TEST_ERROR</b> = 8
+, <b>CLOSE_TEST_ERROR</b> = 9
+, <br />
+&#160;&#160;<b>OPEN_INPUT_ERROR</b> = 10
+, <b>CLOSE_INPUT_ERROR</b> = 11
+, <b>OPEN_OUTPUT_ERROR</b> = 12
+, <b>CLOSE_OUTPUT_ERROR</b> = 13
 <br />
  }</td></tr>
 <tr class="memdesc:aacfd63f29116a60b60898d9a37050e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">enums errors  <a href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">More...</a><br /></td></tr>
@@ -160,45 +115,27 @@ Functions</h2></td></tr>
 <tr class="memitem:a6dbc86ddc9e73f74ccd96ca3a1bbf89f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a6dbc86ddc9e73f74ccd96ca3a1bbf89f">ClearInput</a> (FILE *fp)</td></tr>
 <tr class="memdesc:a6dbc86ddc9e73f74ccd96ca3a1bbf89f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function clears STDIN from useless symbols, until it meets '\n'.  <br /></td></tr>
 <tr class="separator:a6dbc86ddc9e73f74ccd96ca3a1bbf89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#ab759cd19e5cf2ccbc7b2925e07de9e9c">FSkipFormatText</a> (FILE *fp)</td></tr>
-<tr class="memdesc:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function skips useless for program text: "coef =".  <br /></td></tr>
-<tr class="separator:ab759cd19e5cf2ccbc7b2925e07de9e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0d25954484de324aaadfc7ce35eb594"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#ae0d25954484de324aaadfc7ce35eb594">FGetCoef</a> (FILE *fp, double *a)</td></tr>
-<tr class="memdesc:ae0d25954484de324aaadfc7ce35eb594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets coefficient from a file.  <br /></td></tr>
-<tr class="separator:ae0d25954484de324aaadfc7ce35eb594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621c4eed995625b67b4d55a7be4f6cf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a621c4eed995625b67b4d55a7be4f6cf9">FileGetCoef</a> (FILE *fp, double *a)</td></tr>
+<tr class="memdesc:a621c4eed995625b67b4d55a7be4f6cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets coefficient from a file.  <br /></td></tr>
+<tr class="separator:a621c4eed995625b67b4d55a7be4f6cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8123382aab0235af2ba9348c35189db6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a8123382aab0235af2ba9348c35189db6">GetCoef</a> (double *a, const char ch)</td></tr>
 <tr class="memdesc:a8123382aab0235af2ba9348c35189db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets coefficient from STDIN.  <br /></td></tr>
 <tr class="separator:a8123382aab0235af2ba9348c35189db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67cd3a3cb6eaf2e76847b6ee76a10161"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a67cd3a3cb6eaf2e76847b6ee76a10161">FPrintRoots</a> (const int roots, const double x1, const double x2, FILE *fp)</td></tr>
-<tr class="memdesc:a67cd3a3cb6eaf2e76847b6ee76a10161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prints roots in STDOUT.  <br /></td></tr>
-<tr class="separator:a67cd3a3cb6eaf2e76847b6ee76a10161"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46436e5aae92c60bd734b6a4f7fa885b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a46436e5aae92c60bd734b6a4f7fa885b">GetFileName</a> (char *file_name, const char mode[])</td></tr>
-<tr class="memdesc:a46436e5aae92c60bd734b6a4f7fa885b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets the file name from STDIN stream.  <br /></td></tr>
-<tr class="separator:a46436e5aae92c60bd734b6a4f7fa885b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd758deeaa582e8e84ecd96cd779218e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#afd758deeaa582e8e84ecd96cd779218e">PrintRoots</a> (const int roots, const double x1, const double x2, FILE *fp)</td></tr>
+<tr class="memdesc:afd758deeaa582e8e84ecd96cd779218e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prints roots in STDOUT.  <br /></td></tr>
+<tr class="separator:afd758deeaa582e8e84ecd96cd779218e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f14f0cfe0d10f57f5db7f021de6219"><td class="memItemLeft" align="right" valign="top"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a30f14f0cfe0d10f57f5db7f021de6219">GetFileName</a> (char *file_name, const char mode[])</td></tr>
+<tr class="memdesc:a30f14f0cfe0d10f57f5db7f021de6219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets the file name from STDIN stream.  <br /></td></tr>
+<tr class="separator:a30f14f0cfe0d10f57f5db7f021de6219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f3d71ac338c2990785e79a3a58b04ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac">RepeatQuestion</a> (const char mode[])</td></tr>
 <tr class="memdesc:a2f3d71ac338c2990785e79a3a58b04ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function asks user, does he want to repeat program running.  <br /></td></tr>
 <tr class="separator:a2f3d71ac338c2990785e79a3a58b04ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23223325a407e86fb6710787162945d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a23223325a407e86fb6710787162945d5">PrintError</a> (<a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> error)</td></tr>
-<tr class="memdesc:a23223325a407e86fb6710787162945d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error.  <br /></td></tr>
-<tr class="separator:a23223325a407e86fb6710787162945d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf26a5a0a1472bd59f3375ac2bf097c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#abf26a5a0a1472bd59f3375ac2bf097c4">FlagCheck</a> (const int flag, struct <a class="el" href="struct_param.html">Param</a> *param)</td></tr>
-<tr class="memdesc:abf26a5a0a1472bd59f3375ac2bf097c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks flag type and applies it to program parameters.  <br /></td></tr>
-<tr class="separator:abf26a5a0a1472bd59f3375ac2bf097c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1015da87194adb7595b4205a9d0c620e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a1015da87194adb7595b4205a9d0c620e">ReadFlags</a> (const int argc, const char *argv[], struct <a class="el" href="struct_param.html">Param</a> *param)</td></tr>
-<tr class="memdesc:a1015da87194adb7595b4205a9d0c620e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads flags from console.  <br /></td></tr>
-<tr class="separator:a1015da87194adb7595b4205a9d0c620e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56993b13addd2da4061311411db28066"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a56993b13addd2da4061311411db28066">ReadCoefficients</a> (struct <a class="el" href="struct_param.html">Param</a> *param, double *a, double *b, double *c, const char *argv[], const int argc)</td></tr>
-<tr class="memdesc:a56993b13addd2da4061311411db28066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads coefficients.  <br /></td></tr>
-<tr class="separator:a56993b13addd2da4061311411db28066"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a587cce848273474245415f0f31cccdbf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a587cce848273474245415f0f31cccdbf">GetConsole</a> (const char string[], double *a)</td></tr>
-<tr class="memdesc:a587cce848273474245415f0f31cccdbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the coefficient from console.  <br /></td></tr>
-<tr class="separator:a587cce848273474245415f0f31cccdbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acde0c6f2cf16f73f8c82818a947e831a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#acde0c6f2cf16f73f8c82818a947e831a">DefineFlag</a> (const char flag[])</td></tr>
-<tr class="memdesc:acde0c6f2cf16f73f8c82818a947e831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines flag in flag list.  <br /></td></tr>
-<tr class="separator:acde0c6f2cf16f73f8c82818a947e831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#aecfb0bd1baa36e5ac1e0ce114f6c72d5">Menu</a> (struct <a class="el" href="struct_param.html">Param</a> *param)</td></tr>
-<tr class="memdesc:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks user to continue and changes program modes.  <br /></td></tr>
-<tr class="separator:aecfb0bd1baa36e5ac1e0ce114f6c72d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47da2ed19025616106152f92e7990e49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a47da2ed19025616106152f92e7990e49">PrintError</a> (<a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> error, const char file_name[])</td></tr>
+<tr class="memdesc:a47da2ed19025616106152f92e7990e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error.  <br /></td></tr>
+<tr class="separator:a47da2ed19025616106152f92e7990e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a021520dc9fc7de9c871e9d6c388fdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a0a021520dc9fc7de9c871e9d6c388fdd">GetConsole</a> (char *string, double *a, double *b, double *c)</td></tr>
+<tr class="memdesc:a0a021520dc9fc7de9c871e9d6c388fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Console object.  <br /></td></tr>
+<tr class="separator:a0a021520dc9fc7de9c871e9d6c388fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getout__info_8h.html#a7dc7bff77d5cd3e57ea4536a9f9183c2">OpenInputFile</a> (char *infile_name)</td></tr>
 <tr class="memdesc:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens input file.  <br /></td></tr>
 <tr class="separator:a7dc7bff77d5cd3e57ea4536a9f9183c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,63 +164,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>enums errors </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9" name="aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9"></a>FlagError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf" name="aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf"></a>GetFileNameError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3" name="aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3"></a>FileInputError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d" name="aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d"></a>InvalidCoefError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf" name="aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf"></a>RootsAmountError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985" name="aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985"></a>ReadConsoleError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a" name="aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a"></a>OpenTestError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43" name="aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43"></a>CloseTestError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e" name="aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e"></a>OpenInputError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce" name="aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce"></a>CloseInputError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace" name="aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace"></a>CloseOutputError&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="aa705cf7e79a21c2352b00ffe20cd295f" name="aa705cf7e79a21c2352b00ffe20cd295f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa705cf7e79a21c2352b00ffe20cd295f">&#9670;&#160;</a></span>Flags</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295f">Flags</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>enums flags </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361" name="aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361"></a>UnknownFlag&#160;</td><td class="fielddoc"><p>Unknown Flag. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5" name="aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5"></a>IntFlag&#160;</td><td class="fielddoc"><p>Type flag: interactive <br  />
- </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8" name="aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8"></a>StdFlag&#160;</td><td class="fielddoc"><p>Type flag: standart. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa" name="aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa"></a>StdinFlag&#160;</td><td class="fielddoc"><p>Input flag: stdin input. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006" name="aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006"></a>FromFileFlag&#160;</td><td class="fielddoc"><p>Input flag: input from file. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59" name="aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59"></a>ConsoleFlag&#160;</td><td class="fielddoc"><p>Input flag: input from console <br  />
- </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8" name="aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8"></a>StdoutFlag&#160;</td><td class="fielddoc"><p>Output flag: output in stdout. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa" name="aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa"></a>ToFileFlag&#160;</td><td class="fielddoc"><p>Output flag: output in file. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d" name="aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d"></a>SolveFlag&#160;</td><td class="fielddoc"><p>Mode flag: solving mode. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a" name="aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a"></a>HelpFlag&#160;</td><td class="fielddoc"><p>Mode flag: help mode <br  />
- </p>
-</td></tr>
-<tr><td class="fieldname"><a id="aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0" name="aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0"></a>TestFlag&#160;</td><td class="fielddoc"><p>Mode flag: test mode <br  />
- </p>
-</td></tr>
-</table>
 
 </div>
 </div>
@@ -314,41 +194,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acde0c6f2cf16f73f8c82818a947e831a" name="acde0c6f2cf16f73f8c82818a947e831a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acde0c6f2cf16f73f8c82818a947e831a">&#9670;&#160;</a></span>DefineFlag()</h2>
+<a id="a621c4eed995625b67b4d55a7be4f6cf9" name="a621c4eed995625b67b4d55a7be4f6cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621c4eed995625b67b4d55a7be4f6cf9">&#9670;&#160;</a></span>FileGetCoef()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int DefineFlag </td>
-          <td>(</td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>flag</em>[]</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Defines flag in flag list. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>console argument </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>enum of flags </dd></dl>
-
-</div>
-</div>
-<a id="ae0d25954484de324aaadfc7ce35eb594" name="ae0d25954484de324aaadfc7ce35eb594"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0d25954484de324aaadfc7ce35eb594">&#9670;&#160;</a></span>FGetCoef()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool FGetCoef </td>
+          <td class="memname">bool FileGetCoef </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>fp</em>, </td>
@@ -378,120 +231,6 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if function succesfully got the coefficient </dd>
 <dd>
 false if file had incorrect coefficient input (program stops) </dd></dl>
-
-</div>
-</div>
-<a id="abf26a5a0a1472bd59f3375ac2bf097c4" name="abf26a5a0a1472bd59f3375ac2bf097c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf26a5a0a1472bd59f3375ac2bf097c4">&#9670;&#160;</a></span>FlagCheck()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FlagCheck </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>flag</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
-          <td class="paramname"><em>param</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks flag type and applies it to program parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>flag </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>struct of program parameters </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a67cd3a3cb6eaf2e76847b6ee76a10161" name="a67cd3a3cb6eaf2e76847b6ee76a10161"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67cd3a3cb6eaf2e76847b6ee76a10161">&#9670;&#160;</a></span>FPrintRoots()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FPrintRoots </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>roots</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>x1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>x2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>fp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function prints roots in STDOUT. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">roots</td><td>amount of roots, that the equation has </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x1</td><td>first root (it may be the only root, if "roots" parameter is equal to 1) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x2</td><td>second root (if it exists) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fp</td><td>output stream </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab759cd19e5cf2ccbc7b2925e07de9e9c" name="ab759cd19e5cf2ccbc7b2925e07de9e9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab759cd19e5cf2ccbc7b2925e07de9e9c">&#9670;&#160;</a></span>FSkipFormatText()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FSkipFormatText </td>
-          <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>fp</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function skips useless for program text: "coef =". </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">fp</td><td>file </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -535,8 +274,8 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
 
 </div>
 </div>
-<a id="a587cce848273474245415f0f31cccdbf" name="a587cce848273474245415f0f31cccdbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a587cce848273474245415f0f31cccdbf">&#9670;&#160;</a></span>GetConsole()</h2>
+<a id="a0a021520dc9fc7de9c871e9d6c388fdd" name="a0a021520dc9fc7de9c871e9d6c388fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a021520dc9fc7de9c871e9d6c388fdd">&#9670;&#160;</a></span>GetConsole()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,14 +283,26 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
         <tr>
           <td class="memname">bool GetConsole </td>
           <td>(</td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>string</em>[], </td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>a</em>&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -561,28 +312,30 @@ false if user inputed invalid data, and chose to shut down the program </dd></dl
       </table>
 </div><div class="memdoc">
 
-<p>Get the coefficient from console. </p>
+<p>Get the Console object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>console argument </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coefficient </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if coefficient got successfully </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if program got the coefficients </dd>
 <dd>
-false if there was an error while getting coefficient </dd></dl>
+false if there was failure </dd></dl>
 
 </div>
 </div>
-<a id="a46436e5aae92c60bd734b6a4f7fa885b" name="a46436e5aae92c60bd734b6a4f7fa885b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46436e5aae92c60bd734b6a4f7fa885b">&#9670;&#160;</a></span>GetFileName()</h2>
+<a id="a30f14f0cfe0d10f57f5db7f021de6219" name="a30f14f0cfe0d10f57f5db7f021de6219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f14f0cfe0d10f57f5db7f021de6219">&#9670;&#160;</a></span>GetFileName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool GetFileName </td>
+          <td class="memname"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a> GetFileName </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>file_name</em>, </td>
@@ -615,35 +368,6 @@ false if function did not get name or user exited program </dd></dl>
 
 </div>
 </div>
-<a id="aecfb0bd1baa36e5ac1e0ce114f6c72d5" name="aecfb0bd1baa36e5ac1e0ce114f6c72d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecfb0bd1baa36e5ac1e0ce114f6c72d5">&#9670;&#160;</a></span>Menu()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Menu </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
-          <td class="paramname"><em>param</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Asks user to continue and changes program modes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>parameters of program </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if user want to continue </dd>
-<dd>
-false if user decided to quit program </dd></dl>
-
-</div>
-</div>
 <a id="a7dc7bff77d5cd3e57ea4536a9f9183c2" name="a7dc7bff77d5cd3e57ea4536a9f9183c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7dc7bff77d5cd3e57ea4536a9f9183c2">&#9670;&#160;</a></span>OpenInputFile()</h2>
 
@@ -671,8 +395,8 @@ false if user decided to quit program </dd></dl>
 
 </div>
 </div>
-<a id="a23223325a407e86fb6710787162945d5" name="a23223325a407e86fb6710787162945d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23223325a407e86fb6710787162945d5">&#9670;&#160;</a></span>PrintError()</h2>
+<a id="a47da2ed19025616106152f92e7990e49" name="a47da2ed19025616106152f92e7990e49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47da2ed19025616106152f92e7990e49">&#9670;&#160;</a></span>PrintError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -681,8 +405,18 @@ false if user decided to quit program </dd></dl>
           <td class="memname">void PrintError </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="getout__info_8h.html#aacfd63f29116a60b60898d9a37050e24">ErrorList</a>&#160;</td>
-          <td class="paramname"><em>error</em></td><td>)</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>file_name</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -697,47 +431,35 @@ false if user decided to quit program </dd></dl>
 
 </div>
 </div>
-<a id="a56993b13addd2da4061311411db28066" name="a56993b13addd2da4061311411db28066"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56993b13addd2da4061311411db28066">&#9670;&#160;</a></span>ReadCoefficients()</h2>
+<a id="afd758deeaa582e8e84ecd96cd779218e" name="afd758deeaa582e8e84ecd96cd779218e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd758deeaa582e8e84ecd96cd779218e">&#9670;&#160;</a></span>PrintRoots()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ReadCoefficients </td>
+          <td class="memname">void PrintRoots </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
-          <td class="paramname"><em>param</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>argv</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>argc</em>&#160;</td>
+          <td class="paramname"><em>roots</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>x2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -747,62 +469,13 @@ false if user decided to quit program </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Reads coefficients. </p>
+<p>Function prints roots in STDOUT. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>parameters of program working process (we need input parameter) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console input </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console arguments </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">a</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">b</td><td>coefficient </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">c</td><td>coeficient </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if program successfuly read coefficients </dd>
-<dd>
-false if there was an error while reading coefficients </dd></dl>
-
-</div>
-</div>
-<a id="a1015da87194adb7595b4205a9d0c620e" name="a1015da87194adb7595b4205a9d0c620e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1015da87194adb7595b4205a9d0c620e">&#9670;&#160;</a></span>ReadFlags()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReadFlags </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>argv</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="struct_param.html">Param</a> *&#160;</td>
-          <td class="paramname"><em>param</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads flags from console. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>amount of console words </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>console input </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>parameters of program </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">roots</td><td>amount of roots, that the equation has </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x1</td><td>first root (it may be the only root, if "roots" parameter is equal to 1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x2</td><td>second root (if it exists) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fp</td><td>output stream </td></tr>
   </table>
   </dd>
 </dl>
@@ -839,13 +512,9 @@ false if user want to quit </dd></dl>
 </div>
 </div>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="getout__info_8h.html">getout_info.h</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
 </body>
 </html>

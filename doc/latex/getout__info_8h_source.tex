@@ -2,98 +2,119 @@
 \hypertarget{getout__info_8h_source}{}\label{getout__info_8h_source}\mbox{\hyperlink{getout__info_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00006\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ LEN\ =\ 100;\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00007\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ read\_amount\ =\ 3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00013\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295f}{Flags}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361}{UnknownFlag}}\ \ =\ -\/1,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00016\ \ \ }
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5}{IntFlag}}\ \ \ \ \ \ =\ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8}{StdFlag}}\ \ \ \ \ \ =\ \ 2,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00019\ \ \ \ \ }
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa}{StdinFlag}}\ \ \ \ =\ \ 3,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006}{FromFileFlag}}\ =\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59}{ConsoleFlag}}\ \ =\ \ 5,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ LEN\ =\ 100;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ read\_amount\ =\ 3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_INTERACTIVE\_FLAG\ \ =\ \textcolor{stringliteral}{"{}-\/-\/int"{}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_FROMFILE\_FLAG\ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/fromfile"{}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_CONSOLE\_FLAG\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/console"{}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_STDIN\_FLAG\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/stdin"{}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_TOFILE\_FLAG\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/tofile"{}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_STDOUT\_FLAG\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/stdout"{}};}
 \DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8}{StdoutFlag}}\ \ \ =\ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa}{ToFileFlag}}\ \ \ =\ \ 7,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d}{SolveFlag}}\ \ \ \ =\ \ 8,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a}{HelpFlag}}\ \ \ \ \ =\ \ 9,\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0}{TestFlag}}\ \ \ \ \ =\ 10\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_HELP\_FLAG\ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/help"{}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_TEST\_FLAG\ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/test"{}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ LONG\_SOLVE\_FLAG\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/-\/solve"{}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::}}
 \DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00036\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}}
-\DoxyCodeLine{00037\ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9}{FlagError}}\ \ \ \ \ \ \ \ =\ \ 1,}
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf}{GetFileNameError}}\ =\ \ 2,}
-\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3}{FileInputError}}\ \ \ =\ \ 3,}
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d}{InvalidCoefError}}\ =\ \ 4,\ }
-\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf}{RootsAmountError}}\ =\ \ 5,}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985}{ReadConsoleError}}\ =\ \ 6,}
-\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a}{OpenTestError}}\ \ \ \ =\ \ 7,}
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43}{CloseTestError}}\ \ \ =\ \ 8,}
-\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e}{OpenInputError}}\ \ \ =\ \ 9,}
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce}{CloseInputError}}\ \ =\ 10,}
-\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace}{CloseOutputError}}\ =\ 11}
-\DoxyCodeLine{00049\ \};}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_param}{Param}}}
-\DoxyCodeLine{00056\ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_param_a7f7569bbf0acf8464807758ca9f43fb5}{type}};\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_param_ae189c52bbb0ef1adc1c041f17f223208}{input}};\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_param_a209f173fe0c3d90a86a7a26023052eae}{output}};\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_param_a31f2761776c129529330ee250b4251bb}{mode}};\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00061\ \};}
-\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_INTERACTIVE\_FLAG\ =\ \textcolor{stringliteral}{"{}-\/i"{}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_FROMFILE\_FLAG\ \ \ \ =\ \textcolor{stringliteral}{"{}-\/ff"{}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_CONSOLE\_FLAG\ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/c"{}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_STDIN\_FLAG\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/i"{}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_TOFILE\_FLAG\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/tf"{}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_STDOUT\_FLAG\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/o"{}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_HELP\_FLAG\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/h"{}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_TEST\_FLAG\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/tt"{}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SHORT\_SOLVE\_FLAG\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}-\/s"{}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ FROMFILE\_HELP\ \ \ \ \ =\ \textcolor{stringliteral}{"{}[file\_name]\ flag\ for\ input\ from\ file\(\backslash\)n"{}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ CONSOLE\_HELP\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}[a\ b\ c]\ flag\ for\ console\ input\ (a\ b\ c\ -\/\ coefficients)\(\backslash\)n"{}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ STDIN\_HELP\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}flag\ for\ input\ from\ stdin\ (default\ config)\(\backslash\)n"{}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ TOFILE\_HELP\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}[file\_name]\ flag\ for\ output\ into\ file\(\backslash\)n"{}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ STDOUT\_HELP\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}flag\ for\ output\ in\ stdout\ (default\ config)\(\backslash\)n"{}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ HELP\_HELP\ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}[target]\ calls\ help\ and\ prints\ information\ about\ [target]\(\backslash\)n"{}};}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a6dbc86ddc9e73f74ccd96ca3a1bbf89f}{ClearInput}}(FILE*\ fp);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}{FSkipFormatText}}(FILE*\ fp);}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00090\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_ae0d25954484de324aaadfc7ce35eb594}{FGetCoef}}(FILE*\ fp,\ \textcolor{keywordtype}{double}*\ a);}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00101\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a8123382aab0235af2ba9348c35189db6}{GetCoef}}(\textcolor{keywordtype}{double}*\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch);}
+\DoxyCodeLine{00064\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ SOLVE\_HELP\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}for\ solve\ mode\ activation\ (default\ config)\(\backslash\)n"{}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ USER\_QUIT\ \ \ \ \ \ \ \ \ \ \ =\ -\/2,}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ UNKNOWN\_ERROR\ \ \ \ \ \ \ =\ -\/1,}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ NOT\_AN\_ERROR\ \ \ \ \ \ \ \ =\ \ 0,}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ FLAG\_ERROR\ \ \ \ \ \ \ \ \ \ =\ \ 1,}
+\DoxyCodeLine{00079\ \ \ \ \ BUFF\_OVERSIZE\_ERROR\ =\ \ 2,}
+\DoxyCodeLine{00080\ \ \ \ \ GET\_FILE\_NAME\_ERROR\ =\ \ 3,}
+\DoxyCodeLine{00081\ \ \ \ \ FILE\_INPUT\_ERROR\ \ \ \ =\ \ 4,}
+\DoxyCodeLine{00082\ \ \ \ \ INVALID\_COEF\_ERROR\ \ =\ \ 5,}
+\DoxyCodeLine{00083\ \ \ \ \ READ\_CONSOLE\_ERROR\ \ =\ \ 6,}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ ROOTS\_AMOUNT\_ERROR\ \ =\ \ 7,}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ OPEN\_TEST\_ERROR\ \ \ \ \ =\ \ 8,}
+\DoxyCodeLine{00088\ \ \ \ \ CLOSE\_TEST\_ERROR\ \ \ \ =\ \ 9,}
+\DoxyCodeLine{00089\ \ \ \ \ OPEN\_INPUT\_ERROR\ \ \ \ =\ 10,}
+\DoxyCodeLine{00090\ \ \ \ \ CLOSE\_INPUT\_ERROR\ \ \ =\ 11,}
+\DoxyCodeLine{00091\ \ \ \ \ OPEN\_OUTPUT\_ERROR\ \ \ =\ 12,}
+\DoxyCodeLine{00092\ \ \ \ \ CLOSE\_OUTPUT\_ERROR\ \ =\ 13}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00101\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a6dbc86ddc9e73f74ccd96ca3a1bbf89f}{ClearInput}}(FILE*\ fp);}
 \DoxyCodeLine{00102\ }
 \DoxyCodeLine{00103\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a67cd3a3cb6eaf2e76847b6ee76a10161}{FPrintRoots}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roots,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x2,\ FILE*\ fp);}
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a621c4eed995625b67b4d55a7be4f6cf9}{FileGetCoef}}(FILE*\ fp,\ \textcolor{keywordtype}{double}*\ a);}
 \DoxyCodeLine{00113\ }
 \DoxyCodeLine{00114\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00123\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a46436e5aae92c60bd734b6a4f7fa885b}{GetFileName}}(\textcolor{keywordtype}{char}*\ file\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ mode[]);}
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a8123382aab0235af2ba9348c35189db6}{GetCoef}}(\textcolor{keywordtype}{double}*\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch);}
 \DoxyCodeLine{00124\ }
 \DoxyCodeLine{00125\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00133\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a2f3d71ac338c2990785e79a3a58b04ac}{RepeatQuestion}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ mode[]);}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00141\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a23223325a407e86fb6710787162945d5}{PrintError}}(\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}\ error);}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_abf26a5a0a1472bd59f3375ac2bf097c4}{FlagCheck}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ flag,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_param}{Param}}*\ param);}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00160\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a1015da87194adb7595b4205a9d0c620e}{ReadFlags}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ argv[],\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_param}{Param}}*\ param);}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00175\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a56993b13addd2da4061311411db28066}{ReadCoefficients}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_param}{Param}}*\ param,\ \textcolor{keywordtype}{double}*\ a,\ \textcolor{keywordtype}{double}*\ b,\ \textcolor{keywordtype}{double}*\ c,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ argv[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc);}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00177\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00186\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a587cce848273474245415f0f31cccdbf}{GetConsole}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \textcolor{keywordtype}{string}[],\ \textcolor{keywordtype}{double}*\ a);}
+\DoxyCodeLine{00134\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_afd758deeaa582e8e84ecd96cd779218e}{PrintRoots}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roots,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x2,\ FILE*\ fp);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00145\ \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}\ \mbox{\hyperlink{getout__info_8h_a30f14f0cfe0d10f57f5db7f021de6219}{GetFileName}}(\textcolor{keywordtype}{char}*\ file\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ mode[]);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00155\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a2f3d71ac338c2990785e79a3a58b04ac}{RepeatQuestion}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ mode[]);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{getout__info_8h_a47da2ed19025616106152f92e7990e49}{PrintError}}(\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{ErrorList}}\ error,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ file\_name[]);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_a0a021520dc9fc7de9c871e9d6c388fdd}{GetConsole}}(\textcolor{keywordtype}{char}*\ \textcolor{keywordtype}{string},\ \textcolor{keywordtype}{double}*\ a,\ \textcolor{keywordtype}{double}*\ b,\ \textcolor{keywordtype}{double}*\ c);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{comment}{/************************************************************/}}
+\DoxyCodeLine{00185\ FILE*\ \mbox{\hyperlink{getout__info_8h_a7dc7bff77d5cd3e57ea4536a9f9183c2}{OpenInputFile}}(\textcolor{keywordtype}{char}*\ infile\_name);}
+\DoxyCodeLine{00186\ }
 \DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00195\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{getout__info_8h_acde0c6f2cf16f73f8c82818a947e831a}{DefineFlag}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ flag[]);}
-\DoxyCodeLine{00196\ }
-\DoxyCodeLine{00197\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00205\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{getout__info_8h_aecfb0bd1baa36e5ac1e0ce114f6c72d5}{Menu}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_param}{Param}}*\ param);}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \textcolor{comment}{/************************************************************/}}
-\DoxyCodeLine{00214\ FILE*\ \mbox{\hyperlink{getout__info_8h_a7dc7bff77d5cd3e57ea4536a9f9183c2}{OpenInputFile}}(\textcolor{keywordtype}{char}*\ infile\_name);}
 
 \end{DoxyCode}

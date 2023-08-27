@@ -6,44 +6,29 @@ Contains functions, that can input and output data. Supports FILE input/output a
 
 
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-\doxysubsubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \mbox{\hyperlink{struct_param}{Param}}
-\begin{DoxyCompactList}\small\item\em Struct of parameters, which describe solving process. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295f}{Flags}} \{ \newline
-\mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361}{Unknown\+Flag}} = -\/1
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5}{Int\+Flag}} = 1
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8}{Std\+Flag}} = 2
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa}{Stdin\+Flag}} = 3
-, \newline
-\mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006}{From\+File\+Flag}} = 4
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59}{Console\+Flag}} = 5
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8}{Stdout\+Flag}} = 6
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa}{To\+File\+Flag}} = 7
-, \newline
-\mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d}{Solve\+Flag}} = 8
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a}{Help\+Flag}} = 9
-, \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0}{Test\+Flag}} = 10
- \}
-\begin{DoxyCompactList}\small\item\em enums flags \end{DoxyCompactList}\item 
 enum class \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} \{ \newline
-\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9}{Flag\+Error}} = 1
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf}{Get\+File\+Name\+Error}} = 2
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3}{File\+Input\+Error}} = 3
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d}{Invalid\+Coef\+Error}} = 4
+{\bfseries USER\+\_\+\+QUIT} = -\/2
+, {\bfseries UNKNOWN\+\_\+\+ERROR} = -\/1
+, {\bfseries NOT\+\_\+\+AN\+\_\+\+ERROR} = 0
+, {\bfseries FLAG\+\_\+\+ERROR} = 1
 , \newline
-\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf}{Roots\+Amount\+Error}} = 5
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985}{Read\+Console\+Error}} = 6
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a}{Open\+Test\+Error}} = 7
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43}{Close\+Test\+Error}} = 8
+{\bfseries BUFF\+\_\+\+OVERSIZE\+\_\+\+ERROR} = 2
+, {\bfseries GET\+\_\+\+FILE\+\_\+\+NAME\+\_\+\+ERROR} = 3
+, {\bfseries FILE\+\_\+\+INPUT\+\_\+\+ERROR} = 4
+, {\bfseries INVALID\+\_\+\+COEF\+\_\+\+ERROR} = 5
 , \newline
-\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e}{Open\+Input\+Error}} = 9
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce}{Close\+Input\+Error}} = 10
-, \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace}{Close\+Output\+Error}} = 11
+{\bfseries READ\+\_\+\+CONSOLE\+\_\+\+ERROR} = 6
+, {\bfseries ROOTS\+\_\+\+AMOUNT\+\_\+\+ERROR} = 7
+, {\bfseries OPEN\+\_\+\+TEST\+\_\+\+ERROR} = 8
+, {\bfseries CLOSE\+\_\+\+TEST\+\_\+\+ERROR} = 9
+, \newline
+{\bfseries OPEN\+\_\+\+INPUT\+\_\+\+ERROR} = 10
+, {\bfseries CLOSE\+\_\+\+INPUT\+\_\+\+ERROR} = 11
+, {\bfseries OPEN\+\_\+\+OUTPUT\+\_\+\+ERROR} = 12
+, {\bfseries CLOSE\+\_\+\+OUTPUT\+\_\+\+ERROR} = 13
  \}
 \begin{DoxyCompactList}\small\item\em enums errors \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -51,32 +36,20 @@ enum class \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{E
 \item 
 void \mbox{\hyperlink{getout__info_8h_a6dbc86ddc9e73f74ccd96ca3a1bbf89f}{Clear\+Input}} (FILE \texorpdfstring{$\ast$}{*}fp)
 \begin{DoxyCompactList}\small\item\em Function clears STDIN from useless symbols, until it meets \textquotesingle{}\textbackslash{}n\textquotesingle{}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}{FSkip\+Format\+Text}} (FILE \texorpdfstring{$\ast$}{*}fp)
-\begin{DoxyCompactList}\small\item\em Function skips useless for program text\+: \"{}coef =\"{}. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8h_ae0d25954484de324aaadfc7ce35eb594}{FGet\+Coef}} (FILE \texorpdfstring{$\ast$}{*}fp, double \texorpdfstring{$\ast$}{*}a)
+bool \mbox{\hyperlink{getout__info_8h_a621c4eed995625b67b4d55a7be4f6cf9}{File\+Get\+Coef}} (FILE \texorpdfstring{$\ast$}{*}fp, double \texorpdfstring{$\ast$}{*}a)
 \begin{DoxyCompactList}\small\item\em Function gets coefficient from a file. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{getout__info_8h_a8123382aab0235af2ba9348c35189db6}{Get\+Coef}} (double \texorpdfstring{$\ast$}{*}a, const char ch)
 \begin{DoxyCompactList}\small\item\em Function gets coefficient from STDIN. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{getout__info_8h_a67cd3a3cb6eaf2e76847b6ee76a10161}{FPrint\+Roots}} (const int roots, const double x1, const double x2, FILE \texorpdfstring{$\ast$}{*}fp)
+void \mbox{\hyperlink{getout__info_8h_afd758deeaa582e8e84ecd96cd779218e}{Print\+Roots}} (const int roots, const double x1, const double x2, FILE \texorpdfstring{$\ast$}{*}fp)
 \begin{DoxyCompactList}\small\item\em Function prints roots in STDOUT. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8h_a46436e5aae92c60bd734b6a4f7fa885b}{Get\+File\+Name}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, const char mode\mbox{[}$\,$\mbox{]})
+\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} \mbox{\hyperlink{getout__info_8h_a30f14f0cfe0d10f57f5db7f021de6219}{Get\+File\+Name}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, const char mode\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Function gets the file name from STDIN stream. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{getout__info_8h_a2f3d71ac338c2990785e79a3a58b04ac}{Repeat\+Question}} (const char mode\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Function asks user, does he want to repeat program running. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{getout__info_8h_a23223325a407e86fb6710787162945d5}{Print\+Error}} (\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} error)
+void \mbox{\hyperlink{getout__info_8h_a47da2ed19025616106152f92e7990e49}{Print\+Error}} (\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} error, const char file\+\_\+name\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Prints error. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{getout__info_8h_abf26a5a0a1472bd59f3375ac2bf097c4}{Flag\+Check}} (const int flag, struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
-\begin{DoxyCompactList}\small\item\em Checks flag type and applies it to program parameters. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{getout__info_8h_a1015da87194adb7595b4205a9d0c620e}{Read\+Flags}} (const int argc, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
-\begin{DoxyCompactList}\small\item\em Reads flags from console. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8h_a56993b13addd2da4061311411db28066}{Read\+Coefficients}} (struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param, double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, const int argc)
-\begin{DoxyCompactList}\small\item\em Reads coefficients. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8h_a587cce848273474245415f0f31cccdbf}{Get\+Console}} (const char string\mbox{[}$\,$\mbox{]}, double \texorpdfstring{$\ast$}{*}a)
-\begin{DoxyCompactList}\small\item\em Get the coefficient from console. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{getout__info_8h_acde0c6f2cf16f73f8c82818a947e831a}{Define\+Flag}} (const char flag\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em Defines flag in flag list. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{getout__info_8h_aecfb0bd1baa36e5ac1e0ce114f6c72d5}{Menu}} (struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}param)
-\begin{DoxyCompactList}\small\item\em Asks user to continue and changes program modes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{getout__info_8h_a0a021520dc9fc7de9c871e9d6c388fdd}{Get\+Console}} (char \texorpdfstring{$\ast$}{*}string, double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}c)
+\begin{DoxyCompactList}\small\item\em Get the Console object. \end{DoxyCompactList}\item 
 FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{getout__info_8h_a7dc7bff77d5cd3e57ea4536a9f9183c2}{Open\+Input\+File}} (char \texorpdfstring{$\ast$}{*}infile\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Opens input file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -97,112 +70,6 @@ Contains functions, that can input and output data. Supports FILE input/output a
 
 enums errors 
 
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FlagError@{FlagError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!FlagError@{FlagError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24af04149800157fba36471540307161ed9} 
-Flag\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{GetFileNameError@{GetFileNameError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!GetFileNameError@{GetFileNameError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a9faff040d6792c2b509b7ca9e04162cf} 
-Get\+File\+Name\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FileInputError@{FileInputError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!FileInputError@{FileInputError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2a3f436dafda5c7bb9720336aab94cd3} 
-File\+Input\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{InvalidCoefError@{InvalidCoefError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!InvalidCoefError@{InvalidCoefError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a7ed3b037618943c2c34d7ede110fec4d} 
-Invalid\+Coef\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RootsAmountError@{RootsAmountError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!RootsAmountError@{RootsAmountError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24adad901056e377a54855bd0f30d123caf} 
-Roots\+Amount\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ReadConsoleError@{ReadConsoleError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!ReadConsoleError@{ReadConsoleError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ac21c9d237014c0ac82cfa742a1911985} 
-Read\+Console\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{OpenTestError@{OpenTestError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!OpenTestError@{OpenTestError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24acce6586abd85836b4b9720c0b670b59a} 
-Open\+Test\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CloseTestError@{CloseTestError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!CloseTestError@{CloseTestError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a2425d7ed82d9c66c10b6f13b00796c43} 
-Close\+Test\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{OpenInputError@{OpenInputError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!OpenInputError@{OpenInputError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24a85fef01a3c44c207626bc57eeba82d9e} 
-Open\+Input\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CloseInputError@{CloseInputError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!CloseInputError@{CloseInputError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ae19e5551e4075e64d3914f9c83692fce} 
-Close\+Input\+Error&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CloseOutputError@{CloseOutputError}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!CloseOutputError@{CloseOutputError}}}\Hypertarget{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace}\label{getout__info_8h_aacfd63f29116a60b60898d9a37050e24ad31131856fa8115350ef3408803fdace} 
-Close\+Output\+Error&\\
-\hline
-
-\end{DoxyEnumFields}
-\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295f}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295f} 
-\index{getout\_info.h@{getout\_info.h}!Flags@{Flags}}
-\index{Flags@{Flags}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{Flags}{Flags}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295f}{Flags}}}
-
-
-
-enums flags 
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UnknownFlag@{UnknownFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!UnknownFlag@{UnknownFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadca54311d2cccca17e6420fead698361} 
-Unknown\+Flag&Unknown Flag. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{IntFlag@{IntFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!IntFlag@{IntFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fab8a3ffc20b20a85ae2cc69757cb81ab5} 
-Int\+Flag&Type flag\+: interactive ~\newline
- \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{StdFlag@{StdFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!StdFlag@{StdFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295faadded21695946fa79b5022933d12b5f8} 
-Std\+Flag&Type flag\+: standart. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{StdinFlag@{StdinFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!StdinFlag@{StdinFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fadba2f0c3c6a8c1c569a1089ccf3706fa} 
-Stdin\+Flag&Input flag\+: stdin input. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FromFileFlag@{FromFileFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!FromFileFlag@{FromFileFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fac8404645d061d72a30dc1916a7170006} 
-From\+File\+Flag&Input flag\+: input from file. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ConsoleFlag@{ConsoleFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!ConsoleFlag@{ConsoleFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa4440f5e162c154ff77d5850deaac1c59} 
-Console\+Flag&Input flag\+: input from console ~\newline
- \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{StdoutFlag@{StdoutFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!StdoutFlag@{StdoutFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fa7edcd92d61c2b603cb11ee4789791aa8} 
-Stdout\+Flag&Output flag\+: output in stdout. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ToFileFlag@{ToFileFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!ToFileFlag@{ToFileFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295facf8532d002e7e0467cb2a0352c015eaa} 
-To\+File\+Flag&Output flag\+: output in file. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SolveFlag@{SolveFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!SolveFlag@{SolveFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad6bd22cad90e2fdafa363b6593a58b2d} 
-Solve\+Flag&Mode flag\+: solving mode. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{HelpFlag@{HelpFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!HelpFlag@{HelpFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a} 
-Help\+Flag&Mode flag\+: help mode ~\newline
- \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{TestFlag@{TestFlag}!getout\_info.h@{getout\_info.h}}\index{getout\_info.h@{getout\_info.h}!TestFlag@{TestFlag}}}\Hypertarget{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0}\label{getout__info_8h_aa705cf7e79a21c2352b00ffe20cd295fad59668cbe6be1a9d00c0df8a787e1cb0} 
-Test\+Flag&Mode flag\+: test mode ~\newline
- \\
-\hline
-
-\end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}
@@ -221,29 +88,11 @@ Function clears STDIN from useless symbols, until it meets \textquotesingle{}\te
 \mbox{\texttt{ in}}  & {\em fp} & file \\
 \hline
 \end{DoxyParams}
-\Hypertarget{getout__info_8h_acde0c6f2cf16f73f8c82818a947e831a}\label{getout__info_8h_acde0c6f2cf16f73f8c82818a947e831a} 
-\index{getout\_info.h@{getout\_info.h}!DefineFlag@{DefineFlag}}
-\index{DefineFlag@{DefineFlag}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{DefineFlag()}{DefineFlag()}}
-{\footnotesize\ttfamily int Define\+Flag (\begin{DoxyParamCaption}\item[{const char}]{flag\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
-
-
-
-Defines flag in flag list. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em flag} & console argument \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-enum of flags 
-\end{DoxyReturn}
-\Hypertarget{getout__info_8h_ae0d25954484de324aaadfc7ce35eb594}\label{getout__info_8h_ae0d25954484de324aaadfc7ce35eb594} 
-\index{getout\_info.h@{getout\_info.h}!FGetCoef@{FGetCoef}}
-\index{FGetCoef@{FGetCoef}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{FGetCoef()}{FGetCoef()}}
-{\footnotesize\ttfamily bool FGet\+Coef (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp,  }\item[{double \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+\Hypertarget{getout__info_8h_a621c4eed995625b67b4d55a7be4f6cf9}\label{getout__info_8h_a621c4eed995625b67b4d55a7be4f6cf9} 
+\index{getout\_info.h@{getout\_info.h}!FileGetCoef@{FileGetCoef}}
+\index{FileGetCoef@{FileGetCoef}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{FileGetCoef()}{FileGetCoef()}}
+{\footnotesize\ttfamily bool File\+Get\+Coef (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp,  }\item[{double \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
 
 
 
@@ -261,59 +110,6 @@ true if function succesfully got the coefficient
 
 false if file had incorrect coefficient input (program stops) 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8h_abf26a5a0a1472bd59f3375ac2bf097c4}\label{getout__info_8h_abf26a5a0a1472bd59f3375ac2bf097c4} 
-\index{getout\_info.h@{getout\_info.h}!FlagCheck@{FlagCheck}}
-\index{FlagCheck@{FlagCheck}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{FlagCheck()}{FlagCheck()}}
-{\footnotesize\ttfamily void Flag\+Check (\begin{DoxyParamCaption}\item[{const int}]{flag,  }\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
-
-
-
-Checks flag type and applies it to program parameters. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em flag} & flag \\
-\hline
-\mbox{\texttt{ in}}  & {\em param} & struct of program parameters \\
-\hline
-\end{DoxyParams}
-\Hypertarget{getout__info_8h_a67cd3a3cb6eaf2e76847b6ee76a10161}\label{getout__info_8h_a67cd3a3cb6eaf2e76847b6ee76a10161} 
-\index{getout\_info.h@{getout\_info.h}!FPrintRoots@{FPrintRoots}}
-\index{FPrintRoots@{FPrintRoots}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{FPrintRoots()}{FPrintRoots()}}
-{\footnotesize\ttfamily void FPrint\+Roots (\begin{DoxyParamCaption}\item[{const int}]{roots,  }\item[{const double}]{x1,  }\item[{const double}]{x2,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
-
-
-
-Function prints roots in STDOUT. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em roots} & amount of roots, that the equation has \\
-\hline
-\mbox{\texttt{ in}}  & {\em x1} & first root (it may be the only root, if \"{}roots\"{} parameter is equal to 1) \\
-\hline
-\mbox{\texttt{ in}}  & {\em x2} & second root (if it exists) \\
-\hline
-\mbox{\texttt{ in}}  & {\em fp} & output stream \\
-\hline
-\end{DoxyParams}
-\Hypertarget{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c}\label{getout__info_8h_ab759cd19e5cf2ccbc7b2925e07de9e9c} 
-\index{getout\_info.h@{getout\_info.h}!FSkipFormatText@{FSkipFormatText}}
-\index{FSkipFormatText@{FSkipFormatText}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{FSkipFormatText()}{FSkipFormatText()}}
-{\footnotesize\ttfamily void FSkip\+Format\+Text (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
-
-
-
-Function skips useless for program text\+: \"{}coef =\"{}. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em fp} & file \\
-\hline
-\end{DoxyParams}
 \Hypertarget{getout__info_8h_a8123382aab0235af2ba9348c35189db6}\label{getout__info_8h_a8123382aab0235af2ba9348c35189db6} 
 \index{getout\_info.h@{getout\_info.h}!GetCoef@{GetCoef}}
 \index{GetCoef@{GetCoef}!getout\_info.h@{getout\_info.h}}
@@ -336,15 +132,15 @@ true if function succesfully got the coefficient
 
 false if user inputed invalid data, and chose to shut down the program 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8h_a587cce848273474245415f0f31cccdbf}\label{getout__info_8h_a587cce848273474245415f0f31cccdbf} 
+\Hypertarget{getout__info_8h_a0a021520dc9fc7de9c871e9d6c388fdd}\label{getout__info_8h_a0a021520dc9fc7de9c871e9d6c388fdd} 
 \index{getout\_info.h@{getout\_info.h}!GetConsole@{GetConsole}}
 \index{GetConsole@{GetConsole}!getout\_info.h@{getout\_info.h}}
 \doxysubsubsection{\texorpdfstring{GetConsole()}{GetConsole()}}
-{\footnotesize\ttfamily bool Get\+Console (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]},  }\item[{double \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Get\+Console (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{string,  }\item[{double \texorpdfstring{$\ast$}{*}}]{a,  }\item[{double \texorpdfstring{$\ast$}{*}}]{b,  }\item[{double \texorpdfstring{$\ast$}{*}}]{c }\end{DoxyParamCaption})}
 
 
 
-Get the coefficient from console. 
+Get the Console object. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -352,17 +148,21 @@ Get the coefficient from console.
 \hline
 \mbox{\texttt{ out}}  & {\em a} & coefficient \\
 \hline
+\mbox{\texttt{ out}}  & {\em b} & coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em c} & coefficient \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true if coefficient got successfully 
+true if program got the coefficients 
 
-false if there was an error while getting coefficient 
+false if there was failure 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8h_a46436e5aae92c60bd734b6a4f7fa885b}\label{getout__info_8h_a46436e5aae92c60bd734b6a4f7fa885b} 
+\Hypertarget{getout__info_8h_a30f14f0cfe0d10f57f5db7f021de6219}\label{getout__info_8h_a30f14f0cfe0d10f57f5db7f021de6219} 
 \index{getout\_info.h@{getout\_info.h}!GetFileName@{GetFileName}}
 \index{GetFileName@{GetFileName}!getout\_info.h@{getout\_info.h}}
 \doxysubsubsection{\texorpdfstring{GetFileName()}{GetFileName()}}
-{\footnotesize\ttfamily bool Get\+File\+Name (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{file\+\_\+name,  }\item[{const char}]{mode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}} Get\+File\+Name (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{file\+\_\+name,  }\item[{const char}]{mode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 
 
@@ -379,26 +179,6 @@ Function gets the file name from STDIN stream.
 true if function got the name succesfully 
 
 false if function did not get name or user exited program 
-\end{DoxyReturn}
-\Hypertarget{getout__info_8h_aecfb0bd1baa36e5ac1e0ce114f6c72d5}\label{getout__info_8h_aecfb0bd1baa36e5ac1e0ce114f6c72d5} 
-\index{getout\_info.h@{getout\_info.h}!Menu@{Menu}}
-\index{Menu@{Menu}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}}
-{\footnotesize\ttfamily bool Menu (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
-
-
-
-Asks user to continue and changes program modes. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em param} & parameters of program \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true if user want to continue 
-
-false if user decided to quit program 
 \end{DoxyReturn}
 \Hypertarget{getout__info_8h_a7dc7bff77d5cd3e57ea4536a9f9183c2}\label{getout__info_8h_a7dc7bff77d5cd3e57ea4536a9f9183c2} 
 \index{getout\_info.h@{getout\_info.h}!OpenInputFile@{OpenInputFile}}
@@ -418,11 +198,11 @@ Opens input file.
 \begin{DoxyReturn}{Returns}
 pointer to file 
 \end{DoxyReturn}
-\Hypertarget{getout__info_8h_a23223325a407e86fb6710787162945d5}\label{getout__info_8h_a23223325a407e86fb6710787162945d5} 
+\Hypertarget{getout__info_8h_a47da2ed19025616106152f92e7990e49}\label{getout__info_8h_a47da2ed19025616106152f92e7990e49} 
 \index{getout\_info.h@{getout\_info.h}!PrintError@{PrintError}}
 \index{PrintError@{PrintError}!getout\_info.h@{getout\_info.h}}
 \doxysubsubsection{\texorpdfstring{PrintError()}{PrintError()}}
-{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}}}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{getout__info_8h_aacfd63f29116a60b60898d9a37050e24}{Error\+List}}}]{error,  }\item[{const char}]{file\+\_\+name\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 
 
@@ -433,53 +213,25 @@ Prints error.
 \mbox{\texttt{ in}}  & {\em error} & \\
 \hline
 \end{DoxyParams}
-\Hypertarget{getout__info_8h_a56993b13addd2da4061311411db28066}\label{getout__info_8h_a56993b13addd2da4061311411db28066} 
-\index{getout\_info.h@{getout\_info.h}!ReadCoefficients@{ReadCoefficients}}
-\index{ReadCoefficients@{ReadCoefficients}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{ReadCoefficients()}{ReadCoefficients()}}
-{\footnotesize\ttfamily bool Read\+Coefficients (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param,  }\item[{double \texorpdfstring{$\ast$}{*}}]{a,  }\item[{double \texorpdfstring{$\ast$}{*}}]{b,  }\item[{double \texorpdfstring{$\ast$}{*}}]{c,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{const int}]{argc }\end{DoxyParamCaption})}
+\Hypertarget{getout__info_8h_afd758deeaa582e8e84ecd96cd779218e}\label{getout__info_8h_afd758deeaa582e8e84ecd96cd779218e} 
+\index{getout\_info.h@{getout\_info.h}!PrintRoots@{PrintRoots}}
+\index{PrintRoots@{PrintRoots}!getout\_info.h@{getout\_info.h}}
+\doxysubsubsection{\texorpdfstring{PrintRoots()}{PrintRoots()}}
+{\footnotesize\ttfamily void Print\+Roots (\begin{DoxyParamCaption}\item[{const int}]{roots,  }\item[{const double}]{x1,  }\item[{const double}]{x2,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
 
 
 
-Reads coefficients. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em param} & parameters of program working process (we need input parameter) \\
-\hline
-\mbox{\texttt{ in}}  & {\em argv} & console input \\
-\hline
-\mbox{\texttt{ in}}  & {\em argc} & amount of console arguments \\
-\hline
-\mbox{\texttt{ out}}  & {\em a} & coefficient \\
-\hline
-\mbox{\texttt{ out}}  & {\em b} & coefficient \\
-\hline
-\mbox{\texttt{ out}}  & {\em c} & coeficient \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true if program successfuly read coefficients 
-
-false if there was an error while reading coefficients 
-\end{DoxyReturn}
-\Hypertarget{getout__info_8h_a1015da87194adb7595b4205a9d0c620e}\label{getout__info_8h_a1015da87194adb7595b4205a9d0c620e} 
-\index{getout\_info.h@{getout\_info.h}!ReadFlags@{ReadFlags}}
-\index{ReadFlags@{ReadFlags}!getout\_info.h@{getout\_info.h}}
-\doxysubsubsection{\texorpdfstring{ReadFlags()}{ReadFlags()}}
-{\footnotesize\ttfamily void Read\+Flags (\begin{DoxyParamCaption}\item[{const int}]{argc,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{struct \mbox{\hyperlink{struct_param}{Param}} \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
-
-
-
-Reads flags from console. 
+Function prints roots in STDOUT. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em argc} & amount of console words \\
+\mbox{\texttt{ in}}  & {\em roots} & amount of roots, that the equation has \\
 \hline
-\mbox{\texttt{ in}}  & {\em argv} & console input \\
+\mbox{\texttt{ in}}  & {\em x1} & first root (it may be the only root, if \"{}roots\"{} parameter is equal to 1) \\
 \hline
-\mbox{\texttt{ out}}  & {\em param} & parameters of program \\
+\mbox{\texttt{ in}}  & {\em x2} & second root (if it exists) \\
+\hline
+\mbox{\texttt{ in}}  & {\em fp} & output stream \\
 \hline
 \end{DoxyParams}
 \Hypertarget{getout__info_8h_a2f3d71ac338c2990785e79a3a58b04ac}\label{getout__info_8h_a2f3d71ac338c2990785e79a3a58b04ac} 

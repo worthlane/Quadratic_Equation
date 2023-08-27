@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['helpflag_0',['HelpFlag',['../getout__info_8h.html#aa705cf7e79a21c2352b00ffe20cd295fad9aa501a9cefda5202f091246701ec4a',1,'getout_info.h']]]
+  ['inf_5froots_0',['INF_ROOTS',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa5a79e9e49077da58fe5d46a98f0b5e36',1,'solver.h']]]
 ];
