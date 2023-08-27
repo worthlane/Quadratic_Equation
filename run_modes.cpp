@@ -106,12 +106,13 @@ void PrintHelp(struct FlagInfo* FlagInfo[])
     int flag = FindFlag(FlagInfo[help_flag]->argument, FlagInfo);
 
     if (flag != unknown_flag)
-        printf(GRUN "%-4s, %-25s%s" STD, FlagInfo[flag]->SHORT_FLAG,
-                FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
+        printf(GRUN "%-4s, %-25s%s" STD,  FlagInfo[flag]->SHORT_FLAG,
+               FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
+
     else
         for (int i = 0; i < flag_amount; i++)
             printf(GRUN "%-4s, %-25s%s" STD, FlagInfo[i]->SHORT_FLAG,
-                    FlagInfo[i]->LONG_FLAG, FlagInfo[i]->help_info);
+                   FlagInfo[i]->LONG_FLAG,   FlagInfo[i]->help_info);
 
     printf(CYAN "\nMade by MKA\n"
            "                                                               08.2023\n\n" STD);
@@ -385,7 +386,7 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
         if (argv[*i + 1][0] != '-')
         {
             strncpy(FlagInfo[flag_ptr]->argument, argv[*i + 1], LEN);
-            *i++;
+            (*i)++;
         }
     }
     if (flag_ptr == console_input_flag)
@@ -404,7 +405,7 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
         if (argv[*i + 1][0] == '-')
         {
            strncpy(FlagInfo[flag_ptr]->argument, argv[*i + 1], LEN);
-           *i++;
+           (*i)++;
         }
     }
 }
@@ -475,13 +476,10 @@ bool Menu(struct ProgramCondition* pointers)      // calls menu
 
 int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
 {
-    printf("%s\n", flag_name);
     if (flag_name[0] == '-' && flag_name[1] == '-')
     {
-        printf("--\n");
         for (int i = 0; i < flag_amount; i++)
         {
-            printf("%d, %s ", i, flag_name);
             if (!strncmp(flag_name, FlagInfo[i]->LONG_FLAG, LEN))
                 return i;
         }
@@ -489,7 +487,6 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
     }
     if (flag_name[0] == '-' && flag_name[1] != '-')
     {
-        printf("-\n");
         for (int i = 0; i < flag_amount; i++)
         {
             if (!strncmp(flag_name, FlagInfo[i]->SHORT_FLAG, LEN))
@@ -498,4 +495,15 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
         return unknown_flag;
     }
     return unknown_flag;
+}
+
+// -----------------------------------------------------------------------------------------
+
+inline void TripleString(char* string1, char* string2, char* string3, char* outstring)
+{
+    strncat(string1, " ", LEN);
+    strncat(string2, " ", LEN);
+    strncat(outstring, string1, LEN);
+    strncat(string2, string3, LEN);
+    strncat(outstring, string2, LEN);
 }

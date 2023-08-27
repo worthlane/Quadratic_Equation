@@ -162,7 +162,7 @@ bool GetConsole(char* string, double* a, double* b, double* c)
     assert (b);
     assert (c);
 
-    if (sscanf(string, "%lf%lf%lf", a, b, c) == 0)
+    if (sscanf(string, "%lf%lf%lf", a, b, c) != read_amount)
     {
         PrintError(ErrorList::READ_CONSOLE_ERROR, nullptr);
         return false;
@@ -182,90 +182,6 @@ bool RepeatQuestion(const char mode[])
 
     if (repeat_flag != 1) printf("Bye Bye");
     return (repeat_flag == 1) ? true : false;
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
-void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments)     // reads flags
-{
-    char coef1[LEN] = "";
-    char coef2[LEN] = "";
-    char coef3[LEN] = "";
-    for (int i = 1; i < argc; i++)
-    {
-        if (argv[i][0] == '-')                                                                           // checks all arguments
-        {
-            ChangeParams(argv[i], param);
-
-            if ((!strcmp(argv[i], LONG_FROMFILE_FLAG) || !strcmp(argv[i], SHORT_FROMFILE_FLAG)) &&
-                (i + 1) < argc && (argv[i + 1][0] != '-'))
-                strncpy(arguments->infile,         argv[i + 1], LEN);
-
-            if ((!strcmp(argv[i], LONG_TOFILE_FLAG)   || !strcmp(argv[i], SHORT_TOFILE_FLAG))   &&
-                (i + 1) < argc && (argv[i + 1][0] != '-'))
-                strncpy(arguments->outfile,        argv[i + 1], LEN);
-
-            if ((!strcmp(argv[i], LONG_CONSOLE_FLAG ) || !strcmp(argv[i], SHORT_CONSOLE_FLAG))  &&
-                (i + 3) < argc && (argv[i + 1][0] != '-'))
-            {
-                strncpy(coef1, argv[i + 1], LEN);
-                strncpy(coef2, argv[i + 2], LEN);
-                strncpy(coef3, argv[i + 3], LEN);
-
-                TripleString(coef1, coef2, coef3, arguments->consolecoefs);
-            }
-            if ((!strcmp(argv[i], LONG_HELP_FLAG)   || !strcmp(argv[i], SHORT_HELP_FLAG))       &&
-                (i + 1) < argc)
-                strncpy(arguments->helpflag,       argv[i + 1], LEN);
-        }
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------
-
-void ChangeParams(const char flag[], struct Param* param)               // defines flag
-{
-    assert(param);
-
-    // Type flags
-    if (!strcmp(flag, LONG_INTERACTIVE_FLAG) ||
-        !strcmp(flag, SHORT_INTERACTIVE_FLAG))
-        param->type   = Max(param->type,   Param::Interactive);
-
-    // Input flags
-    if (!strcmp(flag, LONG_FROMFILE_FLAG)    ||
-        !strcmp(flag, SHORT_FROMFILE_FLAG))
-        param->input  = Max(param->input,  Param::FromFile);
-
-    if (!strcmp(flag, LONG_CONSOLE_FLAG)     ||
-        !strcmp(flag, SHORT_CONSOLE_FLAG))
-        param->input  = Max(param->input,  Param::Console);
-
-    if (!strcmp(flag, LONG_STDIN_FLAG)       ||
-        !strcmp(flag, SHORT_STDIN_FLAG))
-        param->input  = Max(param->input,  Param::Stdin);
-
-    // Output flags
-    if (!strcmp(flag, LONG_TOFILE_FLAG)      ||
-        !strcmp(flag, SHORT_TOFILE_FLAG))
-        param->output = Max(param->output, Param::ToFile);
-
-    if (!strcmp(flag, LONG_STDOUT_FLAG)      ||
-        !strcmp(flag, SHORT_STDOUT_FLAG))
-        param->output = Max(param->output, Param::Stdout);
-
-    // Mode flags
-    if (!strcmp(flag, LONG_HELP_FLAG)        ||
-        !strcmp(flag, SHORT_HELP_FLAG))
-        param->mode   = Max(param->mode,   Param::Help);
-
-    if (!strcmp(flag, LONG_TEST_FLAG)        ||
-        !strcmp(flag, SHORT_TEST_FLAG))
-        param->mode   = Max(param->mode,   Param::Test);
-
-    if (!strcmp(flag, LONG_SOLVE_FLAG)       ||
-        !strcmp(flag, SHORT_SOLVE_FLAG))
-        param->mode   = Max(param->mode,   Param::Solve);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -328,108 +244,6 @@ void PrintError(ErrorList error, const char file_name[])             // prints e
 
 //------------------------------------------------------------------------------------------------------------------
 
-ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments)
-{
-    assert (param);
-    assert (a);
-    assert (b);
-    assert (c);
-    assert (a != b);
-    assert (b != c);
-    assert (a != c);
-
-    switch (param->input)
-    {
-        case Param::Stdin:                                         // reads coefs from stdin
-        {
-            printf("Equation format: ax^2 + bx + c = 0\n");
-            while (true)
-            {
-                if (!GetCoef(a, 'a'))
-                {
-                    if (!RepeatQuestion("try again"))
-                        return ErrorList::USER_QUIT;
-                }
-                else
-                    break;
-            }
-            while (true)
-            {
-                if (!GetCoef(b, 'b'))
-                {
-                    if (!RepeatQuestion("try again"))
-                        return ErrorList::USER_QUIT;
-                }
-                else
-                    break;
-            }
-            while (true)
-            {
-                if (!GetCoef(c, 'c'))
-                {
-                    if (!RepeatQuestion("try again"))
-                        return ErrorList::USER_QUIT;
-                }
-                else
-                    break;
-            }
-
-            return ErrorList::NOT_AN_ERROR;
-        }
-
-        case Param::Console:                                       // reads coefs from console
-        {
-            if (!GetConsole(arguments->consolecoefs, a, b, c)) return ErrorList::READ_CONSOLE_ERROR;
-
-            return ErrorList::NOT_AN_ERROR;
-        }
-
-        case Param::FromFile:                                      // reads coefs from file
-        {
-            FILE* fpin = nullptr;
-            static char infile_name[LEN] = "no name";
-            if (!strlen(arguments->infile))
-            {
-                fpin = OpenInputFile(infile_name);
-                if (!fpin)
-                    return ErrorList::USER_QUIT;
-            }
-            else
-            {
-                fpin = fopen(arguments->infile, "r");
-                strncpy(infile_name, arguments->infile, LEN);
-                if (!fpin)
-                {
-                    PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
-                    return ErrorList::OPEN_INPUT_ERROR;
-                }
-                memset(arguments->infile, 0, LEN);
-            }
-
-            assert (fpin);
-
-            if (!FileGetCoef(fpin, a)) return ErrorList::INVALID_COEF_ERROR;
-            if (!FileGetCoef(fpin, b)) return ErrorList::INVALID_COEF_ERROR;
-            if (!FileGetCoef(fpin, c)) return ErrorList::INVALID_COEF_ERROR;
-
-            if (fclose(fpin))
-                PrintError(ErrorList::CLOSE_INPUT_ERROR, infile_name);
-
-            return ErrorList::NOT_AN_ERROR;
-        }
-
-        default:
-        {
-            PrintError(ErrorList::FLAG_ERROR, nullptr);
-            return ErrorList::FLAG_ERROR;
-        }
-    }
-    return ErrorList::NOT_AN_ERROR;
-}
-
-
-//------------------------------------------------------------------------------------------------------------------
-
 FILE* OpenInputFile(char* infile_name)      // opens input file
 {
     assert(infile_name);
@@ -461,14 +275,4 @@ inline int Max(const int a, const int b) // returns maximum of two numbers
     return (a > b) ? a : b;
 }
 
-// -----------------------------------------------------------------------------------------
-
-inline void TripleString(char* string1, char* string2, char* string3, char* outstring)
-{
-    strncat(string1, " ", LEN);
-    strncat(string2, " ", LEN);
-    strncat(outstring, string1, LEN);
-    strncat(string2, string3, LEN);
-    strncat(outstring, string2, LEN);
-}
 

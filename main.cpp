@@ -16,9 +16,9 @@ int main(const int argc, const char* argv[])
     if (argc != 1)
         FlagParse(argc, argv, FlagList, &pointers);
 
-    // printf("%d\n", FindFlag(FlagList[help_flag]->argument, FlagList));
 
     #ifdef DEBUG
+    printf("%d\n", FindFlag(FlagList[help_flag]->argument, FlagList));
     printf("%d %d %d\n", pointers.input_ptr, pointers.output_ptr, pointers.mode_ptr);
     #endif
 

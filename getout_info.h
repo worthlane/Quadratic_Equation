@@ -214,18 +214,6 @@ bool RepeatQuestion(const char mode[]);
 
 void PrintError(ErrorList error, const char file_name[]);
 
-/************************************************************//**
- * @brief Reads flags from console
- *
- * @param[in] argc amount of console words
- * @param[in] argv console input
- * @param[out] param parameters of program
- ************************************************************/
-
-void ReadFlags(const int argc, const char* argv[], struct Param* param, struct CommandLine* arguments);
-
-ErrorList ReadCoefficients(struct Param* param, double* a, double* b, double* c, struct CommandLine* arguments);
-
 bool GetConsole(char* string, double* a, double* b, double* c);
 
 /************************************************************//**
@@ -237,6 +225,4 @@ bool GetConsole(char* string, double* a, double* b, double* c);
 
 FILE* OpenInputFile(char* infile_name);
 
-void ChangeParams(const char flag[], struct Param* param);
 
-inline void TripleString(char* string1, char* string2, char* string3, char* outstring);

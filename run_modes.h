@@ -2,7 +2,7 @@
 * \brief contains funtions declaration, that needed for test mode
 */
 
-// #define TEST
+#define TEST
 
 static const char TEST_FILE[] = "test.txt";     ///< contains test file name
 
@@ -68,33 +68,33 @@ ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param);
 static char NO_ARGUMENT[LEN] = "";
 
 
-static struct FlagInfo STD_INPUT = {LONG_STDIN_FLAG, SHORT_STDIN_FLAG,
-                                    NO_ARGUMENT, StdinInput, STDIN_HELP};
+static struct FlagInfo STD_INPUT     = {LONG_STDIN_FLAG, SHORT_STDIN_FLAG,
+                                        NO_ARGUMENT, StdinInput, STDIN_HELP};
 
-static struct FlagInfo FILE_INPUT = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG,
-                                    NO_ARGUMENT, FileInput, FROMFILE_HELP};
+static struct FlagInfo FILE_INPUT    = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG,
+                                        NO_ARGUMENT, FileInput, FROMFILE_HELP};
 
 static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG, SHORT_CONSOLE_FLAG,
                                         NO_ARGUMENT, ConsoleInput, CONSOLE_HELP};
 
-static struct FlagInfo STD_OUTPUT = {LONG_STDOUT_FLAG, SHORT_STDOUT_FLAG,
-                                     NO_ARGUMENT, StdoutOutput, STDOUT_HELP};
+static struct FlagInfo STD_OUTPUT    = {LONG_STDOUT_FLAG, SHORT_STDOUT_FLAG,
+                                        NO_ARGUMENT, StdoutOutput, STDOUT_HELP};
 
-static struct FlagInfo FILE_OUTPUT = {LONG_TOFILE_FLAG, SHORT_TOFILE_FLAG,
-                                    NO_ARGUMENT, FileOutput, TOFILE_HELP};
+static struct FlagInfo FILE_OUTPUT   = {LONG_TOFILE_FLAG, SHORT_TOFILE_FLAG,
+                                        NO_ARGUMENT, FileOutput, TOFILE_HELP};
 
-static struct FlagInfo SOLVE_MODE = {LONG_SOLVE_FLAG, SHORT_SOLVE_FLAG,
-                                    NO_ARGUMENT, nullptr, SOLVE_HELP};
+static struct FlagInfo SOLVE_MODE    = {LONG_SOLVE_FLAG, SHORT_SOLVE_FLAG,
+                                        NO_ARGUMENT, nullptr, SOLVE_HELP};
 
-static struct FlagInfo HELP_MODE = {LONG_HELP_FLAG, SHORT_HELP_FLAG,
-                                    NO_ARGUMENT, nullptr, HELP_HELP};
+static struct FlagInfo HELP_MODE     = {LONG_HELP_FLAG, SHORT_HELP_FLAG,
+                                        NO_ARGUMENT, nullptr, HELP_HELP};
 #ifdef TEST
-static struct FlagInfo TEST_MODE = {LONG_TEST_FLAG, SHORT_TEST_FLAG,
-                                    NO_ARGUMENT, nullptr, nullptr};
+static struct FlagInfo TEST_MODE     = {LONG_TEST_FLAG, SHORT_TEST_FLAG,
+                                        NO_ARGUMENT, nullptr, nullptr};
 static const int flag_amount = 8;
 #else
-static struct FlagInfo TEST_MODE = {nullptr, nullptr,
-                                    NO_ARGUMENT, nullptr, nullptr};
+static struct FlagInfo TEST_MODE     = {nullptr, nullptr,
+                                        NO_ARGUMENT, nullptr, nullptr};
 static const int flag_amount = 7;
 #endif
 
@@ -116,8 +116,8 @@ enum Flags
     #endif
 };
 
-static struct FlagInfo* FlagList[] = {&STD_INPUT, &FILE_INPUT, &CONSOLE_INPUT, &STD_OUTPUT,
-                                      &FILE_OUTPUT, &SOLVE_MODE, &HELP_MODE, &TEST_MODE};
+static struct FlagInfo* FlagList[] = {&STD_INPUT,   &FILE_INPUT, &CONSOLE_INPUT, &STD_OUTPUT,
+                                      &FILE_OUTPUT, &SOLVE_MODE, &HELP_MODE,     &TEST_MODE};
 
 void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
                struct ProgramCondition* pointers);
@@ -134,3 +134,5 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
 bool Menu(struct ProgramCondition* pointers);
 
 int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[]);
+
+inline void TripleString(char* string1, char* string2, char* string3, char* outstring);
