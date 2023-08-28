@@ -9,8 +9,6 @@ static const int read_amount = 3;               ///< amount of coefs in one file
 
 //------------------------------------------------------------------------------------------------------------------
 
-static const char* LONG_INTERACTIVE_FLAG  = "--int";
-
 static const char* LONG_FROMFILE_FLAG     = "--fromfile";
 
 static const char* LONG_CONSOLE_FLAG      = "--console";
@@ -28,8 +26,6 @@ static const char* LONG_TEST_FLAG         = "--test";
 static const char* LONG_SOLVE_FLAG        = "--solve";
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-static const char* SHORT_INTERACTIVE_FLAG = "-i";
 
 static const char* SHORT_FROMFILE_FLAG    = "-ff";
 

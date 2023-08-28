@@ -7,7 +7,7 @@ var searchData=
   ['solve_5fflag_4',['solve_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739',1,'run_modes.h']]],
   ['solver_2eh_5',['solver.h',['../solver_8h.html',1,'']]],
   ['stdin_5fflag_6',['stdin_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030',1,'run_modes.h']]],
-  ['stdininput_7',['StdinInput',['../run__modes_8h.html#ac54a8ae74d7eb9f84ecf928e066261a7',1,'run_modes.cpp']]],
+  ['stdininput_7',['StdinInput',['../run__modes_8h.html#a57accd8f63c552b13653cbdf9da5a752',1,'run_modes.cpp']]],
   ['stdout_5fflag_8',['stdout_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299',1,'run_modes.h']]],
-  ['stdoutoutput_9',['StdoutOutput',['../run__modes_8h.html#a940514f401134c2674b172609ae8cbac',1,'run_modes.cpp']]]
+  ['stdoutoutput_9',['StdoutOutput',['../run__modes_8h.html#a194a998af8b53b5a3198f75c4bc6f853',1,'run_modes.cpp']]]
 ];

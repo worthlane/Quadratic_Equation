@@ -141,7 +141,10 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
             return ErrorList::NOT_AN_ERROR;
     }
 
-    ErrorList output_error = FlagInfo[pointers->output_ptr]->FlagFunc(&a, &b, &c,
+    struct QuadSolutions ans = {};
+    QuadSolver(a, b, c, &ans);
+
+    ErrorList output_error = FlagInfo[pointers->output_ptr]->FlagFunc(&(ans.amount), &(ans.first), &(ans.second),
                                                                       FlagInfo[pointers->output_ptr]);
 
 
@@ -150,22 +153,22 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param) // gets coefs from stdin
+ErrorList StdinInput(void* a, void* b, void* c, struct FlagInfo* param) // gets coefs from stdin
 {
     printf("Equation format: ax^2 + bx + c = 0\n");
-    while (!GetCoef(a, 'a'))
+    while (!GetCoef((double* ) a, 'a'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
 
     }
-    while (!GetCoef(b, 'b'))
+    while (!GetCoef((double* ) b, 'b'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
 
     }
-    while (!GetCoef(c, 'c'))
+    while (!GetCoef((double* ) c, 'c'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
@@ -177,7 +180,7 @@ ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param) //
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param) // gets coefs from file
+ErrorList FileInput(void* a, void* b, void* c, struct FlagInfo* param) // gets coefs from file
 {
     FILE* fpin = nullptr;
     static char infile_name[LEN] = "no name";
@@ -204,9 +207,9 @@ ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param) // 
 
     assert (fpin);
 
-    if (!FileGetCoef(fpin, a)) return ErrorList::INVALID_COEF_ERROR;
-    if (!FileGetCoef(fpin, b)) return ErrorList::INVALID_COEF_ERROR;
-    if (!FileGetCoef(fpin, c)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, (double* ) a)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, (double* ) b)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, (double* ) c)) return ErrorList::INVALID_COEF_ERROR;
 
     if (fclose(fpin))
         PrintError(ErrorList::CLOSE_INPUT_ERROR, infile_name);
@@ -216,30 +219,26 @@ ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param) // 
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param)     // gets coefs from console
+ErrorList ConsoleInput(void* a, void* b, void* c, struct FlagInfo* param)     // gets coefs from console
 {
-    if (!GetConsole(param->argument, a, b, c)) return ErrorList::READ_CONSOLE_ERROR;
+    if (!GetConsole(param->argument, (double* ) a, (double* ) b, (double* ) c)) return ErrorList::READ_CONSOLE_ERROR;
 
     return ErrorList::NOT_AN_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList StdoutOutput(double* a, double* b, double* c, struct FlagInfo* param)
+ErrorList StdoutOutput(void* amount, void* first, void* second, struct FlagInfo* param)
 {
-    struct QuadSolutions ans = {};
-    QuadSolver(*a, *b, *c, &ans);
-    PrintRoots(ans.amount, ans.first, ans.second, stdout);
+
+    PrintRoots(*((int* )amount), *((double* ) first), *((double* ) second), stdout);
     return ErrorList::NOT_AN_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param)
+ErrorList FileOutput(void* amount, void* first, void* second, struct FlagInfo* param)
 {
-    struct QuadSolutions ans = {};
-    QuadSolver(*a, *b, *c, &ans);
-
     char outfile_name[LEN] = "no name";
     FILE *fpout = nullptr;
 
@@ -255,7 +254,7 @@ ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param)
         strncpy(outfile_name, param->argument, LEN);
         memset(param->argument, 0, LEN);
     }
-    PrintRoots(ans.amount, ans.first, ans.second, fpout);
+    PrintRoots(*((int* ) amount), *((double* ) first), *((double* ) second), fpout);
     if (fpout != stdout && fclose(fpout))
         PrintError(ErrorList::CLOSE_OUTPUT_ERROR, outfile_name);
     return ErrorList::NOT_AN_ERROR;
@@ -489,7 +488,6 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
 
 // -----------------------------------------------------------------------------------------
 
-// TODO: Refactor
 inline ErrorList TripleString(char* string1, char* string2, char* string3, char* outstring)
 {
     if (strlen(string1) + strlen(string2) + strlen(string3) > LEN)
