@@ -125,36 +125,58 @@ ErrorList StdoutOutput(double* a, double* b, double* c, struct FlagInfo* param);
 ErrorList FileOutput(double* a, double* b, double* c, struct FlagInfo* param);
 
 
-static char NO_ARGUMENT[LEN] = "";      ///< clear argument
+static char STDIN_ARGUMENT[LEN]      = "";  ///< stdin input argument initialization
 
+static char FILEINPUT_ARGUMENT[LEN]  = "";  ///< file input argument initialization
 
-static struct FlagInfo STD_INPUT     = {LONG_STDIN_FLAG,    SHORT_STDIN_FLAG,
-                                        NO_ARGUMENT, StdinInput,   STDIN_HELP};         ///< stdin input flag info
+static char CONSOLE_ARGUMENT[LEN]    = "";  ///< console input argument initialization
 
-static struct FlagInfo FILE_INPUT    = {LONG_FROMFILE_FLAG, SHORT_FROMFILE_FLAG,
-                                        NO_ARGUMENT, FileInput,    FROMFILE_HELP};      ///< file input flag info
+static char STDOUT_ARGUMENT[LEN]     = "";  ///< stdout output argument initialization
 
-static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG,  SHORT_CONSOLE_FLAG,
-                                        NO_ARGUMENT, ConsoleInput, CONSOLE_HELP};       ///< console input flag info
+static char FILEOUTPUT_ARGUMENT[LEN] = "";  ///< file output argument initialization
 
-static struct FlagInfo STD_OUTPUT    = {LONG_STDOUT_FLAG,   SHORT_STDOUT_FLAG,
-                                        NO_ARGUMENT, StdoutOutput, STDOUT_HELP};        ///< stdout output flag info
+static char SOLVE_ARGUMENT[LEN]      = "";  ///< solve mode argument initialization
 
-static struct FlagInfo FILE_OUTPUT   = {LONG_TOFILE_FLAG,   SHORT_TOFILE_FLAG,
-                                        NO_ARGUMENT, FileOutput,   TOFILE_HELP};        ///< file output flag info
+static char HELP_ARGUMENT[LEN]       = "";  ///< help mode argument initialization
 
+#ifdef TEST
+static char TEST_ARGUMENT[LEN]       = "";  ///< test mode argument initialization
+#endif
+
+///@brief stdin input flag info
+static struct FlagInfo STD_INPUT     = {LONG_STDIN_FLAG,     SHORT_STDIN_FLAG,
+                                        STDIN_ARGUMENT,      StdinInput,           STDIN_HELP};
+
+///@brief file input flag info
+static struct FlagInfo FILE_INPUT    = {LONG_FROMFILE_FLAG,  SHORT_FROMFILE_FLAG,
+                                        FILEINPUT_ARGUMENT,  FileInput,            FROMFILE_HELP};
+
+///@brief console input flag info
+static struct FlagInfo CONSOLE_INPUT = {LONG_CONSOLE_FLAG,   SHORT_CONSOLE_FLAG,
+                                        CONSOLE_ARGUMENT,    ConsoleInput,         CONSOLE_HELP};
+
+///@brief stdout output flag info
+static struct FlagInfo STD_OUTPUT    = {LONG_STDOUT_FLAG,    SHORT_STDOUT_FLAG,
+                                        STDOUT_ARGUMENT,     StdoutOutput,         STDOUT_HELP};
+
+///@brief file output flag info
+static struct FlagInfo FILE_OUTPUT   = {LONG_TOFILE_FLAG,    SHORT_TOFILE_FLAG,
+                                        FILEOUTPUT_ARGUMENT, FileOutput,           TOFILE_HELP};
+
+///@brief solving mode flag info
 static struct FlagInfo SOLVE_MODE    = {LONG_SOLVE_FLAG,    SHORT_SOLVE_FLAG,
-                                        NO_ARGUMENT, nullptr,      SOLVE_HELP};         ///< solving mode flag info
+                                        SOLVE_ARGUMENT,     nullptr,               SOLVE_HELP};
 
+///@brief help mode flag info
 static struct FlagInfo HELP_MODE     = {LONG_HELP_FLAG,     SHORT_HELP_FLAG,
-                                        NO_ARGUMENT, nullptr,      HELP_HELP};          ///< help mode flag info
+                                        HELP_ARGUMENT,      nullptr,               HELP_HELP};
 #ifdef TEST
 static struct FlagInfo TEST_MODE     = {LONG_TEST_FLAG,     SHORT_TEST_FLAG,
-                                        NO_ARGUMENT, nullptr,      nullptr};            ///< test mode flag info
+                                        TEST_ARGUMENT,      nullptr,               nullptr};
 static const int flag_amount = 8;
 #else
-static struct FlagInfo TEST_MODE     = {nullptr, nullptr,
-                                        NO_ARGUMENT, nullptr, nullptr};
+static struct FlagInfo TEST_MODE     = {nullptr,            nullptr,
+                                        TEST_ARGUMENT,      nullptr,               nullptr};
 static const int flag_amount = 7;
 #endif
 

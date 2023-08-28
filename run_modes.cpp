@@ -505,7 +505,7 @@ inline ErrorList TripleString(char* string1, char* string2, char* string3, char*
 {
     if (strlen(string1) + strlen(string2) + strlen(string3) > LEN)
         return ErrorList::BUFF_OVERSIZE_ERROR;
-        
+
     strncat(string1, " ", LEN);
     strncat(string2, " ", LEN);
 
