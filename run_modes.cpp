@@ -80,9 +80,9 @@ void RunTest()                                           // runs tests from TEST
     }
 
     static const int param_amount = 6;     // amount of parameters, that program need to get to check is equation answer correct
-    double a = NAN;          // a coef initialization
-    double b = NAN;          // b coef initialization
-    double c = NAN;          // c coef initalization
+    double a = NAN;                        // a coef initialization
+    double b = NAN;                        // b coef initialization
+    double c = NAN;                        // c coef initalization
 
     struct QuadSolutions test = {UNDEFINED_ROOTS, NAN, NAN};
 
@@ -97,15 +97,15 @@ void RunTest()                                           // runs tests from TEST
 
 //------------------------------------------------------------------------------------------------------------------
 
-void PrintHelp(struct FlagInfo* FlagInfo[])
+void PrintHelp(struct FlagInfo* FlagInfo[])                             // prints info about flags
 {
     printf(CYAN "Quadratic equation solver\n\n"
            "equation format: ax^2 + bx + c = 0\n"
            "[argument] - flag arguments\n" STD);
 
-    int flag = FindFlag(FlagInfo[help_flag]->argument, FlagInfo);
+    int flag = FindFlag(FlagInfo[help_flag]->argument, FlagInfo);       // user asked info about all flags
 
-    if (flag != unknown_flag)
+    if (flag != unknown_flag)                                           // user asked info about one flag
         printf(GRUN "%-4s, %-25s%s" STD,  FlagInfo[flag]->SHORT_FLAG,
                FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
 
@@ -115,7 +115,7 @@ void PrintHelp(struct FlagInfo* FlagInfo[])
                    FlagInfo[i]->LONG_FLAG,   FlagInfo[i]->help_info);
 
     printf(CYAN "\nMade by MKA\n"
-           "                                                               08.2023\n\n" STD);
+                "                                                               08.2023\n\n" STD);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param)
+ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param) // gets coefs from stdin
 {
     printf("Equation format: ax^2 + bx + c = 0\n");
     while (true)
@@ -189,13 +189,13 @@ ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param)
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param)
+ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param) // gets coefs from file
 {
     FILE* fpin = nullptr;
     static char infile_name[LEN] = "no name";
     if (!strlen(param->argument))
     {
-        fpin = OpenInputFile(infile_name);
+        fpin = OpenInputFile(infile_name);                          // gets name of input file
         if (!fpin)
         {
             PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
@@ -204,7 +204,7 @@ ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param)
     }
     else
     {
-        fpin = fopen(param->argument, "r");
+        fpin = fopen(param->argument, "r");                         // input file name is an argument
         strncpy(infile_name, param->argument, LEN);
         if (!fpin)
         {
@@ -228,7 +228,7 @@ ErrorList FileInput(double* a, double* b, double* c, struct FlagInfo* param)
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param)
+ErrorList ConsoleInput(double* a, double* b, double* c, struct FlagInfo* param)     // gets coefs from console
 {
     if (!GetConsole(param->argument, a, b, c)) return ErrorList::READ_CONSOLE_ERROR;
 
@@ -280,11 +280,11 @@ void FlagParse(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
 {
     for (int i = 1; i < argc; i++)
     {
-        if (argv[i][0] == '-' && argv[i][1] == '-')
+        if (argv[i][0] == '-' && argv[i][1] == '-')                 // flag is long
         {
             LongFlagCheck(argc, argv, FlagInfo, pointers, &i);
         }
-        if (argv[i][0] == '-' && argv[i][1] != '-')
+        if (argv[i][0] == '-' && argv[i][1] != '-')                 // flag is short
         {
             ShortFlagCheck(argc, argv, FlagInfo, pointers, &i);
         }
@@ -300,7 +300,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
     {
         if (!strncmp(argv[*i], FlagInfo[flag_ptr]->LONG_FLAG, LEN))
         {
-            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
+            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)       // input flag
             {
                 if (flag_ptr > pointers->input_ptr)
                 {
@@ -309,7 +309,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
                     ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
-            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
+            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)   // output flag
             {
                 if (flag_ptr > pointers->output_ptr)
                 {
@@ -320,7 +320,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
             }
             else
             {
-                if (flag_ptr > pointers->mode_ptr)
+                if (flag_ptr > pointers->mode_ptr)                              // mode flag
                 {
                     memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
@@ -340,7 +340,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
     {
         if (!strncmp(argv[*i], FlagInfo[flag_ptr]->SHORT_FLAG, LEN))
         {
-            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)
+            if (stdin_flag <= flag_ptr && flag_ptr <= console_input_flag)       // input flag
             {
                 if (flag_ptr > pointers->input_ptr)
                 {
@@ -349,7 +349,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
                     ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
                 }
             }
-            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)
+            else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)   // output flag
             {
                 if (flag_ptr > pointers->output_ptr)
                 {
@@ -360,7 +360,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
             }
             else
             {
-                if (flag_ptr > pointers->mode_ptr)
+                if (flag_ptr > pointers->mode_ptr)                              // mode flag
                 {
                     memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
@@ -381,7 +381,7 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
     char coef3[LEN] = "";
     if (*i + 1 >= argc)
         return;
-    if (flag_ptr == file_input_flag || flag_ptr == file_output_flag)
+    if (flag_ptr == file_input_flag || flag_ptr == file_output_flag)        // input argument
     {
         if (argv[*i + 1][0] != '-')
         {
@@ -389,7 +389,7 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
             (*i)++;
         }
     }
-    if (flag_ptr == console_input_flag)
+    if (flag_ptr == console_input_flag)                                     // output argument
     {
         if (argv[*i + 1][0] != '-' && *i + 3 < argc)
         {
@@ -400,7 +400,7 @@ void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[
             *i += 3;
         }
     }
-    if (flag_ptr == help_flag)
+    if (flag_ptr == help_flag)                                              // help argument
     {
         if (argv[*i + 1][0] == '-')
         {
@@ -474,6 +474,8 @@ bool Menu(struct ProgramCondition* pointers)      // calls menu
 
 //------------------------------------------------------------------------------------------------------------------
 
+// compares flag with flag list and returns enumerated flag number
+
 int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
 {
     if (flag_name[0] == '-' && flag_name[1] == '-')
@@ -503,10 +505,14 @@ inline ErrorList TripleString(char* string1, char* string2, char* string3, char*
 {
     if (strlen(string1) + strlen(string2) + strlen(string3) > LEN)
         return ErrorList::BUFF_OVERSIZE_ERROR;
+        
     strncat(string1, " ", LEN);
     strncat(string2, " ", LEN);
+
     strncat(outstring, string1, LEN);
     strncat(string2, string3, LEN);
+
     strncat(outstring, string2, LEN);
+
     return ErrorList::NOT_AN_ERROR;
 }

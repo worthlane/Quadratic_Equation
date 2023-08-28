@@ -28,14 +28,14 @@ ErrorList GetFileName(char* file_name, const char mode[])                       
 
     fgets(BUF, LEN, stdin);
 
-    if (strlen(BUF) >= LEN - 1)
+    if (strlen(BUF) >= LEN - 1)              // oversize buffer
     {
         PrintError(ErrorList::BUFF_OVERSIZE_ERROR, nullptr);
         fflush(stdin);
         return ErrorList::BUFF_OVERSIZE_ERROR;
     }
 
-    if (sscanf(BUF, "%s", file_name) == 0) // TODO
+    if (sscanf(BUF, "%s", file_name) == 0)
     {
         PrintError(ErrorList::GET_FILE_NAME_ERROR, nullptr);
         return ErrorList::GET_FILE_NAME_ERROR;
@@ -95,7 +95,7 @@ bool GetCoef(double* a, const char ch)                         // gets coefficie
         return false;
     }
     int character = 0;
-    while ((character = getchar()) != '\n' && character != EOF)
+    while ((character = getchar()) != '\n' && character != EOF)         // checking for invalid input
     {
         if (!isspace(character))
             {
@@ -156,7 +156,7 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool GetConsole(char* string, double* a, double* b, double* c)
+bool GetConsole(char* string, double* a, double* b, double* c)      // gets coef from console
 {
     assert (a);
     assert (b);
@@ -164,7 +164,7 @@ bool GetConsole(char* string, double* a, double* b, double* c)
 
     if (sscanf(string, "%lf%lf%lf", a, b, c) != read_amount)
     {
-        PrintError(ErrorList::READ_CONSOLE_ERROR, nullptr);
+        PrintError(ErrorList::READ_CONSOLE_ERROR, nullptr);         // invalid coef format
         return false;
     }
     return true;
@@ -172,7 +172,7 @@ bool GetConsole(char* string, double* a, double* b, double* c)
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool RepeatQuestion(const char mode[])
+bool RepeatQuestion(const char mode[])          // asks user for repeat
 {
     printf("Do you want to %s? (1 - Yes): ", mode);
 
@@ -180,7 +180,7 @@ bool RepeatQuestion(const char mode[])
     scanf("%d", &repeat_flag);
     ClearInput(stdin);
 
-    if (repeat_flag != 1) printf("Bye Bye");
+    if (repeat_flag != 1) printf("Bye Bye");    // invalid answer
     return (repeat_flag == 1) ? true : false;
 }
 
