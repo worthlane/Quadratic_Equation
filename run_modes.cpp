@@ -7,11 +7,7 @@
 #include "solver.h"
 #include "getout_info.h"
 #include "run_modes.h"
-
-#define STD  "\x1b[0m"
-#define CYAN "\x1b[36;1m"
-#define GRUN "\x1b[32;1m"
-#define RED  "\x1b[31;1m"
+#include "colorlib.h"
 
 
 /* Test file format:
@@ -19,36 +15,34 @@
   __.___   __.___   __.___   _________   ___._______   ___.________   (1 space between numbers)
 */
 
-static int test_number = 1;
-
-void OneTest(const double a, const double b, const double c, const struct QuadSolutions* test)
+void OneTest(const double a, const double b, const double c,
+             const struct QuadSolutions* test, int* test_number)
 {
-    extern int test_number;
     struct QuadSolutions ans  = {UNDEFINED_ROOTS, NAN, NAN};
 
     QuadSolver(a, b, c, &ans);              // solving the equation
     if (ans.amount != test->amount)         // comparing the amount of roots
     {
-        printf(RED "TEST %d: Incorrect amount of roots\n" STD, test_number++);
-        printf(RED "\tTEST: %d, PROGRAM: %d\n" STD, test->amount, ans.amount);
+        PrintRedText(stdout, "TEST %d: Incorrect amount of roots\n", (*test_number)++);
+        PrintRedText(stdout, "\tTEST: %d, PROGRAM: %d\n", test->amount, ans.amount);
         return;
     }
 
     if      (test->amount == ZERO_ROOTS ||
              test->amount == INF_ROOTS)     // from this time test and program roots can't be different
     {
-        printf(CYAN "TEST %d: Correct\n" STD, test_number++);
+        PrintCyanText(stdout, "TEST %d: Correct\n", (*test_number)++);
     }
     else if (test->amount == ONE_ROOT)
     {
         if (Compare(test->first, ans.first) == EQUAL)           // comparing one root
         {
-            printf(CYAN "TEST %d: Correct\n" STD, test_number++);
+            PrintCyanText(stdout, "TEST %d: Correct\n", (*test_number)++);
         }
         else
         {
-            printf(RED "TEST %d: Incorrect answer\n" STD, test_number++);
-            printf(RED "\tTEST: %lg | PROGRAM: %lg\n" STD, test->first, ans.first);
+            PrintRedText(stdout, "TEST %d: Incorrect answer\n", (*test_number)++);
+            PrintRedText(stdout, "\tTEST: %lg | PROGRAM: %lg\n", test->first, ans.first);
         }
     }
     else if (test->amount == TWO_ROOTS)
@@ -57,12 +51,13 @@ void OneTest(const double a, const double b, const double c, const struct QuadSo
         if ((Compare(test->first, ans.first)  == EQUAL && Compare(test->second, ans.second) == EQUAL) ||
             (Compare(test->first, ans.second) == EQUAL && Compare(test->second, ans.first)  == EQUAL))
         {
-            printf(CYAN "TEST %d: Correct\n" STD, test_number++);
+            PrintCyanText(stdout, "TEST %d: Correct\n", (*test_number)++);
         }
         else
         {
-            printf(RED "TEST %d: Incorrect answer\n" STD, test_number++);
-            printf(RED "\tTEST: %lg %lg | PROGRAM: %lg %lg\n" STD, test->first, test->second, ans.first, ans.second);
+            PrintRedText(stdout, "TEST %d: Incorrect answer\n", (*test_number)++);
+            PrintRedText(stdout, "\tTEST: %lg %lg | PROGRAM: %lg %lg\n",
+                                 test->first, test->second, ans.first, ans.second);
         }
     }
 }
@@ -79,6 +74,9 @@ void RunTest()                                           // runs tests from TEST
         return;
     }
 
+    SkipHeader(fp);
+    SkipHeader(fp);
+
     static const int param_amount = 6;     // amount of parameters, that program need to get to check is equation answer correct
     double a = NAN;                        // a coef initialization
     double b = NAN;                        // b coef initialization
@@ -86,13 +84,15 @@ void RunTest()                                           // runs tests from TEST
 
     struct QuadSolutions test = {UNDEFINED_ROOTS, NAN, NAN};
 
+    int test_number = 1;
+
     while ((fscanf(fp, "%lf%lf%lf%d%lf%lf", &a, &b, &c, &test.amount, &test.first, &test.second)) == param_amount)
-        OneTest(a, b, c, &test);
+        OneTest(a, b, c, &test, &test_number);
 
     if (fclose(fp))
         PrintError(ErrorList::CLOSE_TEST_ERROR, TEST_FILE);
 
-    printf(GRUN "Tests runned succesfully\n" STD);
+    PrintGreenText(stdout, "Tests runned succesfully (%d tests ran)\n", test_number - 1);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -106,16 +106,16 @@ void PrintHelp(struct FlagInfo* FlagInfo[])                             // print
     int flag = FindFlag(FlagInfo[help_flag]->argument, FlagInfo);       // user asked info about all flags
 
     if (flag != unknown_flag)                                           // user asked info about one flag
-        printf(GRUN "%-4s, %-25s%s" STD,  FlagInfo[flag]->SHORT_FLAG,
-               FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
+        PrintGreenText(stdout, "%-4s, %-25s%s",  FlagInfo[flag]->SHORT_FLAG,
+                                FlagInfo[flag]->LONG_FLAG, FlagInfo[flag]->help_info);
 
     else
         for (int i = 0; i < flag_amount; i++)
-            printf(GRUN "%-4s, %-25s%s" STD, FlagInfo[i]->SHORT_FLAG,
-                   FlagInfo[i]->LONG_FLAG,   FlagInfo[i]->help_info);
+            PrintGreenText(stdout, "%-4s, %-25s%s" STD, FlagInfo[i]->SHORT_FLAG,
+                                    FlagInfo[i]->LONG_FLAG,   FlagInfo[i]->help_info);
 
-    printf(CYAN "\nMade by MKA\n"
-                "                                                               08.2023\n\n" STD);
+    PrintCyanText(stdout, "\nMade by MKA\n"
+                          "                                                         08.2023\n\n", "");
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -153,35 +153,23 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
 ErrorList StdinInput(double* a, double* b, double* c, struct FlagInfo* param) // gets coefs from stdin
 {
     printf("Equation format: ax^2 + bx + c = 0\n");
-    while (true)
+    while (!GetCoef(a, 'a'))
     {
-        if (!GetCoef(a, 'a'))
-        {
-            if (!RepeatQuestion("try again"))
-                return ErrorList::USER_QUIT;
-        }
-        else
-             break;
+        if (!RepeatQuestion("try again"))
+            return ErrorList::USER_QUIT;
+
     }
-    while (true)
+    while (!GetCoef(b, 'b'))
     {
-        if (!GetCoef(b, 'b'))
-        {
-            if (!RepeatQuestion("try again"))
-                return ErrorList::USER_QUIT;
-        }
-        else
-            break;
+        if (!RepeatQuestion("try again"))
+            return ErrorList::USER_QUIT;
+
     }
-    while (true)
+    while (!GetCoef(c, 'c'))
     {
-        if (!GetCoef(c, 'c'))
-        {
-            if (!RepeatQuestion("try again"))
-                return ErrorList::USER_QUIT;
-        }
-        else
-            break;
+        if (!RepeatQuestion("try again"))
+            return ErrorList::USER_QUIT;
+
     }
 
     return ErrorList::NOT_AN_ERROR;
@@ -501,6 +489,7 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[])
 
 // -----------------------------------------------------------------------------------------
 
+// TODO: Refactor
 inline ErrorList TripleString(char* string1, char* string2, char* string3, char* outstring)
 {
     if (strlen(string1) + strlen(string2) + strlen(string3) > LEN)
@@ -515,4 +504,12 @@ inline ErrorList TripleString(char* string1, char* string2, char* string3, char*
     strncat(outstring, string2, LEN);
 
     return ErrorList::NOT_AN_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------
+
+void SkipHeader(FILE* fp)
+{
+    int ch = 0;
+    while ((ch = fgetc(fp)) != '\n' && ch != EOF) {}
 }

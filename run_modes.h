@@ -2,7 +2,7 @@
 * \brief contains funtions declaration, that needed for test mode
 */
 
-// #define TEST
+#define TEST
 
 static const char TEST_FILE[] = "test.txt";     ///< contains test file name
 
@@ -15,7 +15,7 @@ void RunTest();
 /************************************************************//**
  * @brief Prints help information about flags
  *
- * @param[in] FlagInfo list of flag information
+ * @param[in] FlagInfo list of information about flags
  *************************************************************/
 
 void PrintHelp(struct FlagInfo* FlagInfo[]);
@@ -37,9 +37,11 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
  * @param[in] b coefficient
  * @param[in] c coefficient
  * @param[in] test test answers
+ * @param[in] test_number test number
  *************************************************************/
 
-void OneTest(const double a, const double b, const double c, const struct QuadSolutions* test);
+void OneTest(const double a, const double b, const double c,
+             const struct QuadSolutions* test, int* test_number);
 
 /************************************************************//**
  * @brief Contains information about one flag
@@ -286,3 +288,11 @@ int FindFlag(const char* flag_name, struct FlagInfo* FlagInfo[]);
  ************************************************************/
 
 inline ErrorList TripleString(char* string1, char* string2, char* string3, char* outstring);
+
+/************************************************************//**
+ * @brief Skips line in file
+ *
+ * @param[in] fp file
+ ************************************************************/
+
+void SkipHeader(FILE* fp);

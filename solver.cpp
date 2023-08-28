@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <math.h>
 #include <assert.h>
 
@@ -46,15 +47,23 @@ void QuadSolver(const double a, const double b, const double c, struct QuadSolut
 
             ans->first = IsZero(&(ans->first));
         }
-        else
-        {                                            // two roots conditions
+        else             // two roots conditions
+        {
             ans->amount = TWO_ROOTS;
-            D = sqrt(D);                             // done for better optimization
+            if (c == 0)
+            {
+                ans->first  = -b;
+                ans->second =  b;
+            }
+            else
+            {
+                D = sqrt(D);                             // done for better optimization
 
-            double double_a = 2 * a;
+                double double_a = 2 * a;
 
-            ans->first  = ((-b - D) / double_a);
-            ans->second = ((-b + D) / double_a);
+                ans->first  = ((-b - D) / double_a);
+                ans->second = ((-b + D) / double_a);
+            }
 
             ans->first  = IsZero(&(ans->first));
             ans->second = IsZero(&(ans->second));

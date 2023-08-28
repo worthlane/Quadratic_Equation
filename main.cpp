@@ -10,17 +10,16 @@
 
 int main(const int argc, const char* argv[])
 {
-
     static struct ProgramCondition pointers = {stdin_flag, stdout_flag, solve_flag};
 
     if (argc != 1)
         FlagParse(argc, argv, FlagList, &pointers);
 
 
-    #ifdef DEBUG
+#ifdef DEBUG
     printf("%d\n", FindFlag(FlagList[help_flag]->argument, FlagList));
     printf("%d %d %d\n", pointers.input_ptr, pointers.output_ptr, pointers.mode_ptr);
-    #endif
+#endif
 
     while (true)
     {
@@ -35,11 +34,11 @@ int main(const int argc, const char* argv[])
                     pointers.mode_ptr = solve_flag;
                     continue;
                 }
-            #ifdef TEST
+#ifdef TEST
             case test_flag:
                 RunTest();
                 return (int) ErrorList::NOT_AN_ERROR;
-            #endif
+#endif
             default:
                 break;
         }

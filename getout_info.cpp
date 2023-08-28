@@ -6,11 +6,7 @@
 
 #include "getout_info.h"
 #include "solver.h"
-
-#define RED  "\x1b[31;1m"
-#define YEL  "\x1b[33;1m"
-#define STD  "\x1b[0m"
-#define CYAN "\x1b[36;1m"
+#include "colorlib.h"
 
 /* File input format:
  * a1 b1 c1
@@ -116,16 +112,20 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp)    
     {
         switch (roots)
         {
-            case ZERO_ROOTS:    fprintf(fp,CYAN "Your equation has zero roots.\n" STD);
+            case ZERO_ROOTS:    PrintCyanText(stdout,
+                                              "Your equation has zero roots.\n", "");
                                 break;
 
-            case ONE_ROOT:      fprintf(fp,CYAN "Your equation has one root: x = %lg, and I'm Groot.\n" STD, x1);
+            case ONE_ROOT:      PrintCyanText(stdout,
+                                              "Your equation has one root: x = %lg, and I'm Groot.\n", x1);
                                 break;
 
-            case TWO_ROOTS:     fprintf(fp,CYAN "Your equation has two roots: x1 = %lg, x2 = %lg\n" STD, x1, x2);
+            case TWO_ROOTS:     PrintCyanText(stdout,
+                                              "Your equation has two roots: x1 = %lg, x2 = %lg\n", x1, x2);
                                 break;
 
-            case INF_ROOTS:     fprintf(fp,CYAN "Your equation has infinite amount of roots.\n" STD);
+            case INF_ROOTS:     PrintCyanText(stdout,
+                                              "Your equation has infinite amount of roots.\n", "");
                                 break;
 
             default:            PrintError(ErrorList::ROOTS_AMOUNT_ERROR, nullptr);
@@ -190,54 +190,88 @@ void PrintError(ErrorList error, const char file_name[])             // prints e
 {
     switch (error)
     {
-        case ErrorList::BUFF_OVERSIZE_ERROR: perror(RED "ERROR: TOO LONG INPUT" STD);
+        case ErrorList::BUFF_OVERSIZE_ERROR: PrintRedText(stderr,
+                                                          "ERROR: TOO LONG INPUT (%d)\n",
+                                                          ErrorList::BUFF_OVERSIZE_ERROR);
                                              break;
 
-        case ErrorList::FLAG_ERROR:          perror(RED "ERROR: UNEXPECTED FLAGS" STD);
+        case ErrorList::FLAG_ERROR:          PrintRedText(stderr,
+                                                          "ERROR: UNEXPECTED FLAGS (%d)\n",
+                                                          ErrorList::FLAG_ERROR);
                                              break;
 
-        case ErrorList::GET_FILE_NAME_ERROR: perror(RED "ERROR: FAILED TO GET FILE NAME" STD);
+        case ErrorList::GET_FILE_NAME_ERROR: PrintRedText(stderr,
+                                                          "ERROR: FAILED TO GET FILE NAME (%d)\n",
+                                                          ErrorList::GET_FILE_NAME_ERROR);
                                              break;
 
-        case ErrorList::FILE_INPUT_ERROR:    perror(RED "ERROR: INCORRECT FILE INPUT" STD);
+        case ErrorList::FILE_INPUT_ERROR:    PrintRedText(stderr,
+                                                          "ERROR: INCORRECT FILE INPUT (%d)\n",
+                                                          ErrorList::FILE_INPUT_ERROR);
                                              break;
 
-        case ErrorList::INVALID_COEF_ERROR:  perror(RED "ERROR: INVALID COEFFICIENT" STD);
+        case ErrorList::INVALID_COEF_ERROR:  PrintRedText(stderr,
+                                                          "ERROR: INVALID COEFFICIENT (%d)\n",
+                                                          ErrorList::INVALID_COEF_ERROR);
                                              break;
 
-        case ErrorList::ROOTS_AMOUNT_ERROR:  perror(RED "ERROR: UNEXPECTED AMOUNT OF ROOTS." STD);
+        case ErrorList::ROOTS_AMOUNT_ERROR:  PrintRedText(stderr,
+                                                          "ERROR: UNEXPECTED AMOUNT OF ROOTS (%d)\n",
+                                                          ErrorList::ROOTS_AMOUNT_ERROR);
                                              break;
 
-        case ErrorList::READ_CONSOLE_ERROR:  perror(RED "ERROR: FAILED TO READ CONSOLE COEFFFICIENT" STD);
+        case ErrorList::READ_CONSOLE_ERROR:  PrintRedText(stderr,
+                                                          "ERROR: FAILED TO READ CONSOLE COEFFFICIENT (%d)\n",
+                                                          ErrorList::READ_CONSOLE_ERROR);
                                              break;
 
-        case ErrorList::OPEN_TEST_ERROR:     perror(RED "ERROR: FAILED TO OPEN TEST FILE" STD);
-                                             fprintf(stderr,RED "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::OPEN_TEST_ERROR:     PrintRedText(stderr,
+                                                          "ERROR: FAILED TO OPEN TEST FILE (%d)\n",
+                                                          ErrorList::OPEN_TEST_ERROR);
+                                             PrintRedText(stderr,
+                                                          "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
-        case ErrorList::OPEN_INPUT_ERROR:    perror(RED "ERROR: FAILED TO OPEN INPUT FILE" STD);
-                                             fprintf(stderr,RED "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::OPEN_INPUT_ERROR:    PrintRedText(stderr,
+                                                          "ERROR: FAILED TO OPEN INPUT FILE (%d)\n",
+                                                          ErrorList::OPEN_INPUT_ERROR);
+                                             PrintRedText(stderr,
+                                                          "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
-        case ErrorList::CLOSE_TEST_ERROR:    perror(YEL "WARNING: FAILED TO CLOSE TEST FILE" STD);
-                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::CLOSE_TEST_ERROR:    PrintYellowText(stderr,
+                                                             "WARNING: FAILED TO CLOSE TEST FILE (%d)\n",
+                                                             ErrorList::CLOSE_TEST_ERROR);
+                                             PrintYellowText(stderr,
+                                                             "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
-        case ErrorList::CLOSE_INPUT_ERROR:   perror(YEL "WARNING: FAILED TO CLOSE INPUT FILE" STD);
-                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::CLOSE_INPUT_ERROR:   PrintYellowText(stderr,
+                                                             "WARNING: FAILED TO CLOSE INPUT FILE (%d)\n",
+                                                             ErrorList::CLOSE_INPUT_ERROR);
+                                             PrintYellowText(stderr,
+                                                             "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
-        case ErrorList::OPEN_OUTPUT_ERROR:   perror(YEL "WARNING: FAILED TO OPEN OUTPUT FILE" STD);
-                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::OPEN_OUTPUT_ERROR:   PrintYellowText(stderr,
+                                                             "WARNING: FAILED TO OPEN OUTPUT FILE (%d)\n",
+                                                             ErrorList::OPEN_OUTPUT_ERROR);
+                                             PrintYellowText(stderr,
+                                                             "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
-        case ErrorList::CLOSE_OUTPUT_ERROR:  perror(YEL "WARNING: FAILED TO CLOSE OUTPUT FILE" STD);
-                                             fprintf(stderr,YEL "FILE NAME: \"%s\"\n" STD, file_name);
+        case ErrorList::CLOSE_OUTPUT_ERROR:  PrintYellowText(stderr,
+                                                             "WARNING: FAILED TO CLOSE OUTPUT FILE (%d)\n",
+                                                             ErrorList::CLOSE_OUTPUT_ERROR);
+                                             PrintYellowText(stderr,
+                                                             "FILE NAME: \"%s\"\n", file_name);
                                              break;
 
         case ErrorList::NOT_AN_ERROR:        break;
 
-        default:                             perror(RED "ERROR: UNKNOWN ERROR" STD);
+        default:                             PrintRedText(stderr,
+                                                          "ERROR: UNKNOWN ERROR (%d)",
+                                                          ErrorList::UNKNOWN_ERROR);
                                              break;
     }
 }
