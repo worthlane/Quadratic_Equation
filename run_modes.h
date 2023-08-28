@@ -2,7 +2,7 @@
 * \brief contains funtions declaration, that needed for test mode
 */
 
-#define TEST
+// #define TEST
 
 static const char TEST_FILE[] = "test.txt";     ///< contains test file name
 
@@ -176,7 +176,7 @@ static struct FlagInfo TEST_MODE     = {LONG_TEST_FLAG,     SHORT_TEST_FLAG,
 static const int flag_amount = 8;
 #else
 static struct FlagInfo TEST_MODE     = {nullptr,            nullptr,
-                                        TEST_ARGUMENT,      nullptr,               nullptr};
+                                        nullptr,            nullptr,               nullptr};
 static const int flag_amount = 7;
 #endif
 
