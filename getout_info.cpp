@@ -222,7 +222,7 @@ void PrintError(ErrorList error, const char file_name[])             // prints e
 
         case ErrorList::READ_CONSOLE_ERROR:  PrintRedText(stderr,
                                                           "ERROR: FAILED TO READ CONSOLE COEFFFICIENT (%d)\n",
-                                                          ErrorList::READ_CONSOLE_ERROR);
+                                                           ErrorList::READ_CONSOLE_ERROR);
                                              break;
 
         case ErrorList::OPEN_TEST_ERROR:     PrintRedText(stderr,

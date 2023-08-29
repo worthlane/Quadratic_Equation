@@ -13,8 +13,8 @@ CXXFLAGS =  -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-
 			-Wno-old-style-cast -Wno-varargs -Wstack-protector -fcheck-new -fsized-deallocation    \
 			-fstack-protector -fstrict-overflow -fno-omit-frame-pointer -Wlarger-than=8192         \
 			-Wstack-usage=8192 -fPIE -Werror=vla
-BUILD_DIR = bin/build
-OBJECTS_DIR = bin/objects
+BUILD_DIR = build/bin
+OBJECTS_DIR = build
 SOURCES = main.cpp getout_info.cpp run_modes.cpp solver.cpp
 OBJECTS = $(SOURCES:%.cpp=$(OBJECTS_DIR)/%.o)
 DOXYFILE = Doxyfile
@@ -29,11 +29,14 @@ $(BUILD_DIR)/$(EXECUTABLE): $(OBJECTS)
 $(OBJECTS_DIR)/%.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
-.PHONY: doxybuild
+.PHONY: doxybuild clean install
+
 doxybuild:
 	$(DOXYBUILD)
 
-.PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)/$(EXECUTABLE) $(OBJECTS_DIR)/*.o
+
+install:
+	mkdir -p $(BUILD_DIR)
 

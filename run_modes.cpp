@@ -86,13 +86,14 @@ void RunTest()                                           // runs tests from TEST
 
     int test_number = 1;
 
-    while ((fscanf(fp, "%lf%lf%lf%d%lf%lf", &a, &b, &c, &test.amount, &test.first, &test.second)) == param_amount)
+    while ((fscanf(fp, "%lf%lf%lf%d%lf%lf", &a, &b, &c,
+                                            &test.amount, &test.first, &test.second)) == param_amount)
         OneTest(a, b, c, &test, &test_number);
 
     if (fclose(fp))
         PrintError(ErrorList::CLOSE_TEST_ERROR, TEST_FILE);
 
-    PrintGreenText(stdout, "Tests runned succesfully (%d tests ran)\n", test_number - 1);
+    PrintGreenText(stdout, "Tests ran succesfully (%d tests checked)\n", test_number - 1);
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -321,7 +322,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
 // -----------------------------------------------------------------------------------------
 
 void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                   struct ProgramCondition* pointers, int* i)
+                    struct ProgramCondition* pointers, int* i)
 {
     for (int flag_ptr = 0; flag_ptr < flag_amount; flag_ptr++)
     {

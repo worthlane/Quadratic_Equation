@@ -84,4 +84,4 @@ enum Roots
  * @return nmb if it is not close to zero
  ************************************************************/
 
-double IsZero(double* nmb);
+double inline IsZero(double* nmb);
