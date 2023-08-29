@@ -52,8 +52,7 @@ struct FlagInfo
   const char* LONG_FLAG;                                    ///< long flag name
   const char* SHORT_FLAG;                                   ///< short flag name
   char* argument;                                           ///< space for flag argument
-  ErrorList (*FlagFunc) (void* a, void* b, void* c,
-                         struct FlagInfo* param);           ///< function, that flag is doing
+  ErrorList (*FlagFunc) (void* params);                     ///< function, that flag is doing
   const char* help_info;                                    ///< help info about this flag
 };
 
@@ -71,60 +70,47 @@ struct ProgramCondition
 /************************************************************//**
  * @brief Stdin input flag function
  *
- * @param[out] a coefficient
- * @param[out] b coefficient
- * @param[out] c coefficient
+ * @param[in] params parameters storage
  * @return error from ErrorList (0 if no error)
  ************************************************************/
 
-ErrorList StdinInput(void* a, void* b, void* c, struct FlagInfo* param);
+ErrorList StdinInput(void* params);
 
 /************************************************************//**
  * @brief Flag function for input from file
  *
- * @param[out] a coefficient
- * @param[out] b coefficient
- * @param[out] c coefficient
- * @param[out] param argument
+ * @param[in] params parameters storage
  * @return error from ErrorList (0 if no error)
  ************************************************************/
 
-ErrorList FileInput(void* a, void* b, void* c, struct FlagInfo* param);
+ErrorList FileInput(void* params);
 
 /************************************************************//**
  * @brief Flag function for input from console
  *
- * @param[out] a coefficient
- * @param[out] b coefficient
- * @param[out] c coefficient
- * @param[out] param argument
+ * @param[in] params parameters storage
  * @return error from ErrorList (0 if no error)
  ************************************************************/
 
-ErrorList ConsoleInput(void* a, void* b, void* c, struct FlagInfo* param);
+ErrorList ConsoleInput(void* params);
 
 /************************************************************//**
  * @brief Flag function for output to stdout
  *
- * @param[in] amount amount of roots
- * @param[in] first root1
- * @param[in] second root2
+ * @param[in] params parameters storage
  * @return error from ErrorList (0 if no error)
  ************************************************************/
 
-ErrorList StdoutOutput(void* amount, void* first, void* second, struct FlagInfo* param);
+ErrorList StdoutOutput(void* params);
 
 /************************************************************//**
  * @brief Flag function for output to file
  *
- * @param[in] amount amount of roots
- * @param[in] first root1
- * @param[in] second root2
- * @param[in] param argument
+ * @param[in] params parameters storage
  * @return error from ErrorList (0 if no error)
  ************************************************************/
 
-ErrorList FileOutput(void* amount, void* first, void* second, struct FlagInfo* param);
+ErrorList FileOutput(void* params);
 
 
 static char STDIN_ARGUMENT[LEN]      = "";  ///< stdin input argument initialization

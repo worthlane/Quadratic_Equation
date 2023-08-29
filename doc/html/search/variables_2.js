@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['help_5finfo_0',['help_info',['../struct_flag_info.html#a41a7045aa669c2a0d25731a9df01a3b9',1,'FlagInfo']]]
+  ['c_0',['c',['../struct_coefficients.html#a3a8a6e5cc52fbaa075ef61983d441eed',1,'Coefficients']]]
 ];

@@ -14,9 +14,22 @@ static const int    NAN_INT    = -1;
 
 struct QuadSolutions
 {
-  int    amount;          ///< amount of roots
-  double first;        ///< first root
-  double second;       ///< second root
+    int    amount;          ///< amount of roots
+    double first;           ///< first root
+    double second;          ///< second root
+    char*  arg;             ///< output argument
+};
+
+/************************************************************//**
+ * @brief Struct contains coefficients
+ ************************************************************/
+
+struct Coefficients
+{
+    double a;           ///< coefficient
+    double b;           ///< coefficient
+    double c;           ///< coefficient
+    char*  arg;         ///< input argument
 };
 
 /************************************************************//**
@@ -25,9 +38,9 @@ struct QuadSolutions
 
 enum Comparison
 {
-  LESS  = -1,          ///< a < b
-  EQUAL =  0,          ///< a = b
-  MORE  =  1,          ///< a > b
+    LESS  = -1,          ///< a < b
+    EQUAL =  0,          ///< a = b
+    MORE  =  1,          ///< a > b
 };
 
 /************************************************************//**
@@ -69,11 +82,11 @@ void LinearSolver(const double b, const double c, struct QuadSolutions* ans);
 
 enum Roots
 {
-  UNDEFINED_ROOTS  = -2,       ///< equation has undefined amount of roots
-  INF_ROOTS        = -1,       ///< equation has infinite amount of roots
-  ZERO_ROOTS       =  0,       ///< equation has no roots
-  ONE_ROOT         =  1,       ///< equation has one root
-  TWO_ROOTS        =  2,       ///< equation has two different roots
+    UNDEFINED_ROOTS  = -2,       ///< equation has undefined amount of roots
+    INF_ROOTS        = -1,       ///< equation has infinite amount of roots
+    ZERO_ROOTS       =  0,       ///< equation has no roots
+    ONE_ROOT         =  1,       ///< equation has one root
+    TWO_ROOTS        =  2,       ///< equation has two different roots
 };
 
 /************************************************************//**

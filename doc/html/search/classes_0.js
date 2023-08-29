@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flaginfo_0',['FlagInfo',['../struct_flag_info.html',1,'']]]
+  ['coefficients_0',['Coefficients',['../struct_coefficients.html',1,'']]]
 ];

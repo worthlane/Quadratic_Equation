@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['help_5fflag_0',['help_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa4baaefff237e5a100f0889bfcb6986a5',1,'run_modes.h']]],
-  ['help_5finfo_1',['help_info',['../struct_flag_info.html#a41a7045aa669c2a0d25731a9df01a3b9',1,'FlagInfo']]]
+  ['getcoef_0',['GetCoef',['../getout__info_8h.html#a8123382aab0235af2ba9348c35189db6',1,'getout_info.cpp']]],
+  ['getconsole_1',['GetConsole',['../getout__info_8h.html#a0a021520dc9fc7de9c871e9d6c388fdd',1,'getout_info.cpp']]],
+  ['getfilename_2',['GetFileName',['../getout__info_8h.html#a30f14f0cfe0d10f57f5db7f021de6219',1,'getout_info.cpp']]],
+  ['getout_5finfo_2eh_3',['getout_info.h',['../getout__info_8h.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['long_5fflag_0',['LONG_FLAG',['../struct_flag_info.html#a299ffd2c7c0b4295ef3f4caf654bbb27',1,'FlagInfo']]]
+  ['help_5finfo_0',['help_info',['../struct_flag_info.html#a41a7045aa669c2a0d25731a9df01a3b9',1,'FlagInfo']]]
 ];

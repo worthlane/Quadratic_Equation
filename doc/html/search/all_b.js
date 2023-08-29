@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['quadratic_20equation_20solver_0',['Quadratic Equation Solver',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['quadsolutions_1',['QuadSolutions',['../struct_quad_solutions.html',1,'']]],
-  ['quadsolver_2',['QuadSolver',['../solver_8h.html#a552e9db5abab528b1524cbfc4006414a',1,'solver.cpp']]]
+  ['printerror_0',['PrintError',['../getout__info_8h.html#a47da2ed19025616106152f92e7990e49',1,'getout_info.cpp']]],
+  ['printhelp_1',['PrintHelp',['../run__modes_8h.html#acce7a8814c422fbb359ac932868a25ae',1,'run_modes.cpp']]],
+  ['printroots_2',['PrintRoots',['../getout__info_8h.html#afd758deeaa582e8e84ecd96cd779218e',1,'getout_info.cpp']]],
+  ['programcondition_3',['ProgramCondition',['../struct_program_condition.html',1,'']]]
 ];

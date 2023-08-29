@@ -132,8 +132,14 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
     double b = NAN;          // b coef initialization
     double c = NAN;          // c coef initalization
 
-    ErrorList read_error = FlagInfo[pointers->input_ptr]->FlagFunc(&a, &b, &c,
-                                                                   FlagInfo[pointers->input_ptr]);
+    char in_argument[LEN] = "";
+
+    strncpy(in_argument, FlagInfo[pointers->input_ptr]->argument, LEN);
+
+    struct Coefficients coefs = {a, b, c, in_argument};
+
+    ErrorList read_error = FlagInfo[pointers->input_ptr]->FlagFunc(&coefs);
+
     if (read_error != ErrorList::NOT_AN_ERROR)
     {
         if (read_error == ErrorList::USER_QUIT || !RepeatQuestion("try again"))
@@ -141,35 +147,39 @@ ErrorList RunSolve(struct FlagInfo* FlagInfo[], struct ProgramCondition* pointer
         else
             return ErrorList::NOT_AN_ERROR;
     }
-
     struct QuadSolutions ans = {};
-    QuadSolver(a, b, c, &ans);
+    char out_argument[LEN] = "";
 
-    ErrorList output_error = FlagInfo[pointers->output_ptr]->FlagFunc(&(ans.amount), &(ans.first), &(ans.second),
-                                                                      FlagInfo[pointers->output_ptr]);
+    strncpy(out_argument, FlagInfo[pointers->output_ptr]->argument, LEN);
+    ans.arg = out_argument;
 
+    QuadSolver(coefs.a, coefs.b, coefs.c, &ans);
+
+    ErrorList output_error = FlagInfo[pointers->output_ptr]->FlagFunc(&ans);
 
     return output_error;
 }
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList StdinInput(void* a, void* b, void* c, struct FlagInfo* param) // gets coefs from stdin
+ErrorList StdinInput(void* params) // gets coefs from stdin
 {
+    struct Coefficients* coefs = (struct Coefficients* ) params;
+
     printf("Equation format: ax^2 + bx + c = 0\n");
-    while (!GetCoef((double* ) a, 'a'))
+    while (!GetCoef(&(coefs->a), 'a'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
 
     }
-    while (!GetCoef((double* ) b, 'b'))
+    while (!GetCoef(&(coefs->b), 'b'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
 
     }
-    while (!GetCoef((double* ) c, 'c'))
+    while (!GetCoef(&(coefs->c), 'c'))
     {
         if (!RepeatQuestion("try again"))
             return ErrorList::USER_QUIT;
@@ -181,11 +191,13 @@ ErrorList StdinInput(void* a, void* b, void* c, struct FlagInfo* param) // gets 
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList FileInput(void* a, void* b, void* c, struct FlagInfo* param) // gets coefs from file
+ErrorList FileInput(void* params) // gets coefs from file
 {
+    struct Coefficients* coefs = (struct Coefficients* ) params;
+
     FILE* fpin = nullptr;
     static char infile_name[LEN] = "no name";
-    if (!strlen(param->argument))
+    if (!strlen(coefs->arg))
     {
         fpin = OpenInputFile(infile_name);                          // gets name of input file
         if (!fpin)
@@ -196,21 +208,21 @@ ErrorList FileInput(void* a, void* b, void* c, struct FlagInfo* param) // gets c
     }
     else
     {
-        fpin = fopen(param->argument, "r");                         // input file name is an argument
-        strncpy(infile_name, param->argument, LEN);
+        fpin = fopen(coefs->arg, "r");                         // input file name is an argument
+        strncpy(infile_name, coefs->arg, LEN);
         if (!fpin)
         {
             PrintError(ErrorList::OPEN_INPUT_ERROR, infile_name);
             return ErrorList::OPEN_INPUT_ERROR;
         }
-        memset(param->argument, 0, LEN);
+        memset(coefs->arg, 0, LEN);
     }
 
     assert (fpin);
 
-    if (!FileGetCoef(fpin, (double* ) a)) return ErrorList::INVALID_COEF_ERROR;
-    if (!FileGetCoef(fpin, (double* ) b)) return ErrorList::INVALID_COEF_ERROR;
-    if (!FileGetCoef(fpin, (double* ) c)) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, &(coefs->a))) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, &(coefs->b))) return ErrorList::INVALID_COEF_ERROR;
+    if (!FileGetCoef(fpin, &(coefs->c))) return ErrorList::INVALID_COEF_ERROR;
 
     if (fclose(fpin))
         PrintError(ErrorList::CLOSE_INPUT_ERROR, infile_name);
@@ -220,30 +232,36 @@ ErrorList FileInput(void* a, void* b, void* c, struct FlagInfo* param) // gets c
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList ConsoleInput(void* a, void* b, void* c, struct FlagInfo* param)     // gets coefs from console
+ErrorList ConsoleInput(void* params)     // gets coefs from console
 {
-    if (!GetConsole(param->argument, (double* ) a, (double* ) b, (double* ) c)) return ErrorList::READ_CONSOLE_ERROR;
+    struct Coefficients* coefs = (struct Coefficients* ) params;
+
+    if (!GetConsole(coefs->arg, &(coefs->a), &(coefs->b), &(coefs->c)))
+        return ErrorList::READ_CONSOLE_ERROR;
 
     return ErrorList::NOT_AN_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList StdoutOutput(void* amount, void* first, void* second, struct FlagInfo* param)
+ErrorList StdoutOutput(void* params)
 {
+    struct QuadSolutions* ans = (struct QuadSolutions* ) params;
 
-    PrintRoots(*((int* )amount), *((double* ) first), *((double* ) second), stdout);
+    PrintRoots(ans->amount, ans->first, ans->second, stdout);
     return ErrorList::NOT_AN_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------
 
-ErrorList FileOutput(void* amount, void* first, void* second, struct FlagInfo* param)
+ErrorList FileOutput(void* params)
 {
+    struct QuadSolutions* ans = (struct QuadSolutions* ) params;
+
     char outfile_name[LEN] = "no name";
     FILE *fpout = nullptr;
 
-    if (!strlen(param->argument))
+    if (!strlen(ans->arg))
     {
         if (GetFileName(outfile_name, "output") != ErrorList::NOT_AN_ERROR)
             return ErrorList::GET_FILE_NAME_ERROR;
@@ -251,11 +269,11 @@ ErrorList FileOutput(void* amount, void* first, void* second, struct FlagInfo* p
     }
     else
     {
-        fpout = fopen(param->argument, "a");
-        strncpy(outfile_name, param->argument, LEN);
-        memset(param->argument, 0, LEN);
+        fpout = fopen(ans->arg, "a");
+        strncpy(outfile_name, ans->arg, LEN);
+        memset(ans->arg, 0, LEN);
     }
-    PrintRoots(*((int* ) amount), *((double* ) first), *((double* ) second), fpout);
+    PrintRoots(ans->amount, ans->first, ans->second, fpout);
     if (fpout != stdout && fclose(fpout))
         PrintError(ErrorList::CLOSE_OUTPUT_ERROR, outfile_name);
     return ErrorList::NOT_AN_ERROR;

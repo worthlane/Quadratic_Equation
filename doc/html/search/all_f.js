@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['undefined_5froots_0',['UNDEFINED_ROOTS',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa88e9086811776ffab99059ebdc83c83c',1,'solver.h']]],
-  ['unknown_5fflag_1',['unknown_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa96f6ee03766d904dd8265f7665dd657d',1,'run_modes.h']]]
+  ['test_5fflag_0',['test_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa0574e57b35bd797ca7fdf777848474ee',1,'run_modes.h']]],
+  ['triplestring_1',['TripleString',['../run__modes_8h.html#a74e479a3d0f55c152a745f8de058cbac',1,'run_modes.cpp']]],
+  ['two_5froots_2',['TWO_ROOTS',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa876622d3c0b008da13a3685c64714e81',1,'solver.h']]]
 ];

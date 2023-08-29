@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['one_5froot_0',['ONE_ROOT',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692aa6700c0f6efd23571cb22aefd2510b1cf',1,'solver.h']]],
-  ['onetest_1',['OneTest',['../run__modes_8h.html#a78538a31610a603cca698d26dab15ef9',1,'run_modes.cpp']]],
-  ['openinputfile_2',['OpenInputFile',['../getout__info_8h.html#a7dc7bff77d5cd3e57ea4536a9f9183c2',1,'getout_info.cpp']]],
-  ['output_5fptr_3',['output_ptr',['../struct_program_condition.html#a4355ed97d41aa1b74079546566ddc339',1,'ProgramCondition']]]
+  ['menu_0',['Menu',['../run__modes_8h.html#a8f59754c8b8b7e1613fe16f13227fd71',1,'run_modes.cpp']]],
+  ['mode_5fptr_1',['mode_ptr',['../struct_program_condition.html#a0b085908588532c82fce28228a308887',1,'ProgramCondition']]],
+  ['more_2',['MORE',['../solver_8h.html#ace67d421b0a753740a12d3aedbea57c0af165e191d0fd1c7cc04270fb883dbc02',1,'solver.h']]]
 ];

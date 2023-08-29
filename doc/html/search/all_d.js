@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['second_0',['second',['../struct_quad_solutions.html#ac142510ee0ad59df5dd346605055bd45',1,'QuadSolutions']]],
-  ['short_5fflag_1',['SHORT_FLAG',['../struct_flag_info.html#a9d5e5977265d7d012bf22a0cdeb64cf8',1,'FlagInfo']]],
-  ['shortflagcheck_2',['ShortFlagCheck',['../run__modes_8h.html#aa16f6991bdfaf6f97ebe1c356f11de21',1,'run_modes.cpp']]],
-  ['skipheader_3',['SkipHeader',['../run__modes_8h.html#aaf7ad1289c50d0093cc622b61dc9ef96',1,'run_modes.cpp']]],
-  ['solve_5fflag_4',['solve_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa45df74b958f0829f496490ab7f8ad739',1,'run_modes.h']]],
-  ['solver_2eh_5',['solver.h',['../solver_8h.html',1,'']]],
-  ['stdin_5fflag_6',['stdin_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295faf5c361d25fd7e7bfae2535c9d6299030',1,'run_modes.h']]],
-  ['stdininput_7',['StdinInput',['../run__modes_8h.html#a57accd8f63c552b13653cbdf9da5a752',1,'run_modes.cpp']]],
-  ['stdout_5fflag_8',['stdout_flag',['../run__modes_8h.html#aa705cf7e79a21c2352b00ffe20cd295fa795f97482fb37366aa0f604914502299',1,'run_modes.h']]],
-  ['stdoutoutput_9',['StdoutOutput',['../run__modes_8h.html#a194a998af8b53b5a3198f75c4bc6f853',1,'run_modes.cpp']]]
+  ['readargument_0',['ReadArgument',['../run__modes_8h.html#a13cdb300382eb50272b2c6f63df886ec',1,'run_modes.cpp']]],
+  ['repeatquestion_1',['RepeatQuestion',['../getout__info_8h.html#a2f3d71ac338c2990785e79a3a58b04ac',1,'getout_info.cpp']]],
+  ['roots_2',['Roots',['../solver_8h.html#a34f6126547cfdaeca6fb82d45a97692a',1,'solver.h']]],
+  ['run_5fmodes_2eh_3',['run_modes.h',['../run__modes_8h.html',1,'']]],
+  ['runsolve_4',['RunSolve',['../run__modes_8h.html#a6c957f20da689e9ae2e6c34b1e5bd2aa',1,'run_modes.cpp']]],
+  ['runtest_5',['RunTest',['../run__modes_8h.html#a4a2eff499a3c811ef4d814024ba98ef0',1,'run_modes.cpp']]]
 ];
