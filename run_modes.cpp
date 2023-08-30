@@ -312,7 +312,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
                 {
                     memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->input_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
             else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)   // output flag
@@ -321,7 +321,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
                 {
                     memset(FlagInfo[pointers->output_ptr]->argument, 0, LEN);
                     pointers->output_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
             else
@@ -330,7 +330,7 @@ void LongFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInfo
                 {
                     memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
         }
@@ -352,7 +352,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
                 {
                     memset(FlagInfo[pointers->input_ptr]->argument, 0, LEN);
                     pointers->input_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
             else if (stdout_flag == flag_ptr || flag_ptr == file_output_flag)   // output flag
@@ -361,7 +361,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
                 {
                     memset(FlagInfo[pointers->output_ptr]->argument, 0, LEN);
                     pointers->output_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
             else
@@ -370,7 +370,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
                 {
                     memset(FlagInfo[pointers->mode_ptr]->argument, 0, LEN);
                     pointers->mode_ptr = flag_ptr;
-                    ReadArgument(argc, argv, FlagInfo, pointers, i, flag_ptr);
+                    ReadArgument(argc, argv, FlagInfo, i, flag_ptr);
                 }
             }
         }
@@ -379,8 +379,7 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
 
 // -----------------------------------------------------------------------------------------
 
-void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                  struct ProgramCondition* pointers, int* i, int flag_ptr)
+void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[], int* i, int flag_ptr)
 {
     char coef1[LEN] = "";
     char coef2[LEN] = "";

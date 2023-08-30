@@ -237,12 +237,10 @@ void ShortFlagCheck(const int argc, const char* argv[], struct FlagInfo* FlagInf
  * @param[in] argc amount of console arguments
  * @param[in] argv console argument
  * @param[in] FlagInfo list with info about flags
- * @param[in] pointers pointers to program mode
  * @param[in] i pointer to console argument
  ************************************************************/
 
-void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[],
-                  struct ProgramCondition* pointers, int* i, int flag_ptr);
+void ReadArgument(const int argc, const char* argv[], struct FlagInfo* FlagInfo[], int* i, int flag_ptr);
 
 /************************************************************//**
  * @brief Calls for menu
