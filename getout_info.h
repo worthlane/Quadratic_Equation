@@ -138,7 +138,7 @@ void PrintRoots(const int roots, const double x1, const double x2, FILE* fp);
  * @return false if function did not get name or user exited program
  ************************************************************/
 
-ErrorList GetFileName(char* file_name, const char mode[]);
+ErrorList GetFileName(char* file_name, const char* mode);
 
 /************************************************************//**
  * @brief Function asks user, does he want to repeat program running
@@ -148,7 +148,7 @@ ErrorList GetFileName(char* file_name, const char mode[]);
  * @return false if user want to quit
  ************************************************************/
 
-bool RepeatQuestion(const char mode[]);
+bool RepeatQuestion(const char* mode);
 
 /************************************************************//**
  * @brief Prints error
@@ -156,7 +156,7 @@ bool RepeatQuestion(const char mode[]);
  * @param[in] error
  ************************************************************/
 
-void PrintError(ErrorList error, const char file_name[]);
+void PrintError(ErrorList error, const char* file_name);
 
 /************************************************************//**
  * @brief Get the Console object

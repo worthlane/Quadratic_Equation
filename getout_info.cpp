@@ -14,7 +14,7 @@
 
 inline int Max(const int a, const int b);
 
-ErrorList GetFileName(char* file_name, const char mode[])                       // getting file name
+ErrorList GetFileName(char* file_name, const char* mode)                       // getting file name
 {
     assert(file_name);
 
@@ -172,7 +172,7 @@ bool GetConsole(char* string, double* a, double* b, double* c)      // gets coef
 
 //------------------------------------------------------------------------------------------------------------------
 
-bool RepeatQuestion(const char mode[])          // asks user for repeat
+bool RepeatQuestion(const char* mode)          // asks user for repeat
 {
     printf("Do you want to %s? (1 - Yes): ", mode);
 
@@ -186,7 +186,7 @@ bool RepeatQuestion(const char mode[])          // asks user for repeat
 
 //------------------------------------------------------------------------------------------------------------------
 
-void PrintError(ErrorList error, const char file_name[])             // prints errors from errorlist
+void PrintError(ErrorList error, const char* file_name)             // prints errors from errorlist
 {
     switch (error)
     {
